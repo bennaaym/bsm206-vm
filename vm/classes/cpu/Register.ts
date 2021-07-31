@@ -8,17 +8,17 @@ import IRegister from "../../interfaces/IRegister";
 
 class Register implements IRegister
 {
-    //Properties
+    // Properties
     private view:DataView;
 
-    //Methods
+    // Constructor
     constructor(sizeInBytes:number = 2)
     {
         const arrayBuffer = new ArrayBuffer(sizeInBytes);
         this.view = new DataView(arrayBuffer);
     }
 
-
+    // Methods
     public read     = (): number => (this.view.byteLength === 1)? this.view.getUint8(0) : this.view.getUint16(0);
     public readMSB  = (): number => this.view.getUint8(0);
     public readLSB  = (): number => (this.view.byteLength === 1)? this.view.getUint8(0) : this.view.getUint8(1);
