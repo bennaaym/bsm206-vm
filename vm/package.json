@@ -1,0 +1,13 @@
+{
+  "name": "vm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start" : "ts-node main.ts",
+    "dev" : "nodemon main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
