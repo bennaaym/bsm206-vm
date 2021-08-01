@@ -3,12 +3,14 @@ import EIDEC from "../../enums/EIDEC";
 import EREG from "../../enums/EREG";
 import IControlUnit from "../../interfaces/cpu/IControlUnit";
 import IDecoder from "../../interfaces/cpu/IDecoder";
+import IExecutor from "../../interfaces/cpu/IExecutor";
 import IRegister from "../../interfaces/cpu/IRegister";
 import IRegisters from "../../interfaces/cpu/IRegisters";
 import IMemory from "../../interfaces/memory/IMemory";
 import Memory from "../memory/Memory";
 import AddressingModeDecoder from "./decoders/AddressingModeDecoder";
 import InstructionDecoder from "./decoders/InstructionDecoder";
+import ExecutorFactory from "./executor/ExecutorFactory";
 import Registers from "./Registers";
 
 
@@ -64,7 +66,7 @@ class ControlUnit implements IControlUnit
         return {ADRMD,IDEC};
     };
 
-    public execute = (): void => console.log('execute');
+    public execute = (ADRMD:number,IDEC:number): void => new ExecutorFactory().getExecutor(ADRMD,IDEC).execute();
 
 }
 
