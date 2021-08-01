@@ -1,24 +1,16 @@
-import EIDEC from "../../../enums/EIDEC";
-import EREG from "../../../enums/EREG";
-import IExecutor from "../../../interfaces/cpu/IExecutor";
-import IRegisters from "../../../interfaces/cpu/IRegisters";
-import IMemory from "../../../interfaces/memory/IMemory";
-import Memory from "../../memory/Memory";
-import Registers from "../Registers";
+import EIDEC from "../../../../enums/EIDEC";
+import EREG from "../../../../enums/EREG";
+import IExecutor from "../../../../interfaces/cpu/IExecutor";
+import BaseExecutor from "../BaseExecutor";
 
-class DirectModeExecutor implements IExecutor
+class DirectModeExecutor extends BaseExecutor implements IExecutor
 {
-    // Properties
-    private IDEC:number;
-    private memoryRef : IMemory;
-    private registersRef :IRegisters;
 
+    
     // Constructor  
     constructor(IDEC:number)
     {
-        this.IDEC = IDEC;
-        this.memoryRef = Memory.getInstance();
-        this.registersRef = Registers.getInstance();
+        super(IDEC);
     }
 
     // Methods

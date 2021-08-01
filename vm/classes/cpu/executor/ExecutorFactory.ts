@@ -1,11 +1,11 @@
 import EADRMD from "../../../enums/EADRMD";
 import IExecutor from "../../../interfaces/cpu/IExecutor";
-import DirectModeExecutor from "./DirectModeExecutor";
-import ImmediateModeExecutor from "./ImmediateModeExecutor";
-import IndexModeExecutor from "./IndexModeExecutor";
-import IndirectModeExecutor from "./IndirectModeExecutor";
-import InherentModeExecutor from "./InherentModeExecutor";
-import RelativeModeExecutor from "./RelativeModeExecutor";
+import DirectModeExecutor from "./factory/DirectModeExecutor";
+import ImmediateModeExecutor from "./factory/ImmediateModeExecutor";
+import IndexModeExecutor from "./factory/IndexModeExecutor";
+import IndirectModeExecutor from "./factory/IndirectModeExecutor";
+import InherentModeExecutor from "./factory/InherentModeExecutor";
+import RelativeModeExecutor from "./factory/RelativeModeExecutor";
 
 class ExecutorFactory 
 {

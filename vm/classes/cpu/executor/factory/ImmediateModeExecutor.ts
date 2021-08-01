@@ -1,25 +1,15 @@
-import EIDEC from "../../../enums/EIDEC";
-import EREG from "../../../enums/EREG";
-import IExecutor from "../../../interfaces/cpu/IExecutor";
-import IRegisters from "../../../interfaces/cpu/IRegisters";
-import IMemory from "../../../interfaces/memory/IMemory";
-import Memory from "../../memory/Memory";
-import Registers from "../Registers";
-import ExecutorFactory from "./ExecutorFactory";
+import EIDEC from "../../../../enums/EIDEC";
+import EREG from "../../../../enums/EREG";
+import IExecutor from "../../../../interfaces/cpu/IExecutor";
+import BaseExecutor from "../BaseExecutor";
 
-class ImmediateModeExecutor  implements IExecutor
+class ImmediateModeExecutor extends BaseExecutor implements IExecutor
 {
-    // Properties
-    private IDEC:number;
-    private memoryRef : IMemory;
-    private registersRef :IRegisters;
-
+ 
     // Constructor  
     constructor(IDEC:number)
     {
-        this.IDEC = IDEC;
-        this.memoryRef = Memory.getInstance();
-        this.registersRef = Registers.getInstance();
+        super(IDEC);
     }
 
     // Methods
@@ -28,25 +18,10 @@ class ImmediateModeExecutor  implements IExecutor
         switch(this.IDEC)
         {
             case EIDEC.LDA:
-                this.LDA();
+                this.LDA(this.commonSteps);
                 break;
         }
     };
-
-
-    
-    public LDA = () =>
-    {
-        this.commonSteps();
-
-        // T5 : AC <- DR
-        const DR = this.registersRef.getRegister(EREG.DR);
-        this.registersRef.getRegister(EREG.AC).write(DR.read());
-    }
-
-
-
-    
 
 
 

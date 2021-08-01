@@ -1,4 +1,4 @@
-import IExecutor from "../../../interfaces/cpu/IExecutor";
+import IExecutor from "../../../../interfaces/cpu/IExecutor";
 
 class RelativeModeExecutor implements IExecutor
 {
