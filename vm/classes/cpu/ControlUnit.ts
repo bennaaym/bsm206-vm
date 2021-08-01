@@ -33,7 +33,9 @@ class ControlUnit implements IControlUnit
 
         // T1 : IR <- M[AR], PC <- PC + 1
         // gets the opcode specified by the address register (AR) from the memory and assigns to the instructions register(IR)
-        
+        const AR = this.registersRef.getRegister(EREG.AR).read();
+        const opcode = this.memoryRef.read(AR);
+        this.PC.increment();
     };
     
     public decode = (): {ADRMD:number,IDEC:number} => {return {'ADRMD':0,'IDEC':0}};

@@ -7,6 +7,7 @@ interface IRegister
     writeMSB(data:number):void // writes the data into the most significant byte of the register 
     writeLSB(data:number):void // writes the data into the least significant byte of the register 
     increment():void // increments the content of the register by one
+    sizeInBytes():number // returns the size of the register in bytes
 }
 
 export default IRegister;
