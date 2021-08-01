@@ -33,8 +33,9 @@ class ControlUnit implements IControlUnit
 
         // T1 : IR <- M[AR], PC <- PC + 1
         // gets the opcode specified by the address register (AR) from the memory and assigns to the instructions register(IR)
-        const AR = this.registersRef.getRegister(EREG.AR).read();
-        const opcode = this.memoryRef.read(AR);
+        const AR:number = this.registersRef.getRegister(EREG.AR).read();
+        const opcode:number = this.memoryRef.read(AR);
+        this.IR.write(opcode);
         this.PC.increment();
     };
     
