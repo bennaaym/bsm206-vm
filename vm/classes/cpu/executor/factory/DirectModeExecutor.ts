@@ -19,25 +19,10 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         switch(this.IDEC)
         {
             case EIDEC.LDA:
-                this.LDA();
+                this.LDA(this.maxCommonSteps);
                 break;
         }
     };
-
-
-    
-    public LDA = () =>
-    {
-        this.maxCommonSteps();
-
-        // T8 : AC <- DR
-        const DR = this.registersRef.getRegister(EREG.DR);
-        this.registersRef.getRegister(EREG.AC).write(DR.read());
-    }
-
-
-
-    
 
 
 
