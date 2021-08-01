@@ -1,5 +1,5 @@
 /**
- * This VM has 5 addressing modes
+ * This VM has 6 addressing modes
  * Inherent
  * immediate
  * direct
