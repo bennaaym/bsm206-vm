@@ -1,13 +1,9 @@
-import IRegister from "../../interfaces/IRegister";
+import IRegister from "../../interfaces/cpu/IRegister";
 
-/**
- * This VM has 11 registers
- * IR and CCR registers are 8 bits registers
- * All the other registers are 16 bits registers
- */ 
 
 class Register implements IRegister
 {
+
     // Properties
     private view:DataView;
 

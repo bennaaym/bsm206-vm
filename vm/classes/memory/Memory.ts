@@ -1,4 +1,4 @@
-import IMemory from "../../interfaces/IMemory";
+import IMemory from "../../interfaces/memory/IMemory";
 
 /**
  * This VM has 64 KB of memory  => min.adr:0x0000 - max.adr:0xFFFF)
