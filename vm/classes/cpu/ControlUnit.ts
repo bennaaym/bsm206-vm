@@ -1,9 +1,14 @@
+import EADRMD from "../../enums/EADRMD";
+import EIDEC from "../../enums/EIDEC";
 import EREG from "../../enums/EREG";
 import IControlUnit from "../../interfaces/cpu/IControlUnit";
+import IDecoder from "../../interfaces/cpu/IDecoder";
 import IRegister from "../../interfaces/cpu/IRegister";
 import IRegisters from "../../interfaces/cpu/IRegisters";
 import IMemory from "../../interfaces/memory/IMemory";
 import Memory from "../memory/Memory";
+import AddressingModeDecoder from "./decoders/AddressingModeDecoder";
+import InstructionDecoder from "./decoders/InstructionDecoder";
 import Registers from "./Registers";
 
 
@@ -41,8 +46,22 @@ class ControlUnit implements IControlUnit
     
     public decode = (): {ADRMD:number,IDEC:number} => 
     {
-        
-        return {'ADRMD':0,'IDEC':0}
+        // Decoding
+        const addressingModeDecoder: IDecoder = new AddressingModeDecoder();
+        const instructionDecoder: IDecoder = new InstructionDecoder();
+
+        const IDEC:number = instructionDecoder.decode(this.IR.read());
+        const ADRMD:number = (IDEC === EIDEC.NOP)? EADRMD.INHERENT : addressingModeDecoder.decode(this.IR.read());
+
+        // T2 : AR <- PC, PC <- PC + 1
+        if(ADRMD !== EADRMD.INHERENT)
+        {
+            this.registersRef.getRegister(EREG.AR).write(this.PC.read());
+            this.PC.increment();
+        }
+       
+
+        return {ADRMD,IDEC};
     };
 
     public execute = (): void => console.log('execute');

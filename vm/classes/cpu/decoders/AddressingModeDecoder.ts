@@ -18,7 +18,7 @@ class AddressingModeDecoder implements IDecoder
             case EADRMD.IMMEDIATE   :   return EADRMD.IMMEDIATE;
             case EADRMD.DIRECT      :   return EADRMD.DIRECT;
             case EADRMD.INDIRECT    :   return EADRMD.INDIRECT;
-            case EADRMD.INDEX       :   return EADRMD.RELATIVE;
+            case EADRMD.INDEX       :   return EADRMD.INDEX;
             case EADRMD.RELATIVE    :   return EADRMD.RELATIVE;
             default                 :   return EADRMD.INHERENT
         }

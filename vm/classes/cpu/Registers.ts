@@ -59,6 +59,8 @@ class Registers implements IRegisters
         {
             console.log(`${reg.padEnd(4,' ')} => 0x${this.map[reg].read().toString(16).padStart(this.map[reg].sizeInBytes()*2,'0')}`)
         }
+
+        console.log();
     };
 
 }
