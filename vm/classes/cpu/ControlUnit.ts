@@ -39,7 +39,10 @@ class ControlUnit implements IControlUnit
         this.PC.increment();
     };
     
-    public decode = (): {ADRMD:number,IDEC:number} => {return {'ADRMD':0,'IDEC':0}};
+    public decode = (): {ADRMD:number,IDEC:number} => 
+    {
+        return {'ADRMD':0,'IDEC':0}
+    };
 
     public execute = (): void => console.log('execute');
 
