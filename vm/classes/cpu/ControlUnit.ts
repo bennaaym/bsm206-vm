@@ -41,6 +41,7 @@ class ControlUnit implements IControlUnit
     
     public decode = (): {ADRMD:number,IDEC:number} => 
     {
+        
         return {'ADRMD':0,'IDEC':0}
     };
 
