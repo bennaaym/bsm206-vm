@@ -21,6 +21,9 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.LDA:
                 this.LDA(this.maxCommonSteps);
                 break;
+            case EIDEC.STA:
+                this.STA(this.minCommonSteps);
+                break;
         }
     };
 

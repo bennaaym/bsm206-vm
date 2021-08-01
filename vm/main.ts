@@ -11,9 +11,11 @@
 // meo.write(0x0000,0x1A);
 // meo.write(0x0001,0x12);
 // meo.write(0x0002,0x34);
-// meo.write(0x0003,0xA0);
+// meo.write(0x0003,0xB0);
 // meo.write(0x0004,0xFD);
 // meo.write(0x0005,0x34);
+// meo.write(0xFD34,0x00);
+// meo.write(0xFD35,0x0A);
 
 // const cycle = () =>
 // {
@@ -26,5 +28,5 @@
 // cycle();
 
 // regs.debug();
-// console.log(meo.read(0xFD34).toString(16).padStart(4,'0'))
-// console.log(meo.read(0xFD35).toString(16).padStart(4,'0'))
+// console.log(meo.read(0x000A).toString(16).padStart(4,'0'))
+// console.log(meo.read(0x000B).toString(16).padStart(4,'0'))
