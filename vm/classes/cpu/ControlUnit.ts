@@ -16,13 +16,17 @@ import Registers from "./Registers";
 
 class ControlUnit implements IControlUnit
 {
+    // Singleton instance
+    private static instance:ControlUnit;
+
     //Properties
     private PC:IRegister;
     private IR:IRegister;
     private registersRef:IRegisters;
     private memoryRef:IMemory;
+
     //Constructor
-    constructor()
+    private constructor()
     {
         this.PC = Registers.getInstance().getRegister(EREG.PC);
         this.IR = Registers.getInstance().getRegister(EREG.IR);
@@ -31,6 +35,16 @@ class ControlUnit implements IControlUnit
     }
 
     //Methods
+
+    public static getInstance = (): ControlUnit =>
+    {
+        if(!ControlUnit.instance)
+        {
+            ControlUnit.instance = new ControlUnit();
+        }
+
+        return ControlUnit.instance;
+    }
 
     public fetch = (): void => 
     {   
