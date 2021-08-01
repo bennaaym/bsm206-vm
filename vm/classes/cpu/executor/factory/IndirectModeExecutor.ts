@@ -26,7 +26,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
 
     
     // Phases 
-    public maxCommonSteps = () =>
+    private maxCommonSteps = () =>
     {
         this.T3();
         this.T4();
@@ -38,7 +38,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.T10();
     }
 
-    public minCommonSteps = () =>
+    private minCommonSteps = () =>
     {
         this.T3();
         this.T4();
@@ -48,7 +48,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.T8();
     }
 
-    public T3 = (): void =>
+    private T3 = (): void =>
     {
         // T3 : TR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -57,7 +57,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();        
     }
 
-    public T4 = (): void =>
+    private T4 = (): void =>
     {
         // T4 : TL_L <- M[AR], PC <- PC + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -66,14 +66,14 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.registersRef.getRegister(EREG.PC).increment();
     }
 
-    public T5 = (): void =>
+    private T5 = (): void =>
     {
         // T5 : AR <- TR
         const TR = this.registersRef.getRegister(EREG.TR);
         this.registersRef.getRegister(EREG.AR).write(TR.read());
     }
 
-    public T6 = () =>
+    private T6 = () =>
     {
         // T6 : TR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -82,7 +82,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();
     }
 
-    public T7 = () =>
+    private T7 = () =>
     {
         // T7 : TR_L <- M[AR]
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -90,14 +90,14 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.registersRef.getRegister(EREG.TR).writeLSB(data);
     }
 
-    public T8 = () =>
+    private T8 = () =>
     {
         // T8 : AR <- TR
         const TR = this.registersRef.getRegister(EREG.TR);
         this.registersRef.getRegister(EREG.AR).write(TR.read());
     }
 
-    public T9 = () =>
+    private T9 = () =>
     {
         // T9 : DR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -106,7 +106,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();
     }
 
-    public T10 = () =>
+    private T10 = () =>
     {
         // T10 : DR_L <- M[AR]
         const AR = this.registersRef.getRegister(EREG.AR);

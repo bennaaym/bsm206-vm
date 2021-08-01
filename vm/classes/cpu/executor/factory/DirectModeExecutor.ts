@@ -20,6 +20,9 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         {
             case EIDEC.LDA:
                 this.LDA(this.maxCommonSteps);
+            
+            case EIDEC.STA:
+                this.STA(this.minCommonSteps);
                 break;
         }
     };
@@ -27,7 +30,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
 
 
     // Phases 
-    public maxCommonSteps = () =>
+    private maxCommonSteps = () =>
     {
         this.T3();
         this.T4();
@@ -36,14 +39,14 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         this.T7();
     }
 
-    public minCommonSteps = () =>
+    private minCommonSteps = () =>
     {
         this.T3();
         this.T4();
         this.T5();
     }
 
-    public T3 = (): void =>
+    private T3 = (): void =>
     {
         // T3 : TR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -52,7 +55,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();        
     }
 
-    public T4 = (): void =>
+    private T4 = (): void =>
     {
         // T4 : TL_L <- M[AR], PC <- PC + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -61,14 +64,14 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         this.registersRef.getRegister(EREG.PC).increment();
     }
 
-    public T5 = (): void =>
+    private T5 = (): void =>
     {
         // T5 : AR <- TR
         const TR = this.registersRef.getRegister(EREG.TR);
         this.registersRef.getRegister(EREG.AR).write(TR.read());
     }
 
-    public T6 = () =>
+    private T6 = () =>
     {
         // T6 : DR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -77,7 +80,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();
     }
 
-    public T7 = () =>
+    private T7 = () =>
     {
         // T7 : DR_L <- M[AR]
         const AR = this.registersRef.getRegister(EREG.AR);

@@ -26,13 +26,13 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
 
 
     // Phases 
-    public commonSteps = () =>
+    private commonSteps = () =>
     {
         this.T3();
         this.T4();
     }
 
-    public T3 = (): void =>
+    private T3 = (): void =>
     {
         // T3 : DR_H <- M[AR], AR <- AR + 1 
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -41,7 +41,7 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();
     }
 
-    public T4 = (): void =>
+    private T4 = (): void =>
     {
         // T4 : DR_L <- M[AR], PC <- PC + 1
         const AR = this.registersRef.getRegister(EREG.AR);

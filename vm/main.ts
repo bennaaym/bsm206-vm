@@ -8,17 +8,23 @@
 // const regs =Registers.getInstance();
 
 
-// meo.write(0x0000,0x3A);
+// meo.write(0x0000,0x1A);
 // meo.write(0x0001,0x12);
 // meo.write(0x0002,0x34);
-// meo.write(0x1234,0x56);
-// meo.write(0x1235,0x78);
-// meo.write(0x5678,0xFE);
-// meo.write(0x5679,0xDC);
+// meo.write(0x0003,0xA0);
+// meo.write(0x0004,0xFD);
+// meo.write(0x0005,0x34);
 
+// const cycle = () =>
+// {
+//     cu.fetch();
+//     let {ADRMD,IDEC} = cu.decode();
+//     cu.execute(ADRMD,IDEC);
+// }
 
-// cu.fetch();
-// const {ADRMD,IDEC} = cu.decode();
-// cu.execute(ADRMD,IDEC);
+// cycle();
+// cycle();
 
 // regs.debug();
+// console.log(meo.read(0xFD34).toString(16).padStart(4,'0'))
+// console.log(meo.read(0xFD35).toString(16).padStart(4,'0'))

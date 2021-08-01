@@ -21,13 +21,27 @@ class BaseExecutor
     }
 
     // Methods
-    public LDA = (steps:() => void) =>
+    protected LDA = (steps:() => void) =>
     {
         steps();
 
-        // T5 : AC <- DR
+        // T_LAST : AC <- DR
         const DR = this.registersRef.getRegister(EREG.DR);
         this.registersRef.getRegister(EREG.AC).write(DR.read());
+    }
+
+    protected STA = (steps:() => void) =>
+    {
+        steps();
+
+        // T_BEFORE_LAST : M[AR] <- AC_H, AR <- AR + 1
+        const AC = this.registersRef.getRegister(EREG.AC) 
+        const AR = this.registersRef.getRegister(EREG.AR);
+        this.memoryRef.write(AR.read(),AC.readMSB());
+        AR.increment();
+
+        // T_LAST : M[AR] <- AC_L
+        this.memoryRef.write(AR.read(),AC.readLSB());
     }
 }
 
