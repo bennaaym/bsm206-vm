@@ -1,6 +1,6 @@
 interface IControlUnit
 {
-    fetch():number;
+    fetch():void;
     decode():{ADRMD:number,IDEC:number};
     execute(ADRMD:number,IDEC:number):void;
 }

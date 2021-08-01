@@ -21,7 +21,8 @@ class Register implements IRegister
     public write    = (data:number): void => (this.view.byteLength ===1)? this.view.setUint8(0,data) : this.view.setUint16(0,data);
     public writeMSB = (data:number): void => this.view.setInt8(0,data);
     public writeLSB = (data:number): void => (this.view.byteLength === 1)? this.view.setUint8(0,data) : this.view.setUint8(1,data);;
-
+    public increment = (): void => this.write(this.read() + 1);
+    
     //Debug
     public debug = ():void => console.log(this.view);
     
