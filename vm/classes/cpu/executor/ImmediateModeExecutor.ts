@@ -5,8 +5,9 @@ import IRegisters from "../../../interfaces/cpu/IRegisters";
 import IMemory from "../../../interfaces/memory/IMemory";
 import Memory from "../../memory/Memory";
 import Registers from "../Registers";
+import ExecutorFactory from "./ExecutorFactory";
 
-class ImmediateModeExecutor implements IExecutor
+class ImmediateModeExecutor  implements IExecutor
 {
     // Properties
     private IDEC:number;
@@ -50,7 +51,6 @@ class ImmediateModeExecutor implements IExecutor
 
 
     // Phases 
-
     public commonSteps = () =>
     {
         this.T3();
