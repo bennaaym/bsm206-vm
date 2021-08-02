@@ -63,7 +63,6 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         const data = this.memoryRef.read(AR.read());
         this.registersRef.getRegister(EREG.TR).writeLSB(data);
         this.registersRef.getRegister(EREG.PC).increment();
-        console.log('T4');
     }
 
     private T5 = (): void =>

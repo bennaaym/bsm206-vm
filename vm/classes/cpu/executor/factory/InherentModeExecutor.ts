@@ -1,18 +1,34 @@
+import EREG from "../../../../enums/EREG";
 import IExecutor from "../../../../interfaces/cpu/IExecutor";
+import IRegisters from "../../../../interfaces/cpu/IRegisters";
+import Registers from "../../Registers";
 
 class InherentModeExecutor implements IExecutor
 {
-    // Properties
-    private IDEC:number;
+     // Properties
+     protected IDEC:number;
+     protected registersRef :IRegisters;
+ 
+     // Constructors
+     constructor(IDEC:number)
+     {
+         this.registersRef = Registers.getInstance();
+         this.IDEC = IDEC;
+     }
 
-    // Constructor  
-    constructor(IDEC:number)
-    {
-        this.IDEC = IDEC;
-    }
     // Methods
+    public execute = (): void =>
+    {
+        switch(this.IDEC)
+        {
+            default:
+                this.NOP();
+                
+        }
+    };
 
-    public execute = (): void => console.log('inherent mode executor');
+    private NOP = (): void => {};
+
 }
 
 export default InherentModeExecutor;

@@ -5,7 +5,7 @@ import Memory from "../../memory/Memory";
 import Registers from "../Registers";
 
 
-class BaseExecutor
+abstract class BaseExecutor
 {
     // Properties
     protected IDEC:number;
