@@ -1,7 +1,9 @@
 import EREG from "../../../enums/EREG";
+import IALU from "../../../interfaces/cpu/IALU";
 import IRegisters from "../../../interfaces/cpu/IRegisters";
 import IMemory from "../../../interfaces/memory/IMemory";
 import Memory from "../../memory/Memory";
+import ALU from "../ALU";
 import Registers from "../Registers";
 
 
@@ -11,12 +13,14 @@ abstract class BaseExecutor
     protected IDEC:number;
     protected memoryRef : IMemory;
     protected registersRef :IRegisters;
+    protected ALURef:IALU;
 
     // Constructors
     constructor(IDEC:number)
     {
         this.memoryRef = Memory.getInstance();
         this.registersRef = Registers.getInstance();
+        this.ALURef = ALU.getInstance();
         this.IDEC = IDEC;
     }
 
@@ -43,6 +47,19 @@ abstract class BaseExecutor
         // T_LAST : M[AR] <- AC_L
         this.memoryRef.write(AR.read(),AC.readLSB());
     }
+
+    // protected ADD = (steps:() => void) =>
+    // {
+    //     steps();
+        
+    //     //T_LAST : AC <- AC + DR , C <- C_out
+    //     const DR = this.registersRef.getRegister(EREG.DR);
+    //     const AC = this.registersRef.getRegister(EREG.AC);
+
+    //     const {sum,carry} = this.ALURef.add(AC.read(),DR.read(),0);
+
+    // }
+
 }
 
 export default BaseExecutor;

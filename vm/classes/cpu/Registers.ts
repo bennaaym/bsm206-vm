@@ -37,16 +37,16 @@ class Registers implements IRegisters
     }
 
     public getRegister = (name:string):IRegister => this.map[name];
-
+    
 
     private registerMapping = () : {[name:string]:IRegister} =>
     {
-        let map:{[name:string]:IRegister} = {[EREG.PC]: new Register()};
+        let map:{[name:string]:IRegister} = {[EREG.PC]: new Register(EREG.PC)};
 
         for(let reg in EREG)
         {
             if (reg === EREG.PC) continue; 
-            map[reg] = (reg === EREG.IR || reg === EREG.CCR)? new Register(1) : new Register();
+            map[reg] = new Register(reg);
         }
 
         return map
