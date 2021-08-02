@@ -19,7 +19,7 @@ class ALU implements IALU
         return ALU.instance;
     }
 
-    public ADD = (AC:number,AR:number,carry:number): number => 0;
+    public ADD = (AC:number,DR:number,carry:number): number => AC + DR + carry;
     
 }
 

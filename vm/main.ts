@@ -1,7 +1,8 @@
-// import ALU from "./classes/cpu/ALU";
+import ALU from "./classes/cpu/ALU";
 
 
-// const alu = ALU.getInstance();
+const alu = ALU.getInstance();
 
 
-// console.log(alu.ADD(1,2,3));
+console.log(alu.ADD(0x1234,0x1234,0x0000));
+
