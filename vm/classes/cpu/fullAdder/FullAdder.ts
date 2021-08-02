@@ -1,9 +1,28 @@
 import IFullAdder from "../../../interfaces/cpu/IFullAdder";
 
 class FullAdder implements IFullAdder
-{
+{   
+
+    // Singleton instance
+    public static instance : FullAdder;
+
+
+    // Constructor
+    private constructor(){};
+
     // Methods
-    public addBit = (a:number,b:number,c:number):{sum:number,carry:number} =>
+
+    public static getInstance = (): FullAdder =>
+    {
+        if(!FullAdder.instance)
+        {
+            FullAdder.instance = new FullAdder();
+        }
+
+        return FullAdder.instance;
+    }
+
+    private addBit = (a:number,b:number,c:number):{sum:number,carry:number} =>
     {
 
         const sum:number = a ^ b ^ c; 
