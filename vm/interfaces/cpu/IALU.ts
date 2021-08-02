@@ -7,6 +7,11 @@ interface IALU
     // Logic operations
     neg(reg:number):number; // returns the 2's complement of the argument
     com(reg:number):number; // returns the 1's complement of the argument
+    and(reg_1:number,reg_2:number):number;
+    or(reg_1:number,reg_2:number):number;
+    xor(reg_1:number,reg_2:number):number;
+    shl(reg:number):number; // shift the arguments one position to the left
+    shr(reg:number):number; // shift the arguments one position to the right
 }
 
 export default IALU;

@@ -39,9 +39,14 @@ class ALU implements IALU
         const {sum:complement} = this.fullAdder.add16Bits((0xFFFF ^ reg),1,0);
         return complement;  
     }
-    
-    public com = (reg:number): number => 0xFFFF ^ reg;
 
+    public com = (reg:number): number => 0xFFFF ^ reg;
+    public and = (reg_1:number,reg_2:number): number => reg_1 & reg_2;
+    public or = (reg_1:number,reg_2:number): number => reg_1 | reg_2;
+    public xor = (reg_1:number,reg_2:number): number => reg_1 ^ reg_2;
+    public shl = (reg:number): number => reg << 1;
+    public shr = (reg:number): number => reg >>> 1;
+    
 }
 
 export default ALU;
