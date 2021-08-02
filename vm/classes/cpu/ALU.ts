@@ -30,7 +30,14 @@ class ALU implements IALU
     
     // Arithmetic operations
     public add = (reg_1:number,reg_2:number,carry:number):{sum:number,carry:number} => this.fullAdder.add16Bits(reg_1,reg_2,carry);
-
+    public mult = (reg_1:number,reg_2:number): number => reg_1 * reg_2;
+    public div = (reg_1:number,reg_2:number): {quotient:number,remainder:number} => 
+    {
+        return {
+            quotient: Math.floor(reg_1 / reg_2),
+            remainder: reg_1 % reg_2
+        }   
+    }
 
 
     // Logic operations
