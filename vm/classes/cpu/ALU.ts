@@ -34,7 +34,7 @@ class ALU implements IALU
     {
         const reg_2_complement = this.neg(reg_2);
         const carry_complement = this.neg(carry);
-        
+
         const {sum:sub_out_1,carry:carry_out_1} = this.add(reg_1,reg_2_complement,0);
         const {sum:sub_out_2,carry:carry_out_2} = this.add(sub_out_1,carry_complement,0);
         
@@ -67,6 +67,7 @@ class ALU implements IALU
     public shl = (reg:number): number => reg << 1;
     public shr = (reg:number): number => reg >>> 1;
     
+
 }
 
 export default ALU;
