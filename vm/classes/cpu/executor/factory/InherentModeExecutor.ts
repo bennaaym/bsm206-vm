@@ -1,5 +1,4 @@
 import EIDEC from "../../../../enums/EIDEC";
-import EREG from "../../../../enums/EREG";
 import IExecutor from "../../../../interfaces/cpu/IExecutor";
 import IRegisters from "../../../../interfaces/cpu/IRegisters";
 import Registers from "../../Registers";
