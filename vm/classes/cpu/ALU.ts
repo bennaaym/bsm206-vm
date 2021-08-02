@@ -28,13 +28,20 @@ class ALU implements IALU
     }
 
     
+    // Arithmetic operations
     public add = (reg_1:number,reg_2:number,carry:number):{sum:number,carry:number} => this.fullAdder.add16Bits(reg_1,reg_2,carry);
 
+
+
+    // Logic operations
     public neg = (reg:number): number =>
     {
         const {sum:complement} = this.fullAdder.add16Bits((0xFFFF ^ reg),1,0);
-        return complement;
+        return complement;  
     }
+    
+    public com = (reg:number): number => 0xFFFF ^ reg;
+
 }
 
 export default ALU;
