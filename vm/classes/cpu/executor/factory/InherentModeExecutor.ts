@@ -1,3 +1,4 @@
+import EIDEC from "../../../../enums/EIDEC";
 import EREG from "../../../../enums/EREG";
 import IExecutor from "../../../../interfaces/cpu/IExecutor";
 import IRegisters from "../../../../interfaces/cpu/IRegisters";
@@ -21,6 +22,10 @@ class InherentModeExecutor implements IExecutor
     {
         switch(this.IDEC)
         {
+            case EIDEC.HLT:
+                this.HLT();
+                break;
+
             default:
                 this.NOP();
                 
@@ -28,6 +33,7 @@ class InherentModeExecutor implements IExecutor
     };
 
     private NOP = (): void => {};
+    private HLT = (): void => {throw EIDEC.HLT};
 
 }
 

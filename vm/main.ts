@@ -11,18 +11,13 @@
 // const regs =Registers.getInstance();
 
 
-// meo.write(0x0000,0x2A);
+// meo.write(0x0000,0x1A);
 // meo.write(0x0001,0x12);
 // meo.write(0x0002,0x34);
-
-// meo.write(0x0003,0x34);
-
-// meo.write(0x0004,0xA0);
-// meo.write(0x0005,0x00);
-// meo.write(0x0006,0x0a);
-
-// meo.write(0x1234,0xb0);
-// meo.write(0x1235,0x0a);
+// meo.write(0x0003,0xA0);
+// meo.write(0x0004,0x00);
+// meo.write(0x0005,0x0A);
+// meo.write(0x0006,0x0E);
 
 
 
@@ -38,9 +33,16 @@
 
 
 
-// cycle();
-// cycle();
-// cycle();
-
+// while(true)
+// {
+//     try
+//     {
+//         cycle();
+//     }
+//     catch(error)
+//     {
+//         break;
+//     }
+// }
 // console.log(meo.read(0x000A).toString(16).padStart(4,'0'))
 // console.log(meo.read(0x000B).toString(16).padStart(4,'0'))
