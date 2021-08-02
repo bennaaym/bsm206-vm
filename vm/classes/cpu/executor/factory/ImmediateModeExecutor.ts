@@ -20,6 +20,10 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.LDA:
                 this.LDA(this.commonSteps);
                 break;
+
+            case EIDEC.ADD:
+                this.ADD(this.commonSteps);
+                break;
         }
     };
 

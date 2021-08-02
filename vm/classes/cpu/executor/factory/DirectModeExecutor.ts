@@ -25,6 +25,10 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.STA:
                 this.STA(this.minCommonSteps);
                 break;
+
+            case EIDEC.ADD:
+                this.ADD(this.maxCommonSteps);
+                break;
         }
     };
 

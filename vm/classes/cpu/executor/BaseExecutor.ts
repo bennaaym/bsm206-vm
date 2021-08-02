@@ -1,3 +1,4 @@
+import EFLAG from "../../../enums/EFLAG";
 import EREG from "../../../enums/EREG";
 import IALU from "../../../interfaces/cpu/IALU";
 import IRegisters from "../../../interfaces/cpu/IRegisters";
@@ -48,17 +49,18 @@ abstract class BaseExecutor
         this.memoryRef.write(AR.read(),AC.readLSB());
     }
 
-    // protected ADD = (steps:() => void) =>
-    // {
-    //     steps();
+    protected ADD = (steps:() => void) =>
+    {
+        steps();
         
-    //     //T_LAST : AC <- AC + DR , C <- C_out
-    //     const DR = this.registersRef.getRegister(EREG.DR);
-    //     const AC = this.registersRef.getRegister(EREG.AC);
-
-    //     const {sum,carry} = this.ALURef.add(AC.read(),DR.read(),0);
-
-    // }
+        //T_LAST : AC <- AC + DR , C <- C_out
+        const DR = this.registersRef.getRegister(EREG.DR);
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const CCR = this.registersRef.getRegister(EREG.CCR);
+        const {sum,carry} = this.ALURef.add(AC.read(),DR.read(),0);
+        AC.write(sum);
+        CCR.setFlag(EFLAG.C,carry);
+    }
 
 }
 
