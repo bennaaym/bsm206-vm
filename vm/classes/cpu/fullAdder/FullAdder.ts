@@ -38,8 +38,7 @@ class FullAdder implements IFullAdder
         const secondOperand = b.toString(2).padStart(16,'0');
         let finalSum : string = '';
         let finalCarry: number = c;
-        console.log(firstOperand);
-        console.log(secondOperand);
+
         for(let i=15 ; i>=0 ;i--)
         {   
             const firstOpBit:number = parseInt(firstOperand[i]);
