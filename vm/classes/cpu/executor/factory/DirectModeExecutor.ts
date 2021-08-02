@@ -20,6 +20,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         {
             case EIDEC.LDA:
                 this.LDA(this.maxCommonSteps);
+                break;
             
             case EIDEC.STA:
                 this.STA(this.minCommonSteps);
@@ -30,7 +31,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
 
 
     // Phases 
-    private maxCommonSteps = () =>
+    private maxCommonSteps = (): void =>
     {
         this.T3();
         this.T4();
@@ -39,7 +40,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         this.T7();
     }
 
-    private minCommonSteps = () =>
+    private minCommonSteps = (): void =>
     {
         this.T3();
         this.T4();
@@ -52,7 +53,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         const AR = this.registersRef.getRegister(EREG.AR);
         const data = this.memoryRef.read(AR.read());
         this.registersRef.getRegister(EREG.TR).writeMSB(data);
-        AR.increment();        
+        AR.increment();  
     }
 
     private T4 = (): void =>
@@ -62,6 +63,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         const data = this.memoryRef.read(AR.read());
         this.registersRef.getRegister(EREG.TR).writeLSB(data);
         this.registersRef.getRegister(EREG.PC).increment();
+        console.log('T4');
     }
 
     private T5 = (): void =>
@@ -71,7 +73,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         this.registersRef.getRegister(EREG.AR).write(TR.read());
     }
 
-    private T6 = () =>
+    private T6 = (): void =>
     {
         // T6 : DR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -80,7 +82,7 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();
     }
 
-    private T7 = () =>
+    private T7 = (): void =>
     {
         // T7 : DR_L <- M[AR]
         const AR = this.registersRef.getRegister(EREG.AR);

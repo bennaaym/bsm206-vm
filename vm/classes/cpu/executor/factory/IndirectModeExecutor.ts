@@ -29,7 +29,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
 
     
     // Phases 
-    private maxCommonSteps = () =>
+    private maxCommonSteps = ():void =>
     {
         this.T3();
         this.T4();
@@ -41,7 +41,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.T10();
     }
 
-    private minCommonSteps = () =>
+    private minCommonSteps = (): void =>
     {
         this.T3();
         this.T4();
@@ -76,7 +76,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.registersRef.getRegister(EREG.AR).write(TR.read());
     }
 
-    private T6 = () =>
+    private T6 = (): void =>
     {
         // T6 : TR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -85,7 +85,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();
     }
 
-    private T7 = () =>
+    private T7 = (): void =>
     {
         // T7 : TR_L <- M[AR]
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -93,14 +93,14 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.registersRef.getRegister(EREG.TR).writeLSB(data);
     }
 
-    private T8 = () =>
+    private T8 = (): void =>
     {
         // T8 : AR <- TR
         const TR = this.registersRef.getRegister(EREG.TR);
         this.registersRef.getRegister(EREG.AR).write(TR.read());
     }
 
-    private T9 = () =>
+    private T9 = (): void =>
     {
         // T9 : DR_H <- M[AR], AR <- AR + 1
         const AR = this.registersRef.getRegister(EREG.AR);
@@ -109,7 +109,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         AR.increment();
     }
 
-    private T10 = () =>
+    private T10 = (): void =>
     {
         // T10 : DR_L <- M[AR]
         const AR = this.registersRef.getRegister(EREG.AR);
