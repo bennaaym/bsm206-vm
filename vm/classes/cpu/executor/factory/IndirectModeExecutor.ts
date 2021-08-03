@@ -19,20 +19,20 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         switch(this.IDEC)
         {
             case EIDEC.LDA:
-                this.LDA(this.maxCommonSteps);
+                this.LDA();
                 break;
             case EIDEC.STA:
-                this.STA(this.minCommonSteps);
+                this.STA();
                 break;
             case EIDEC.ADD:
-                this.ADD(this.maxCommonSteps);
+                this.ADD();
                 break;
         }
     };
 
     
     // Phases 
-    private maxCommonSteps = ():void =>
+    protected maxCommonSteps = ():void =>
     {
         this.T3();
         this.T4();
@@ -44,7 +44,7 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
         this.T10();
     }
 
-    private minCommonSteps = (): void =>
+    protected minCommonSteps = (): void =>
     {
         this.T3();
         this.T4();

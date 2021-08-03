@@ -18,11 +18,11 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
         switch(this.IDEC)
         {
             case EIDEC.LDA:
-                this.LDA(this.commonSteps);
+                this.LDA();
                 break;
 
             case EIDEC.ADD:
-                this.ADD(this.commonSteps);
+                this.ADD();
                 break;
         }
     };
@@ -30,7 +30,7 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
 
 
     // Phases 
-    private commonSteps = () =>
+    protected maxCommonSteps = () =>
     {
         this.T3();
         this.T4();

@@ -26,18 +26,22 @@ abstract class BaseExecutor
     }
 
     // Methods
-    protected LDA = (steps:() => void) =>
+
+    protected minCommonSteps = () =>{};
+    protected maxCommonSteps = () =>{};
+
+    protected LDA = () =>
     {
-        steps();
+       this.maxCommonSteps();
 
         // T_LAST : AC <- DR
         const DR = this.registersRef.getRegister(EREG.DR);
         this.registersRef.getRegister(EREG.AC).write(DR.read());
     }
 
-    protected STA = (steps:() => void) =>
+    protected STA = () =>
     {
-        steps();
+        this.minCommonSteps();
 
         // T_BEFORE_LAST : M[AR] <- AC_H, AR <- AR + 1
         const AC = this.registersRef.getRegister(EREG.AC) 
@@ -49,9 +53,9 @@ abstract class BaseExecutor
         this.memoryRef.write(AR.read(),AC.readLSB());
     }
 
-    protected ADD = (steps:() => void) =>
+    protected ADD = () =>
     {
-        steps();
+        this.maxCommonSteps();
         
         //T_LAST : AC <- AC + DR , C <- C_out
         const DR = this.registersRef.getRegister(EREG.DR);
