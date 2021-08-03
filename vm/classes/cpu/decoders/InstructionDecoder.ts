@@ -20,7 +20,9 @@ class InstructionDecoder implements IDecoder
             case EIDEC.STA          :   return EIDEC.STA;
             case EIDEC.HLT          :   return EIDEC.HLT;
             case EIDEC.ADD          :   return EIDEC.ADD;
+            case EIDEC.ADDC         :   return EIDEC.ADDC;
             default                 :   return EIDEC.NOP;
+            
         }
     }
 }

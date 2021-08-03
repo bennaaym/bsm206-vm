@@ -57,7 +57,7 @@ abstract class BaseExecutor
     {
         this.maxCommonSteps();
         
-        //T_LAST : AC <- AC + DR , C <- C_out
+        // T_LAST : AC <- AC + DR , C <- C_out
         const DR = this.registersRef.getRegister(EREG.DR);
         const AC = this.registersRef.getRegister(EREG.AC);
         const CCR = this.registersRef.getRegister(EREG.CCR);
@@ -66,6 +66,17 @@ abstract class BaseExecutor
         CCR.setFlag(EFLAG.C,carry);
     }
 
+    protected ADDC = () =>
+    {
+        this.maxCommonSteps();
+        // T_LAST : AC <- AC + DR + C, C <- C_out
+        const DR = this.registersRef.getRegister(EREG.DR);
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const CCR = this.registersRef.getRegister(EREG.CCR);
+        const {sum,carry} = this.ALURef.add(AC.read(),DR.read(),CCR.getFlag(EFLAG.C)!);
+        AC.write(sum);
+        CCR.setFlag(EFLAG.C,carry);
+    }
 }
 
 export default BaseExecutor;
