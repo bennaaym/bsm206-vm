@@ -13,7 +13,13 @@ enum EIDEC
     // Arithmetic operations
     
     ADD     = 0B00000,
-    ADDC    = 0B00001,      // it considers the carry flag while adding    
+    ADDC    = 0B00001,      // it considers the carry flag while adding   
+    
+    
+    // Logic operations
+
+    AND     = 0B00010,
+
     
 }
 
