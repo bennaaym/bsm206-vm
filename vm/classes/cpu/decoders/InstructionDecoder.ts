@@ -23,6 +23,12 @@ class InstructionDecoder implements IDecoder
             case EIDEC.NEG          :   return EIDEC.NEG;
             case EIDEC.SAR          :   return EIDEC.SAR;
             case EIDEC.SAL          :   return EIDEC.SAL;
+            case EIDEC.CLC          :   return EIDEC.CLC;
+            case EIDEC.CLI          :   return EIDEC.CLI;
+            case EIDEC.CLV          :   return EIDEC.CLV;
+            case EIDEC.STC          :   return EIDEC.STC;
+            case EIDEC.STI          :   return EIDEC.STI;
+            case EIDEC.STV          :   return EIDEC.STV;
             case EIDEC.LDA          :   return EIDEC.LDA;
             case EIDEC.STA          :   return EIDEC.STA;
             case EIDEC.HLT          :   return EIDEC.HLT;

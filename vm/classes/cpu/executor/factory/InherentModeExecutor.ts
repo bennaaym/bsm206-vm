@@ -1,3 +1,4 @@
+import EFLAG from "../../../../enums/EFLAG";
 import EIDEC from "../../../../enums/EIDEC";
 import EREG from "../../../../enums/EREG";
 import IALU from "../../../../interfaces/cpu/IALU";
@@ -54,6 +55,30 @@ class InherentModeExecutor implements IExecutor
                 this.SAL();
                 break;
                 
+            case EIDEC.CLC:
+                this.CLC();
+                break;
+
+            case EIDEC.CLI:
+                this.CLI();
+                break;
+            
+            case EIDEC.CLV:
+                this.CLV();
+                break;
+
+            case EIDEC.STC:
+                this.STC();
+                break;
+
+            case EIDEC.STI:
+                this.STI();
+                break;
+
+            case EIDEC.STV:
+                this.STV();
+                break;
+                        
             case EIDEC.HLT:
                 this.HLT();
                 break;
@@ -117,6 +142,42 @@ class InherentModeExecutor implements IExecutor
         const AR= this.registersRef.getRegister(EREG.AC)
         const res = this.ALURef.shl(AR.read());
         AR.write(res);
+    }
+
+    private CLC = (): void =>
+    {
+        // T3 : CCR.C <- 0
+        this.registersRef.getRegister(EREG.CCR).setFlag(EFLAG.C,0);
+    }
+
+    private CLI = (): void =>
+    {
+        // T3 : CCR.I <- 0
+        this.registersRef.getRegister(EREG.CCR).setFlag(EFLAG.I,0);
+    }
+
+    private CLV = (): void =>
+    {
+        // T3 : CCR.V <- 0
+        this.registersRef.getRegister(EREG.CCR).setFlag(EFLAG.V,0);
+    }
+
+    private STC = (): void =>
+    {
+        // T3 : CCR.C <- 1
+        this.registersRef.getRegister(EREG.CCR).setFlag(EFLAG.C,1);
+    }
+
+    private STI = (): void =>
+    {
+        // T3 : CCR.C <- 1
+        this.registersRef.getRegister(EREG.CCR).setFlag(EFLAG.I,1);
+    }
+
+    private STV = (): void =>
+    {
+        // T3 : CCR.C <- 1
+        this.registersRef.getRegister(EREG.CCR).setFlag(EFLAG.V,1);
     }
 
 }
