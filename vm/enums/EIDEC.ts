@@ -7,7 +7,9 @@ enum EIDEC
 {
     CLR     = 0B00001,      // clears the accumulator
     DECR    = 0B00010,      // decrements the accumulator by 1
-    INCR    = 0B00011,      // decrements the accumulator by 1
+    INCR    = 0B00011,      // increments the accumulator by 1
+    DECX    = 0B01010,      // decrements the index register by 1
+    INCX    = 0B01011,      // increments the index register by 1
     COM     = 0B00100,      // takes the accumulator value, calculates its 1's complement and saves it again to the accumulator 
     NEG     = 0B00101,      // takes the accumulator value, calculates its 2's complement and saves it again to the accumulator 
     SAR     = 0B01000,      // shifts the accumulator 1 bit to right

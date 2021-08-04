@@ -35,6 +35,14 @@ class InherentModeExecutor implements IExecutor
                 this.DECR();
                 break;
 
+            case EIDEC.DECX:
+                this.DECX();
+                break;
+
+            case EIDEC.INCX:
+                this.INCX();
+                break;
+
             case EIDEC.INCR:
                 this.INCR();
                 break;
@@ -178,6 +186,20 @@ class InherentModeExecutor implements IExecutor
     {
         // T3 : CCR.C <- 1
         this.registersRef.getRegister(EREG.CCR).setFlag(EFLAG.V,1);
+    }
+
+    private DECX = (): void =>
+    {
+        // T3 : IX <- IX - 1
+        const IX = this.registersRef.getRegister(EREG.IX);
+        const {sub} = this.ALURef.sub(IX.read(),1,0);
+        IX.write(sub);
+    }
+
+    private INCX = (): void =>
+    {
+        // T3 : IX <- IX + 1
+        this.registersRef.getRegister(EREG.IX).increment();
     }
 
 }
