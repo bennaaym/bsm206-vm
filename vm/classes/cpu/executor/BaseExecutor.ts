@@ -78,6 +78,19 @@ abstract class BaseExecutor
         CCR.setFlag(EFLAG.C,carry);
     }
 
+    protected DIV = () =>
+    {
+        this.maxCommonSteps();
+        // T_LAST : AC <- AC + DR + C, C <- C_out
+        const DR = this.registersRef.getRegister(EREG.DR);
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const {quotient,remainder} = this.ALURef.div(AC.read(),DR.read());
+        AC.write(quotient);
+        DR.write(remainder);
+         
+
+    }
+
 
     protected AND = () =>
     {

@@ -33,6 +33,10 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.ADDC:
                 this.ADDC();
                 break;
+
+            case EIDEC.DIV:
+                this.DIV();
+                break;
             
             case EIDEC.AND:
                 this.AND();
