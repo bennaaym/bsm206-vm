@@ -75,7 +75,6 @@ class ControlUnit implements IControlUnit
             this.PC.increment();
         }
        
-
         return {ADRMD,IDEC};
     };
 
