@@ -101,6 +101,17 @@ abstract class BaseExecutor
         AC.write(res);
     }
 
+    protected XOR = () =>
+    {
+        this.maxCommonSteps();
+
+        // T_LAST : AC <- AC & DR
+        const DR = this.registersRef.getRegister(EREG.DR);
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const res = this.ALURef.xor(AC.read(),DR.read());
+        AC.write(res);
+    }
+
 }
 
 export default BaseExecutor;
