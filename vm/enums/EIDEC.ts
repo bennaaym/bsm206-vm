@@ -19,8 +19,8 @@ enum EIDEC
     // Logic operations
 
     AND     = 0B00010,
+    OR      = 0B01011,
 
-    
 }
 
 

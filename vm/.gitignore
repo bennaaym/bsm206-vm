@@ -1,7 +1,7 @@
 # dependencies
 
 /node_modules
-
+main.ts
 
 
 npm-debug.log*
