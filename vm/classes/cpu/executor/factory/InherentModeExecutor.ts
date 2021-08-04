@@ -46,6 +46,14 @@ class InherentModeExecutor implements IExecutor
                 this.NEG();
                 break;
 
+            case EIDEC.SAR:
+                this.SAR();
+                break;
+
+            case EIDEC.SAL:
+                this.SAL();
+                break;
+                
             case EIDEC.HLT:
                 this.HLT();
                 break;
@@ -93,6 +101,22 @@ class InherentModeExecutor implements IExecutor
         const AC = this.registersRef.getRegister(EREG.AC);
         const complement = this.ALURef.neg(AC.read());
         AC.write(complement);
+    }
+
+    private SAR = (): void =>
+    {
+        // T3 : AC <- shr AC
+        const AR= this.registersRef.getRegister(EREG.AC)
+        const res = this.ALURef.shr(AR.read());
+        AR.write(res);
+    }
+
+    private SAL = (): void =>
+    {
+        // T3 : AC <- shr AC
+        const AR= this.registersRef.getRegister(EREG.AC)
+        const res = this.ALURef.shl(AR.read());
+        AR.write(res);
     }
 
 }

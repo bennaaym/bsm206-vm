@@ -9,7 +9,9 @@ enum EIDEC
     DECR    = 0B00010,      // decrements the accumulator by 1
     INCR    = 0B00011,      // decrements the accumulator by 1
     COM     = 0B00100,      // takes the accumulator value, calculates its 1's complement and saves it again to the accumulator 
-    NEG     = 0B00101,
+    NEG     = 0B00101,      // takes the accumulator value, calculates its 2's complement and saves it again to the accumulator 
+    SAR     = 0B01000,      // shift the accumulator 1 bit to right
+    SAL     = 0B01001,      // shift the accumulator 1 bit to left
     LDA     = 0B01010,      // assigns the operand to the accumulator
     STA     = 0B10000,      // writes the value of the accumulator into memory
     NOP     = 0B11001,      // no operation, the program counter(PC) will be incremented by 1
