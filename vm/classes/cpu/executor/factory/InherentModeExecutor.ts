@@ -38,6 +38,14 @@ class InherentModeExecutor implements IExecutor
                 this.INCR();
                 break;
 
+            case EIDEC.COM:
+                this.COM();
+                break;
+
+            case EIDEC.NEG:
+                this.NEG();
+                break;
+
             case EIDEC.HLT:
                 this.HLT();
                 break;
@@ -69,6 +77,22 @@ class InherentModeExecutor implements IExecutor
     {
         // T3 : AC <- AC + 1
         this.registersRef.getRegister(EREG.AC).increment();
+    }
+
+    private COM = (): void =>
+    {
+        // T3 : AC <- AC's 1's complement
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const complement = this.ALURef.com(AC.read());
+        AC.write(complement);
+    }
+
+    private NEG = (): void =>
+    {
+        // T3 : AC <- AC's 2's complement
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const complement = this.ALURef.neg(AC.read());
+        AC.write(complement);
     }
 
 }
