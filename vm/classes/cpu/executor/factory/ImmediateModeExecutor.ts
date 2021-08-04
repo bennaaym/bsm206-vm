@@ -21,6 +21,10 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
                 this.LDA();
                 break;
 
+            case EIDEC.LDAX:
+                this.LDAX();
+                break;
+
             case EIDEC.ADD:
                 this.ADD();
                 break;
@@ -61,12 +65,21 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
 
 
 
+    // Methods
+    protected LDAX () 
+    {
+        super.LDAX();
+        this.registersRef.getRegister(EREG.PC).increment();
+    }
+
+
     // Phases 
     protected maxCommonSteps = () =>
     {
         this.T3();
         this.T4();
     }
+
 
     private T3 = (): void =>
     {
@@ -85,6 +98,7 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
         this.registersRef.getRegister(EREG.DR).writeLSB(data);
         this.registersRef.getRegister(EREG.PC).increment();
     }
+
 }
 
 export default ImmediateModeExecutor;

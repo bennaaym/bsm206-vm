@@ -6,6 +6,7 @@ import IMemory from "../../../interfaces/memory/IMemory";
 import Memory from "../../memory/Memory";
 import ALU from "../ALU";
 import Registers from "../Registers";
+import ImmediateModeExecutor from "./factory/ImmediateModeExecutor";
 
 
 abstract class BaseExecutor
@@ -27,8 +28,8 @@ abstract class BaseExecutor
 
     // Methods
 
-    protected minCommonSteps = () =>{};
-    protected maxCommonSteps = () =>{};
+    protected minCommonSteps   = () =>{};
+    protected maxCommonSteps   = () =>{};
 
     protected LDA = () =>
     {
@@ -157,6 +158,22 @@ abstract class BaseExecutor
         const AC = this.registersRef.getRegister(EREG.AC);
         const res = this.ALURef.xor(AC.read(),DR.read());
         AC.write(res);
+    }
+
+
+    protected LDAX () 
+    {
+        this.minCommonSteps();
+
+        // T_BEFORE_LAST : IX_H <- M[AR] , AR <- AR + 1
+        const IX = this.registersRef.getRegister(EREG.IX);
+        const AR = this.registersRef.getRegister(EREG.AR);
+        let data = this.memoryRef.read(AR.read());
+        IX.writeMSB(data);
+        AR.increment();
+        // T_LAST : IX_L <- M[AR]
+        data = this.memoryRef.read(AR.read());
+        IX.writeLSB(data);
     }
 
 }

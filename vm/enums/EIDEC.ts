@@ -18,10 +18,12 @@ enum EIDEC
     STC     = 0B10110,      // sets the carry flag
     STI     = 0B10111,      // sets the interrupt flag
     STV     = 0B11000,      // sets the overflow flag
-    LDA     = 0B01010,      // assigns the operand to the accumulator
-    STA     = 0B10000,      // writes the value of the accumulator into memory
     NOP     = 0B11001,      // no operation, the program counter(PC) will be incremented by 1
     HLT     = 0B01110,      // stops the program
+
+    LDA     = 0B01010,      // assigns the operand to the accumulator
+    STA     = 0B10000,      // writes the value of the accumulator into memory
+    LDAX    = 0B10001,      // assigns the operand to the index register(IX)
     
     // Arithmetic operations
     

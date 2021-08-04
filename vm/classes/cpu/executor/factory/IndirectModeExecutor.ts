@@ -22,6 +22,10 @@ class IndirectModeExecutor extends BaseExecutor implements IExecutor
                 this.LDA();
                 break;
 
+            case EIDEC.LDAX:
+                this.LDAX();
+                break;
+
             case EIDEC.STA:
                 this.STA();
                 break;
