@@ -29,6 +29,14 @@ class ImmediateModeExecutor extends BaseExecutor implements IExecutor
                 this.ADDC();
                 break;
 
+            case EIDEC.SUB:
+                this.SUB();
+                break;
+
+            case EIDEC.SUBC:
+                this.SUBC();
+                break;
+
             case EIDEC.DIV:
                 this.DIV();
                 break;

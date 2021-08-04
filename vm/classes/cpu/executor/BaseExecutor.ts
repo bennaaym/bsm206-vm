@@ -78,6 +78,32 @@ abstract class BaseExecutor
         CCR.setFlag(EFLAG.C,carry);
     }
 
+    protected SUB = () =>
+    {
+        this.maxCommonSteps();
+        
+        // T_LAST : AC <- AC + DR , C <- C_out
+        const DR = this.registersRef.getRegister(EREG.DR);
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const CCR = this.registersRef.getRegister(EREG.CCR);
+        const {sub,carry} = this.ALURef.sub(AC.read(),DR.read(),0);
+        AC.write(sub);
+        CCR.setFlag(EFLAG.C,carry);
+    }
+
+    protected SUBC = () =>
+    {
+        this.maxCommonSteps();
+        // T_LAST : AC <- AC + DR + C, C <- C_out
+        const DR = this.registersRef.getRegister(EREG.DR);
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const CCR = this.registersRef.getRegister(EREG.CCR);
+        const {sub,carry} = this.ALURef.sub(AC.read(),DR.read(),CCR.getFlag(EFLAG.C)!);
+        AC.write(sub);
+        CCR.setFlag(EFLAG.C,carry);
+    }
+
+
     protected DIV = () =>
     {
         this.maxCommonSteps();

@@ -13,7 +13,9 @@ enum EIDEC
     // Arithmetic operations
     
     ADD     = 0B00000,
-    ADDC    = 0B00001,      // it considers the carry flag while adding   
+    ADDC    = 0B00001,      // it considers the carry flag while adding 
+    SUB     = 0B01110,
+    SUBC    = 0B01111,  
     DIV     = 0B00101,
     MUL     = 0B10101,
     // Logic operations
