@@ -15,7 +15,7 @@ enum EIDEC
     ADD     = 0B00000,
     ADDC    = 0B00001,      // it considers the carry flag while adding   
     DIV     = 0B00101,
-    
+    MUL     = 0B10101,
     // Logic operations
 
     AND     = 0B00010,

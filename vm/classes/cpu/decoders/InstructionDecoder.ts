@@ -22,6 +22,7 @@ class InstructionDecoder implements IDecoder
             case EIDEC.ADD          :   return EIDEC.ADD;
             case EIDEC.ADDC         :   return EIDEC.ADDC;
             case EIDEC.DIV          :   return EIDEC.DIV;
+            case EIDEC.MUL          :   return EIDEC.MUL;
             case EIDEC.AND          :   return EIDEC.AND;
             case EIDEC.OR           :   return EIDEC.OR;
             case EIDEC.XOR          :   return EIDEC.XOR;

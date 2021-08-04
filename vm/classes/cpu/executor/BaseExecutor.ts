@@ -87,8 +87,16 @@ abstract class BaseExecutor
         const {quotient,remainder} = this.ALURef.div(AC.read(),DR.read());
         AC.write(quotient);
         DR.write(remainder);
-         
+    }
 
+    protected MUL = () =>
+    {
+        this.maxCommonSteps();
+        // T_LAST : AC <- AC + DR + C, C <- C_out
+        const DR = this.registersRef.getRegister(EREG.DR);
+        const AC = this.registersRef.getRegister(EREG.AC);
+        const res = this.ALURef.mult(AC.readLSB(),DR.readLSB());
+        AC.write(res);
     }
 
 
