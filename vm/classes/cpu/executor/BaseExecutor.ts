@@ -176,6 +176,20 @@ abstract class BaseExecutor
         IX.writeLSB(data);
     }
 
+    protected STAX = () =>
+    {
+        this.minCommonSteps();
+
+        // T_BEFORE_LAST :M[AR] <- IX_H , AR <- AR + 1
+        const IX = this.registersRef.getRegister(EREG.IX);
+        const AR = this.registersRef.getRegister(EREG.AR);
+        this.memoryRef.write(AR.read(),IX.readMSB())
+        AR.increment();
+        // T_BEFORE_LAST :M[AR] <- IX_L 
+        this.memoryRef.write(AR.read(),IX.readLSB())
+
+    }   
+
 }
 
 export default BaseExecutor;

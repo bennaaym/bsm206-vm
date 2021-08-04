@@ -22,9 +22,9 @@ enum EIDEC
     HLT     = 0B01110,      // stops the program
 
     LDA     = 0B01010,      // assigns the operand to the accumulator
-    STA     = 0B10000,      // writes the value of the accumulator into memory
     LDAX    = 0B10001,      // assigns the operand to the index register(IX)
-    
+    STA     = 0B10000,      // writes the value of the accumulator into memory
+    STAX    = 0B10011,
     // Arithmetic operations
     
     ADD     = 0B00000,
