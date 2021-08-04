@@ -37,6 +37,10 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.SUB:
                 this.SUB();
                 break;
+            
+            case EIDEC.SUBC:
+                this.SUBC();
+                break;
 
             case EIDEC.DIV:
                 this.DIV();
