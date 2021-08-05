@@ -4,6 +4,8 @@ import EREG from "../../../../enums/EREG";
 import IALU from "../../../../interfaces/cpu/IALU";
 import IExecutor from "../../../../interfaces/cpu/IExecutor";
 import IRegisters from "../../../../interfaces/cpu/IRegisters";
+import IMemory from "../../../../interfaces/memory/IMemory";
+import Memory from "../../../memory/Memory";
 import ALU from "../../ALU";
 import Registers from "../../Registers";
 
@@ -13,12 +15,14 @@ class InherentModeExecutor implements IExecutor
      private IDEC:number;
      private registersRef :IRegisters;
      private ALURef: IALU;
+     private memoryRef: IMemory;
  
      // Constructors
      constructor(IDEC:number)
      {
          this.registersRef = Registers.getInstance();
          this.ALURef = ALU.getInstance();
+         this.memoryRef = Memory.getInstance();
          this.IDEC = IDEC;
      }
 
@@ -86,7 +90,15 @@ class InherentModeExecutor implements IExecutor
             case EIDEC.STV:
                 this.STV();
                 break;
-                        
+            
+            case EIDEC.PSH:
+                this.PSH();
+                break;
+            
+            case EIDEC.PUL:
+                this.PUL();
+                break;
+
             case EIDEC.HLT:
                 this.HLT();
                 break;
@@ -200,6 +212,50 @@ class InherentModeExecutor implements IExecutor
     {
         // T3 : IX <- IX + 1
         this.registersRef.getRegister(EREG.IX).increment();
+    }
+
+    private PSH = (): void =>
+    {
+        // T3: AR <- SP
+        const AR = this.registersRef.getRegister(EREG.AR);
+        const SP = this.registersRef.getRegister(EREG.SP);
+        AR.write(SP.read());
+
+        // T4: M[AR] <- AC_L , SP <- SP - 1 , AR <- AR - 1
+        const AC = this.registersRef.getRegister(EREG.AC);
+        this.memoryRef.write(AR.read(),AC.readLSB());
+        SP.decrement();
+        AR.decrement();
+
+        // T5: M[AR] <- AC_H , SP <- SP - 1
+        this.memoryRef.write(AR.read(),AC.readMSB());
+        SP.decrement();
+    }
+
+    private PUL = ():void =>
+    {
+        // T3: SP <- SP + 1
+        const SP = this.registersRef.getRegister(EREG.SP);
+        SP.increment();
+
+        // T4: AR <- SP
+        const AR = this.registersRef.getRegister(EREG.AR);
+        AR.write(SP.read());
+
+        // T5: DR_H <- M[AR], SP <- SP + 1, AR <- AR + 1
+        const DR = this.registersRef.getRegister(EREG.DR);
+        let data = this.memoryRef.read(AR.read());
+        DR.writeMSB(data);
+        SP.increment();
+        AR.increment();
+
+        // T6: DR_L <- M[AR]
+        data = this.memoryRef.read(AR.read());
+        DR.writeLSB(data);
+
+        // T7: AC <- DR
+        const AC = this.registersRef.getRegister(EREG.AC);
+        AC.write(DR.read());
     }
 
 }

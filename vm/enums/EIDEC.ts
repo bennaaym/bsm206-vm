@@ -20,6 +20,8 @@ enum EIDEC
     STC     = 0B10110,      // sets the carry flag
     STI     = 0B10111,      // sets the interrupt flag
     STV     = 0B11000,      // sets the overflow flag
+    PSH     = 0B00110,      // pushes the accumulator content to the stack
+    PUL     = 0B00111,      // pulls the data pointed by the stack pointer register and assigns it into the accumulator
     NOP     = 0B11001,      // no operation, the program counter(PC) will be incremented by 1
     HLT     = 0B01110,      // stops the program
 
