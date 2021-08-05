@@ -11,9 +11,9 @@ class Register implements IRegister
     private view:DataView;
     
     // Constructor
-    constructor(name:string)
+    constructor(name:string, sizeInBytes:number = 2)
     {
-        const arrayBuffer = (name === EREG.IR || name === EREG.CCR)? new ArrayBuffer(1) : new ArrayBuffer(2);
+        const arrayBuffer = new ArrayBuffer(sizeInBytes);
         this.view = new DataView(arrayBuffer);
         this.name = name;
     }

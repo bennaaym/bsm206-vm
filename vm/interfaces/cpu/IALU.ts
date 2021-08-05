@@ -14,6 +14,8 @@ interface IALU
     xor(reg_1:number,reg_2:number):number;
     shl(reg:number):number; // shift the arguments one position to the left
     shr(reg:number):number; // shift the arguments one position to the right
+
+    calculateEffectiveAddress(reg:number,offset:number,unsigned:boolean):number;
 }
 
 export default IALU;

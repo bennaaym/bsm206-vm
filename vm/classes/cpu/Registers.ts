@@ -41,13 +41,15 @@ class Registers implements IRegisters
 
     private registerMapping = () : {[name:string]:IRegister} =>
     {
-        let map:{[name:string]:IRegister} = {[EREG.PC]: new Register(EREG.PC)};
+        let map:{[name:string]:IRegister} = {[EREG.PC]: new Register(EREG.PC,2)};
 
         for(let reg in EREG)
         {
             if (reg === EREG.PC) continue; 
-            map[reg] = new Register(reg);
-        }
+            map[reg] = (reg === EREG.IR || reg === EREG.CCR)? new Register(reg,1):new Register(reg);
+
+            if(reg === EREG.SP) map[reg].write(0xFFFF); // SP initial address
+        } 
 
         return map
     }   

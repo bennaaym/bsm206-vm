@@ -1,3 +1,4 @@
+import EADRMD from "../../enums/EADRMD";
 import IALU from "../../interfaces/cpu/IALU";
 import IFullAdder from "../../interfaces/cpu/IFullAdder";
 import FullAdder from "./fullAdder/FullAdder";
@@ -67,6 +68,21 @@ class ALU implements IALU
     public shl = (reg:number): number => reg << 1;
     public shr = (reg:number): number => reg >>> 1;
     
+
+    calculateEffectiveAddress = (reg:number,offset:number,unsigned:boolean):number =>
+    {   
+        let newOffset = offset;
+        
+        if(!unsigned)
+        {
+            const strOffset = offset.toString(2).padStart(8,'0');
+            if(strOffset[0] === '1') newOffset = parseInt(offset.toString(2).padStart(16,'1'),2);
+        }
+      
+        const { sum } = this.add(reg,newOffset,0);
+        return sum;
+    }
+   
 
 }
 
