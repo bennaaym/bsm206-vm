@@ -29,6 +29,10 @@ enum EIDEC
     LDAX    = 0B10001,      // assigns the operand to the index register(IX)
     STA     = 0B10000,      // writes the value of the accumulator into memory
     STAX    = 0B10011,
+    
+    BSR     = 0B01111,      // unconditional branching to a subroutine
+    
+
     // Arithmetic operations
     
     ADD     = 0B00000,
@@ -42,6 +46,8 @@ enum EIDEC
     AND     = 0B00010,
     OR      = 0B01011,
     XOR     = 0B00110,
+
+
 
 }
 
