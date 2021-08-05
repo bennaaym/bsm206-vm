@@ -22,6 +22,7 @@ enum EIDEC
     STV     = 0B11000,      // sets the overflow flag
     PSH     = 0B00110,      // pushes the accumulator content to the stack
     PUL     = 0B00111,      // pulls the data pointed by the stack pointer register and assigns it into the accumulator
+    RTS     = 0B11010,      //return from subroutine
     NOP     = 0B11001,      // no operation, the program counter(PC) will be incremented by 1
     HLT     = 0B01110,      // stops the program
 

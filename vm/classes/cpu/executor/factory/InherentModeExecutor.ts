@@ -99,6 +99,10 @@ class InherentModeExecutor implements IExecutor
                 this.PUL();
                 break;
 
+            case EIDEC.RTS:
+                this.RTS();
+                break;
+
             case EIDEC.HLT:
                 this.HLT();
                 break;
@@ -257,6 +261,28 @@ class InherentModeExecutor implements IExecutor
         const AC = this.registersRef.getRegister(EREG.AC);
         AC.write(DR.read());
     }
+
+    private RTS = (): void =>
+    {
+        // T3: SP <- SP + 1
+        const SP = this.registersRef.getRegister(EREG.SP);
+        SP.increment();
+
+        // T4: AR <- SP
+        const AR = this.registersRef.getRegister(EREG.AR);
+        AR.write(SP.read());
+
+        // T5: PC_H <- M[AR], SP <- SP + 1, AR <- AR + 1
+        const PC = this.registersRef.getRegister(EREG.PC);
+        let data = this.memoryRef.read(AR.read());
+        PC.writeMSB(data);
+        SP.increment();
+        AR.increment();
+
+        // T6: PC_L <- M[AR]
+        data = this.memoryRef.read(AR.read());
+        PC.writeLSB(data);
+    }   
 
 }
 
