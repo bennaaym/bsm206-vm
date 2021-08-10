@@ -63,6 +63,14 @@ class RelativeModeExecutor implements IExecutor
             case EIDEC.BPL:
                 this.BPL();
                 break;
+
+            case EIDEC.BVS:
+                this.BVS();
+                break;
+            
+            case EIDEC.BVC:
+                this.BVC();
+                break;
         }
     };
 
@@ -138,6 +146,21 @@ class RelativeModeExecutor implements IExecutor
         // T3 if N == 0 : PC <- effective address
         const signFlag = this.registersRef.getRegister(EREG.CCR).getFlag(EFLAG.N);
         if(!signFlag) this.assignEffectiveAddressToPC();
+    }
+
+
+    private BVC = (): void =>
+    {
+        // T3 if V == 0 : PC <- effective address
+        const overflowFlag = this.registersRef.getRegister(EREG.CCR).getFlag(EFLAG.V);
+        if(!overflowFlag) this.assignEffectiveAddressToPC();
+    }
+
+    private BVS = (): void =>
+    {
+        // T3 if V == 0 : PC <- effective address
+        const overflowFlag = this.registersRef.getRegister(EREG.CCR).getFlag(EFLAG.V);
+        if(overflowFlag) this.assignEffectiveAddressToPC();
     }
 
     private assignEffectiveAddressToPC = () =>

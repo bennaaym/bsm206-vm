@@ -39,6 +39,8 @@ enum EIDEC
     BNE     = 0B01011,
     BMI     = 0B01010,
     BPL     = 0B01110,
+    BVC     = 0B01100,
+    BVS     = 0B01101,
 
     // Arithmetic operations
     
