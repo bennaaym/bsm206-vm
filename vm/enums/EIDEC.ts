@@ -32,6 +32,7 @@ enum EIDEC
     STAX    = 0B10011,
     
     BSR     = 0B01111,      // unconditional branching to a subroutine
+    BRA     = 0B00000,      
     
 
     // Arithmetic operations

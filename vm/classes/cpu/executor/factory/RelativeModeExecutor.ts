@@ -34,6 +34,10 @@ class RelativeModeExecutor implements IExecutor
             case EIDEC.BSR:
                 this.BSR();
                 break;
+
+            case EIDEC.BRA:
+                this.BRA();
+                break;
         }
     };
 
@@ -63,6 +67,16 @@ class RelativeModeExecutor implements IExecutor
         AR.write(TR.read());
 
         // T8: PC <- effective address
+        this.assignEffectiveAddressToPC();
+    }
+
+    private BRA = ():void => this.assignEffectiveAddressToPC();
+
+
+    private assignEffectiveAddressToPC = () =>
+    {
+        const PC = this.registersRef.getRegister(EREG.PC);
+        const AR = this.registersRef.getRegister(EREG.AR);
         const offset = this.memoryRef.read(AR.read());
         const effectiveAddress = this.ALURef.calculateEffectiveAddress(PC.read(),offset,false);
         PC.write(effectiveAddress);
