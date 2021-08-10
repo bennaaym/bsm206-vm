@@ -31,7 +31,7 @@ enum EIDEC
     STA     = 0B10000,      // writes the value of the accumulator into memory
     STAX    = 0B10011,
     
-    BSR     = 0B01111,      // unconditional branching to a subroutine
+    BSR     = 0B01111,      // unconditional branching to a subroutine (uses relative addressing)
     BRA     = 0B00000,      
     BCC     = 0B00001,
     BCS     = 0B00010,
@@ -41,6 +41,8 @@ enum EIDEC
     BPL     = 0B01110,
     BVC     = 0B01100,
     BVS     = 0B01101,
+
+    JSR     = 0B01101,       // unconditional jump to a subroutine (similar to BSR, however, uses relative addressing)
 
     // Arithmetic operations
     
