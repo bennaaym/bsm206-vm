@@ -33,7 +33,8 @@ enum EIDEC
     
     BSR     = 0B01111,      // unconditional branching to a subroutine
     BRA     = 0B00000,      
-    
+    BCC     = 0B00001,
+    BCS     = 0B00010,
 
     // Arithmetic operations
     

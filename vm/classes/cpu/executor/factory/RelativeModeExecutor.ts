@@ -1,3 +1,4 @@
+import EFLAG from "../../../../enums/EFLAG";
 import EIDEC from "../../../../enums/EIDEC";
 import EREG from "../../../../enums/EREG";
 import IALU from "../../../../interfaces/cpu/IALU";
@@ -38,6 +39,14 @@ class RelativeModeExecutor implements IExecutor
             case EIDEC.BRA:
                 this.BRA();
                 break;
+            
+            case EIDEC.BCC:
+                this.BCC();
+                break;
+
+            case EIDEC.BCS:
+                this.BCS();
+                break;
         }
     };
 
@@ -70,8 +79,21 @@ class RelativeModeExecutor implements IExecutor
         this.assignEffectiveAddressToPC();
     }
 
-    private BRA = ():void => this.assignEffectiveAddressToPC();
+    private BRA = (): void => this.assignEffectiveAddressToPC();
 
+    private BCC = (): void => 
+    {
+        // T3 : if C == 0 : PC <- effective address
+        const carryFlag = this.registersRef.getRegister(EREG.CCR).getFlag(EFLAG.C);
+        if(!carryFlag) this.assignEffectiveAddressToPC();
+    }
+
+    private BCS = ():void =>
+    {
+        // T3: if C == 1 : PC <- effective address
+        const carryFlag = this.registersRef.getRegister(EREG.CCR).getFlag(EFLAG.C);
+        if(carryFlag) this.assignEffectiveAddressToPC();
+    }
 
     private assignEffectiveAddressToPC = () =>
     {
