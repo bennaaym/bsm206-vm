@@ -35,6 +35,8 @@ enum EIDEC
     BRA     = 0B00000,      
     BCC     = 0B00001,
     BCS     = 0B00010,
+    BZR     = 0B00011,
+    BNE     = 0B01011,
 
     // Arithmetic operations
     
