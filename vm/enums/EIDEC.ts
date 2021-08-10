@@ -42,7 +42,9 @@ enum EIDEC
     BVC     = 0B01100,
     BVS     = 0B01101,
 
+
     JSR     = 0B01101,       // unconditional jump to a subroutine (similar to BSR, however, uses relative addressing)
+    JMP     = 0B01100, 
 
     // Arithmetic operations
     

@@ -20,6 +20,10 @@ class IndexModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.JSR:
                 this.JSR();
                 break;
+
+            case EIDEC.JMP:
+                this.JMP();
+                break;
        }
     };
 
@@ -31,7 +35,7 @@ class IndexModeExecutor extends BaseExecutor implements IExecutor
         const TR = this.registersRef.getRegister(EREG.TR);
         const AR = this.registersRef.getRegister(EREG.AR);
         TR.write(AR.read());
-                
+
         // T4: AR <- SP
         const SP = this.registersRef.getRegister(EREG.SP);
         AR.write(SP.read());
@@ -56,6 +60,18 @@ class IndexModeExecutor extends BaseExecutor implements IExecutor
        PC.write(effectiveAddress);
 
     }
+
+    private JMP = (): void =>
+    {
+       // T3: PC <- effective address
+       const PC = this.registersRef.getRegister(EREG.PC);
+       const IX = this.registersRef.getRegister(EREG.IX);
+       const AR = this.registersRef.getRegister(EREG.AR);
+       const offset = this.memoryRef.read(AR.read());
+       const effectiveAddress = this.ALURef.calculateEffectiveAddress(IX.read(),offset,true);
+       PC.write(effectiveAddress);
+    }
+
 
 }
 
