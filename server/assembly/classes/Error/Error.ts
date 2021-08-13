@@ -13,7 +13,7 @@ abstract class Error implements IError
     {
         this.name = name;
         this.details = details;
-        this.position = position;
+        this.position = position.copy();
     }
 
    // Methods

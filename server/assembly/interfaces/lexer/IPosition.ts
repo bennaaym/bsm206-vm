@@ -4,6 +4,7 @@ interface IPosition
     getLine():number;
     getIndex():number;
     getColumn():number;
+    copy():IPosition;
 }
 
 export default IPosition;

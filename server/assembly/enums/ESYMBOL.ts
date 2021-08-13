@@ -7,7 +7,8 @@ enum ESYMBOL
     TILDE        = '~' ,
     SEMICOLON    = ';' ,
     NL           = '\n',
-    TAB          = '\t'
+    TAB          = '\t',
+    WS           = ' '
 }
 
 

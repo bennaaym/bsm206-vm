@@ -8,7 +8,7 @@ class Postion implements IPosition
     private line:number;
 
     // Constructor
-    constructor(index:number = -1,column:number = 1,line:number = -1)
+    constructor(index:number = -1,column:number = -1,line:number = 1)
     {
         this.index = index;
         this.column = column;
@@ -32,6 +32,7 @@ class Postion implements IPosition
     public getLine   = (): number => this.line;
     public getIndex  = (): number => this.index;
     public getColumn = (): number => this.column;
+    public copy = () : IPosition => new Postion(this.index,this.column,this.line);
 }
 
 

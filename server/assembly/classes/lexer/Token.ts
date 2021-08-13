@@ -9,11 +9,11 @@ class Token implements IToken
     private position:IPosition;
 
     // Constructor
-    constructor(type:string,value:string,position:IPosition)
+    constructor(type:string,position:IPosition,value:string='')
     {
         this.type = type;
         this.value = value;
-        this.position = position;
+        this.position = position.copy();
     }
 
     // Methods
