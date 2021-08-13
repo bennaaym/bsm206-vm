@@ -1,4 +1,4 @@
-enum EToken
+enum ETOKEN
 {
     MNEMONIC        = 'MNEMONIC', 
     OPERAND         = 'OPERAND', 
@@ -12,4 +12,4 @@ enum EToken
     EOF             = 'EOF'         // end of file
 }
 
-export default EToken;
+export default ETOKEN;
