@@ -1,9 +1,11 @@
+import EMNEMONIC from "../../enums/EMNEMONIC";
 import ESYMBOL from "../../enums/ESYMBOL";
 import ETOKEN from "../../enums/ETOKEN";
 import IError from "../../interfaces/Error/IError";
 import ILexer from "../../interfaces/lexer/ILexer";
 import IPosition from "../../interfaces/lexer/IPosition";
 import IToken from "../../interfaces/lexer/IToken";
+import SyntaxError from "../Error/SyntaxError";
 import Postion from "./Postion";
 import Token from "./Token";
 
@@ -33,19 +35,27 @@ class Lexer implements ILexer
     public tokenize = (): [IToken[]|[],IError|null] =>
     {
         let tokens:IToken[] = [];
-        let error:IError|null = null;
         while(this.current !== ETOKEN.EOF)
         {
             // ignores white spaces and tabs
             if(this.current === ESYMBOL.WS || this.current === ESYMBOL.TAB)
                 this.advance();
             
-            // catches new lines
+            // checks new lines
             if(this.current === ESYMBOL.NL)
             {
                 tokens.push(new Token(ETOKEN.NL,this.position));
                 this.advance();
             }
+
+            // checks mnemonics
+            if(this.current.match(/[a-z]/i))
+            {   
+                let [token,error] = this.makeMnemonic();
+                if(error) return [[],error];
+                if(token) tokens.push(token);
+            }
+
 
             else
                 this.advance();
@@ -53,7 +63,30 @@ class Lexer implements ILexer
         }
 
         tokens.push(new Token(ETOKEN.EOF,this.position));
-        return [tokens,error];
+        return [tokens,null];
+    }
+
+    
+    private makeMnemonic = () : [IToken|null,IError|null] =>
+    {
+        let mnemonic:string = '';
+        const position:IPosition = this.position.copy();
+
+        while(this.current !== ETOKEN.EOF && this.current.match(/[a-z]/i))
+        {
+            mnemonic += this.current;
+            this.advance();
+        }
+
+        mnemonic = mnemonic.toUpperCase();
+        
+        // if the sequence of letters represents a mnemonic
+        if((<any>Object).values(EMNEMONIC).includes(mnemonic))
+        {
+            return [new Token(ETOKEN.MNEMONIC,position,mnemonic),null];
+        }
+
+        return [null,new SyntaxError(`undefined mnemonic << ${mnemonic} >>`,position)];
     }
 
 }

@@ -8,7 +8,7 @@ enum ESYMBOL
     SEMICOLON    = ';' ,
     NL           = '\n',
     TAB          = '\t',
-    WS           = ' '
+    WS           = ' ',
 }
 
 
