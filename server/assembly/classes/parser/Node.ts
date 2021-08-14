@@ -5,11 +5,11 @@ class Node implements INode
 {
     // Properties
     private mnemonic:IToken;
-    private ADRMD:IToken;
-    private operand:IToken;
+    private ADRMD:IToken|null;
+    private operand:IToken|null;
 
     // Constructor
-    constructor(mnemonic:IToken,ADRMD:IToken,operand:IToken)
+    constructor(mnemonic:IToken,ADRMD:IToken|null= null,operand:IToken|null = null)
     {
         this.mnemonic = mnemonic;
         this.ADRMD = ADRMD;
@@ -19,8 +19,8 @@ class Node implements INode
     // Merhods
 
     public getMnemonic = (): IToken => this.mnemonic;
-    public getADRMD    = (): IToken => this.ADRMD;
-    public getOperand  = (): IToken => this.operand;
+    public getADRMD    = (): IToken|null => this.ADRMD;
+    public getOperand  = (): IToken|null => this.operand;
 
 }
 

@@ -1,4 +1,7 @@
+import ETOKEN from "../../enums/ETOKEN";
+import IError from "../../interfaces/Error/IError";
 import IToken from "../../interfaces/lexer/IToken";
+import INode from "../../interfaces/parser/INode";
 import IParser from "../../interfaces/parser/IParser";
 
 class Parser implements IParser
@@ -17,12 +20,12 @@ class Parser implements IParser
     }
 
     // Methods
-
     public advance = (): void =>
     {
         this.index++;
-        if(this.index < this.tokens.length) this.current = this.tokens[this.index]  
+        if(this.index < this.tokens.length) this.current = this.tokens[this.index];
     }
+
 }
 
 export default Parser;
