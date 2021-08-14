@@ -37,21 +37,9 @@ class Lexer implements ILexer
 
         while(this.current !== ETOKEN.EOF)
         {
-            // ignores white spaces and tabs
-            if(this.current === ESYMBOL.WS || this.current === ESYMBOL.TAB)
-            {
-                this.advance();
-            }
-            
-            // checks new lines
-            else if(this.current === ESYMBOL.NL)
-            {
-                tokens.push(new Token(ETOKEN.NL,this.position));
-                this.advance();
-            }
-            
+
             // checks mnemonics
-            else if(this.current.match(/[a-z]/i))
+            if(this.current.match(/[a-z]/i))
             {   
                 let [token,error] = this.makeMnemonic();
                 if(error) return [[],error];
@@ -64,38 +52,33 @@ class Lexer implements ILexer
                 tokens.push(this.makeOperand());
             }
 
-            // checks tag symbol
-            else if(this.current === ESYMBOL.TAG)
+            // checks special symbols
+            else if((<any>Object).values(ESYMBOL).includes(this.current))
             {
-                tokens.push(new Token(ETOKEN.TAG,this.position));
-                this.advance();
-            }
+                switch(this.current)
+                {
+                    case ESYMBOL.NL:        // checks new lines
+                        tokens.push(new Token(ETOKEN.NL,this.position));
+                        break;
+                    case ESYMBOL.TAG:       // checks tag symbols
+                        tokens.push(new Token(ETOKEN.TAG,this.position));
+                        break;
+                    case ESYMBOL.ASTERISK:  // checks asterisk symbols
+                        tokens.push(new Token(ETOKEN.ASTERISK,this.position));
+                        break;
+                    case ESYMBOL.TILDE:     // checks tilde sumbols
+                        tokens.push(new Token(ETOKEN.TILDE,this.position));
+                        break;
+                    case ESYMBOL.LPAREN:    // checks left parenthesis
+                        tokens.push(new Token(ETOKEN.LPAREN,this.position));
+                        break;
+                    case ESYMBOL.RPAREN:    // checks right parenthesis
+                        tokens.push(new Token(ETOKEN.RPAREN,this.position));
+                        break;       
+                        
+                    default: break;         // white spaces / tabs
+                }
 
-            // checks asterisk symbol
-            else if(this.current === ESYMBOL.ASTERISK)
-            {
-                tokens.push(new Token(ETOKEN.ASTERISK,this.position));
-                this.advance();
-            }
-
-            // checks tilde symbol
-            else if(this.current === ESYMBOL.TILDE)
-            {
-                tokens.push(new Token(ETOKEN.TILDE,this.position));
-                this.advance();
-            }
-
-            // checks left parenthesis
-            else if(this.current === ESYMBOL.LPAREN)
-            {
-                tokens.push(new Token(ETOKEN.LPAREN,this.position));
-                this.advance();
-            }
-
-            // checks right parenthesis
-            else if(this.current === ESYMBOL.RPAREN)
-            {
-                tokens.push(new Token(ETOKEN.RPAREN,this.position));
                 this.advance();
             }
 
