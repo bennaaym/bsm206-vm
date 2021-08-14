@@ -52,6 +52,13 @@ class Lexer implements ILexer
                 tokens.push(this.makeOperand());
             }
 
+            // checks comments
+            else if (this.current === ESYMBOL.SEMICOLON)
+            {
+                this.skipComment();
+                console.log("comment");
+            }
+
             // checks special symbols
             else if((<any>Object).values(ESYMBOL).includes(this.current))
             {
@@ -60,21 +67,26 @@ class Lexer implements ILexer
                     case ESYMBOL.NL:        // checks new lines
                         tokens.push(new Token(ETOKEN.NL,this.position));
                         break;
+                    
                     case ESYMBOL.TAG:       // checks tag symbols
                         tokens.push(new Token(ETOKEN.TAG,this.position));
                         break;
+
                     case ESYMBOL.ASTERISK:  // checks asterisk symbols
                         tokens.push(new Token(ETOKEN.ASTERISK,this.position));
                         break;
+
                     case ESYMBOL.TILDE:     // checks tilde sumbols
                         tokens.push(new Token(ETOKEN.TILDE,this.position));
                         break;
+
                     case ESYMBOL.LPAREN:    // checks left parenthesis
                         tokens.push(new Token(ETOKEN.LPAREN,this.position));
                         break;
+
                     case ESYMBOL.RPAREN:    // checks right parenthesis
                         tokens.push(new Token(ETOKEN.RPAREN,this.position));
-                        break;       
+                        break;    
                         
                     default: break;         // white spaces / tabs
                 }
@@ -125,6 +137,11 @@ class Lexer implements ILexer
             this.advance();
         }
         return (new Token(ETOKEN.OPERAND,position,operand));
+    }
+
+    private skipComment = (): void =>
+    {
+        while(this.current !== ETOKEN.EOF && this.current !== ESYMBOL.NL) this.advance();
     }
 
 }
