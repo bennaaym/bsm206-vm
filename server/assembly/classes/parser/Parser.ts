@@ -1,6 +1,7 @@
 import ESYMBOL from "../../enums/ESYMBOL";
 import ETOKEN from "../../enums/ETOKEN";
 import IError from "../../interfaces/Error/IError";
+import IPosition from "../../interfaces/lexer/IPosition";
 import IToken from "../../interfaces/lexer/IToken";
 import INode from "../../interfaces/parser/INode";
 import IParser from "../../interfaces/parser/IParser";
@@ -25,15 +26,19 @@ class Parser implements IParser
     // Methods
     public advance = (): void =>
     {
-        this.index++;
-        if(this.index < this.tokens.length) this.current = this.tokens[this.index];
+        if(this.index < this.tokens.length) this.current = this.tokens[++this.index];
     }
 
+    // parses an expression and returns a Node instance
     private expression = ():[INode|null,IError|null] =>
     {
 
         // checks new line tokens
-        if(this.current.getType() === ETOKEN.NL) return [null,null];
+        if(this.current.getType() === ETOKEN.NL)
+        {
+            this.advance();
+            return [null,null];
+        }
 
         // checks mnemonic tokens
         else if(this.current.getType() === ETOKEN.MNEMONIC)
@@ -43,44 +48,38 @@ class Parser implements IParser
             
             switch(this.current.getType())
             {
-                case ETOKEN.NL : return this.makeNodeInherentMode(mnemonic);
+
+                case ETOKEN.NL : 
+                case ETOKEN.MNEMONIC:return this.makeNodeInherentMode(mnemonic);
                 case ETOKEN.OPERAND : return this.makeNodeDirectMode(mnemonic);
-                case ETOKEN.TAG : return this.makeNodeImmediateMode(mnemonic);
-                case ETOKEN.ASTERISK :return this.makeNodeIndexMode(mnemonic);
-                case ETOKEN.TILDE :return this.makeNodeRelativeMode(mnemonic);
                 case ETOKEN.LPAREN : return this.makeNodeIndirectMode(mnemonic);
+                case ETOKEN.TAG : 
+                case ETOKEN.ASTERISK :
+                case ETOKEN.TILDE :return this.makeNodeOtherModes(mnemonic);
             }
         }
 
-        return [null,null];
+        return [null,new SyntaxError(`expected a mnemonic`,this.current.getPosition())];
     }
+
 
 
     private makeNodeInherentMode = (mnemonic:IToken) : [INode|null,IError|null] =>
     {
-        return [new Node(mnemonic),null];
+        const node = new Node(mnemonic);
+        const error = this.nextTokenIsNLOrEOF();
+        if(error)  return [null,error];
+        return [node,null];
     }
 
     private makeNodeDirectMode = (mnemonic:IToken):[INode|null,IError|null] =>
     {
-        return [new Node(mnemonic,null,this.current),null];
+        const node:INode = new Node(mnemonic,null,this.current);
+        const error = this.nextTokenIsNLOrEOF();
+        if(error) return [null,error];
+        return [node,null];
     }
 
-    private makeNodeImmediateMode = (mnemonic:IToken):[INode|null,IError|null] =>
-    {
-        const ADRMD:IToken = this.current;
-        this.advance();
-
-        if(this.current.getType() === ETOKEN.OPERAND)
-        {
-            return [new Node(mnemonic,ADRMD,this.current),null];
-        }
-
-        return [null,new SyntaxError(`expected an operand`,this.current.getPosition())]
-    }
-
-    private makeNodeIndexMode = this.makeNodeImmediateMode;
-    private makeNodeRelativeMode = this.makeNodeImmediateMode;
 
     private makeNodeIndirectMode = (mnemonic:IToken):[INode|null,IError|null] =>
     {
@@ -94,14 +93,41 @@ class Parser implements IParser
 
             if(this.current.getType() === ETOKEN.RPAREN)
             {
-                return [new Node(mnemonic,ADRMD,operand),null];
+                const node:INode = new Node(mnemonic,ADRMD,operand);
+                const error = this.nextTokenIsNLOrEOF();
+                if(error) return [null,error];
+                return [node,null];
             }
 
             return [null,new SyntaxError(`expected '${ESYMBOL.RPAREN}'`,this.current.getPosition())]
         }
 
         return [null,new SyntaxError(`expected an operand`,this.current.getPosition())]
+    }
 
+    private makeNodeOtherModes = (mnemonic:IToken):[INode|null,IError|null] =>
+    {
+        const ADRMD:IToken = this.current;
+        this.advance();
+
+        if(this.current.getType() === ETOKEN.OPERAND)
+        {
+            const node:INode = new Node(mnemonic,ADRMD,this.current);
+            const error = this.nextTokenIsNLOrEOF();
+            if(error) return [null,error];
+            return [node,null];
+        }
+
+        return [null,new SyntaxError(`expected an operand`,this.current.getPosition())]
+    }
+
+    // checks if the next token is a newline token or EOF token
+    private nextTokenIsNLOrEOF = ():IError|null =>
+    {
+        const position:IPosition = this.current.getPosition().copy();
+        this.advance();
+        if(this.current.getType() === ETOKEN.NL || this.current.getType() === ETOKEN.EOF) return null;
+        return new SyntaxError(`expected a newline`,position);
     }
 }
 
