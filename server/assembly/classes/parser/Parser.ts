@@ -1,3 +1,4 @@
+import ESYMBOL from "../../enums/ESYMBOL";
 import ETOKEN from "../../enums/ETOKEN";
 import IError from "../../interfaces/Error/IError";
 import IToken from "../../interfaces/lexer/IToken";
@@ -47,6 +48,7 @@ class Parser implements IParser
                 case ETOKEN.TAG : return this.makeNodeImmediateMode(mnemonic);
                 case ETOKEN.ASTERISK :return this.makeNodeIndexMode(mnemonic);
                 case ETOKEN.TILDE :return this.makeNodeRelativeMode(mnemonic);
+                case ETOKEN.LPAREN : return this.makeNodeIndirectMode(mnemonic);
             }
         }
 
@@ -74,11 +76,33 @@ class Parser implements IParser
             return [new Node(mnemonic,ADRMD,this.current),null];
         }
 
-        return [null,new SyntaxError(`expected an operand but ${this.current.getValue()} found`,this.current.getPosition())]
+        return [null,new SyntaxError(`expected an operand`,this.current.getPosition())]
     }
 
     private makeNodeIndexMode = this.makeNodeImmediateMode;
     private makeNodeRelativeMode = this.makeNodeImmediateMode;
+
+    private makeNodeIndirectMode = (mnemonic:IToken):[INode|null,IError|null] =>
+    {
+        const ADRMD:IToken = this.current;
+        this.advance();
+
+        if(this.current.getType() === ETOKEN.OPERAND)
+        {
+            const operand:IToken = this.current;
+            this.advance();
+
+            if(this.current.getType() === ETOKEN.RPAREN)
+            {
+                return [new Node(mnemonic,ADRMD,operand),null];
+            }
+
+            return [null,new SyntaxError(`expected '${ESYMBOL.RPAREN}'`,this.current.getPosition())]
+        }
+
+        return [null,new SyntaxError(`expected an operand`,this.current.getPosition())]
+
+    }
 }
 
 export default Parser;
