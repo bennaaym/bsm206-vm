@@ -30,6 +30,9 @@ class Parser implements IParser
     }
 
 
+  
+
+
     // parses an expression and returns a Node instance
     private expression = ():[INode|null,IError|null] =>
     {
@@ -46,19 +49,23 @@ class Parser implements IParser
         {
             const mnemonic:IToken = this.current;
             this.advance();
-            
+            console.log(mnemonic.getType(),mnemonic.getValue(),mnemonic.getPositionStart().getLine())
             switch(this.current.getType())
             {
 
                 case ETOKEN.NL : 
                 case ETOKEN.MNEMONIC:return this.makeNodeInherentMode(mnemonic);
                 case ETOKEN.OPERAND : return this.makeNodeDirectMode(mnemonic);
-                case ETOKEN.LPAREN : return this.makeNodeIndirectMode(mnemonic);
                 case ETOKEN.TAG : 
                 case ETOKEN.ASTERISK :
                 case ETOKEN.TILDE :return this.makeNodeOtherModes(mnemonic);
+                case ETOKEN.RPAREN:return [null,new SyntaxError(`unexpected character '${ESYMBOL.RPAREN}' operand, '${ESYMBOL.TAG}', '${ESYMBOL.ASTERISK}', '${ESYMBOL.TILDE}', '${ESYMBOL.LPAREN}' was expected'`,this.current.getPositionStart())];
+                case ETOKEN.LPAREN : return this.makeNodeIndirectMode(mnemonic);
+
             }
         }
+
+
 
         return [null,new SyntaxError(`expected a mnemonic`,this.current.getPositionStart())];
     }
@@ -125,8 +132,22 @@ class Parser implements IParser
     // checks if the next token is a newline token or EOF token
     private nextTokenIsNLOrEOF = (position:IPosition = this.current.getPositionEnd()):IError|null =>
     {
-        this.advance();
-        if(this.current.getType() === ETOKEN.NL || this.current.getType() === ETOKEN.EOF) return null;
+        if(this.current.getType() !== ETOKEN.NL && this.current.getType() !== ETOKEN.MNEMONIC)
+            this.advance();
+        
+        switch(this.current.getType())
+        {
+            case ETOKEN.NL:
+            case ETOKEN.EOF: return null;
+
+            case ETOKEN.TAG:
+            case ETOKEN.ASTERISK:
+            case ETOKEN.TILDE:
+            case ETOKEN.LPAREN:
+            case ETOKEN.RPAREN: return new SyntaxError(`unexpected character '${ESYMBOL[(this.current.getType() as keyof typeof ESYMBOL)]}'\tnewline was expected`,position);
+            
+            case ETOKEN.MNEMONIC: return  new SyntaxError(`unexpected mnemonic << ${this.current.getValue()} >> newline was expected`,position);
+        }
         return new SyntaxError(`expected a newline`,position);
     }
 }
