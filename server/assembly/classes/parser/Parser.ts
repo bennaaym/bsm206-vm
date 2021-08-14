@@ -30,9 +30,6 @@ class Parser implements IParser
     }
 
 
-   
-
-
     // parses an expression and returns a Node instance
     private expression = ():[INode|null,IError|null] =>
     {
@@ -63,7 +60,7 @@ class Parser implements IParser
             }
         }
 
-        return [null,new SyntaxError(`expected a mnemonic`,this.current.getPosition())];
+        return [null,new SyntaxError(`expected a mnemonic`,this.current.getPositionStart())];
     }
 
 
@@ -71,7 +68,7 @@ class Parser implements IParser
     private makeNodeInherentMode = (mnemonic:IToken) : [INode|null,IError|null] =>
     {
         const node = new Node(mnemonic);
-        const error = this.nextTokenIsNLOrEOF();
+        const error = this.nextTokenIsNLOrEOF(mnemonic.getPositionEnd());
         if(error)  return [null,error];
         return [node,null];
     }
@@ -103,10 +100,10 @@ class Parser implements IParser
                 return [node,null];
             }
 
-            return [null,new SyntaxError(`expected '${ESYMBOL.RPAREN}'`,this.current.getPosition())]
+            return [null,new SyntaxError(`expected '${ESYMBOL.RPAREN}'`,this.current.getPositionStart())]
         }
 
-        return [null,new SyntaxError(`expected an operand`,this.current.getPosition())]
+        return [null,new SyntaxError(`expected an operand`,this.current.getPositionStart())]
     }
 
     private makeNodeOtherModes = (mnemonic:IToken):[INode|null,IError|null] =>
@@ -122,16 +119,15 @@ class Parser implements IParser
             return [node,null];
         }
 
-        return [null,new SyntaxError(`expected an operand`,this.current.getPosition())]
+        return [null,new SyntaxError(`expected an operand`,this.current.getPositionStart())]
     }
 
     // checks if the next token is a newline token or EOF token
-    private nextTokenIsNLOrEOF = ():IError|null =>
+    private nextTokenIsNLOrEOF = (position:IPosition = this.current.getPositionEnd()):IError|null =>
     {
-        // const position:IPosition = this.current.getPosition().copy();
         this.advance();
         if(this.current.getType() === ETOKEN.NL || this.current.getType() === ETOKEN.EOF) return null;
-        return new SyntaxError(`expected a newline`,this.current.getPosition());
+        return new SyntaxError(`expected a newline`,position);
     }
 }
 
