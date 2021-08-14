@@ -56,7 +56,6 @@ class Lexer implements ILexer
             else if (this.current === ESYMBOL.SEMICOLON)
             {
                 this.skipComment();
-                console.log("comment");
             }
 
             // checks special symbols
