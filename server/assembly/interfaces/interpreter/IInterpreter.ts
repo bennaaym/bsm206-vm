@@ -1,6 +1,8 @@
+import IError from "../Error/IError";
+
 interface IInterpreter
 {
-    interprete():string[];
+    interpret():[string[],IError|null];
 }
 
 export default IInterpreter;

@@ -1,4 +1,4 @@
-export const ADRMD =
+export const ADRMD:{[key:string]:number} =
 {
     INHERENT    : 0B000,
     IMMEDIATE   : 0B001,  
