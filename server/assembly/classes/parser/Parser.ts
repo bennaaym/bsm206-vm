@@ -45,6 +45,8 @@ class Parser implements IParser
                 case ETOKEN.NL : return this.makeNodeInherentMode(mnemonic);
                 case ETOKEN.OPERAND : return this.makeNodeDirectMode(mnemonic);
                 case ETOKEN.TAG : return this.makeNodeImmediateMode(mnemonic);
+                case ETOKEN.ASTERISK :return this.makeNodeIndexMode(mnemonic);
+                case ETOKEN.TILDE :return this.makeNodeRelativeMode(mnemonic);
             }
         }
 
@@ -75,6 +77,8 @@ class Parser implements IParser
         return [null,new SyntaxError(`expected an operand but ${this.current.getValue()} found`,this.current.getPosition())]
     }
 
+    private makeNodeIndexMode = this.makeNodeImmediateMode;
+    private makeNodeRelativeMode = this.makeNodeImmediateMode;
 }
 
 export default Parser;
