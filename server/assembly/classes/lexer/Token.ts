@@ -5,11 +5,11 @@ class Token implements IToken
 {
     // Properties
     private type:string;
-    private value:string;
+    private value:string|null;
     private position:IPosition;
 
     // Constructor
-    constructor(type:string,position:IPosition,value:string='')
+    constructor(type:string,position:IPosition,value:string|null=null)
     {
         this.type = type;
         this.value = value;
@@ -19,7 +19,7 @@ class Token implements IToken
     // Methods
 
     public getType     =   (): string => this.type;
-    public getValue    =   (): string => this.value;
+    public getValue    =   (): string|null => this.value;
     public getPosition =   ():IPosition => this.position;
 
 }

@@ -20,7 +20,6 @@ class Lexer implements ILexer
     constructor(input:string)
     {
         this.input = input;
-        this.current = ETOKEN.EOF;
         this.position = new Postion();
         this.advance();
     }
@@ -29,27 +28,30 @@ class Lexer implements ILexer
     public advance = (): void =>
     {
         this.position.advance(this.current);
-        this.current = (this.position.getIndex() < this.input.length)? this.input[this.position.getIndex()]:ETOKEN.EOF;
+        this.current = (this.position.getIndex() < this.input.length)? this.input[this.position.getIndex()]:ETOKEN.EOF;        
     }
 
     public tokenize = (): [IToken[]|[],IError|null] =>
     {
         let tokens:IToken[] = [];
+
         while(this.current !== ETOKEN.EOF)
         {
             // ignores white spaces and tabs
             if(this.current === ESYMBOL.WS || this.current === ESYMBOL.TAB)
+            {
                 this.advance();
+            }
             
             // checks new lines
-            if(this.current === ESYMBOL.NL)
+            else if(this.current === ESYMBOL.NL)
             {
                 tokens.push(new Token(ETOKEN.NL,this.position));
                 this.advance();
             }
-
+            
             // checks mnemonics
-            if(this.current.match(/[a-z]/i))
+            else if(this.current.match(/[a-z]/i))
             {   
                 let [token,error] = this.makeMnemonic();
                 if(error) return [[],error];
@@ -57,14 +59,49 @@ class Lexer implements ILexer
             }
 
             // checks operands
-            if(this.current.match(/[0-9]/))
+            else if(this.current.match(/[0-9]/))
             {
                 tokens.push(this.makeOperand());
             }
 
-            else
+            // checks tag symbol
+            else if(this.current === ESYMBOL.TAG)
+            {
+                tokens.push(new Token(ETOKEN.TAG,this.position));
                 this.advance();
+            }
 
+            // checks asterisk symbol
+            else if(this.current === ESYMBOL.ASTERISK)
+            {
+                tokens.push(new Token(ETOKEN.ASTERISK,this.position));
+                this.advance();
+            }
+
+            // checks tilde symbol
+            else if(this.current === ESYMBOL.TILDE)
+            {
+                tokens.push(new Token(ETOKEN.TILDE,this.position));
+                this.advance();
+            }
+
+            // checks left parenthesis
+            else if(this.current === ESYMBOL.LPAREN)
+            {
+                tokens.push(new Token(ETOKEN.LPAREN,this.position));
+                this.advance();
+            }
+
+            // checks right parenthesis
+            else if(this.current === ESYMBOL.RPAREN)
+            {
+                tokens.push(new Token(ETOKEN.RPAREN,this.position));
+                this.advance();
+            }
+
+            // returns an error
+            else
+                return [[],new SyntaxError(`unexpected character '${this.current}'`,this.position)];
         }
 
         tokens.push(new Token(ETOKEN.EOF,this.position));
@@ -83,7 +120,6 @@ class Lexer implements ILexer
             mnemonic += this.current;
             this.advance();
         }
-
         mnemonic = mnemonic.toUpperCase();
 
         // if the sequence of letters represents a mnemonic
@@ -105,7 +141,6 @@ class Lexer implements ILexer
             operand += this.current;
             this.advance();
         }
-
         return (new Token(ETOKEN.OPERAND,position,operand));
     }
 
