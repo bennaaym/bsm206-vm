@@ -64,27 +64,27 @@ class Lexer implements ILexer
                 switch(this.current)
                 {
                     case ESYMBOL.NL:        // checks new lines
-                        tokens.push(new Token(ETOKEN.NL,this.position));
+                        tokens.push(new Token(ETOKEN.NL,this.position,this.position));
                         break;
                     
                     case ESYMBOL.TAG:       // checks tag symbols
-                        tokens.push(new Token(ETOKEN.TAG,this.position));
+                        tokens.push(new Token(ETOKEN.TAG,this.position,this.position));
                         break;
 
                     case ESYMBOL.ASTERISK:  // checks asterisk symbols
-                        tokens.push(new Token(ETOKEN.ASTERISK,this.position));
+                        tokens.push(new Token(ETOKEN.ASTERISK,this.position,this.position));
                         break;
 
                     case ESYMBOL.TILDE:     // checks tilde sumbols
-                        tokens.push(new Token(ETOKEN.TILDE,this.position));
+                        tokens.push(new Token(ETOKEN.TILDE,this.position,this.position));
                         break;
 
                     case ESYMBOL.LPAREN:    // checks left parenthesis
-                        tokens.push(new Token(ETOKEN.LPAREN,this.position));
+                        tokens.push(new Token(ETOKEN.LPAREN,this.position,this.position));
                         break;
 
                     case ESYMBOL.RPAREN:    // checks right parenthesis
-                        tokens.push(new Token(ETOKEN.RPAREN,this.position));
+                        tokens.push(new Token(ETOKEN.RPAREN,this.position,this.position));
                         break;    
                         
                     default: break;         // white spaces / tabs
@@ -98,7 +98,7 @@ class Lexer implements ILexer
                 return [[],new SyntaxError(`unexpected character '${this.current}'`,this.position)];
         }
 
-        tokens.push(new Token(ETOKEN.EOF,this.position));
+        tokens.push(new Token(ETOKEN.EOF,this.position,this.position));
         return [tokens,null];
     }
 
@@ -107,7 +107,7 @@ class Lexer implements ILexer
     private makeMnemonic = () : [IToken|null,IError|null] =>
     {
         let mnemonic:string = '';
-        const position:IPosition = this.position.copy();
+        const positionStart:IPosition = this.position.copy();
 
         while(this.current !== ETOKEN.EOF && this.current.match(/[a-z]/i))
         {
@@ -119,23 +119,26 @@ class Lexer implements ILexer
         // if the sequence of letters represents a mnemonic
         if((<any>Object).values(EMNEMONIC).includes(mnemonic))
         {
-            return [new Token(ETOKEN.MNEMONIC,position,mnemonic),null];
+            const positionEnd:IPosition = this.position.copy();
+            return [new Token(ETOKEN.MNEMONIC,positionStart,positionEnd,mnemonic),null];
         }
 
-        return [null,new SyntaxError(`undefined mnemonic << ${mnemonic} >>`,position)];
+        return [null,new SyntaxError(`undefined mnemonic << ${mnemonic} >>`,positionStart)];
     }
 
     private makeOperand = (): IToken =>
     {
         let operand:string = '';
-        const position:IPosition = this.position.copy();
+        const positionStart:IPosition = this.position.copy();
 
         while(this.current !== ETOKEN.EOF && this.current.match(/[0-9]/))
         {
             operand += this.current;
             this.advance();
         }
-        return (new Token(ETOKEN.OPERAND,position,operand));
+
+        const positionEnd:IPosition = this.position.copy();
+        return (new Token(ETOKEN.OPERAND,positionStart,positionEnd,operand));
     }
 
     private skipComment = (): void =>

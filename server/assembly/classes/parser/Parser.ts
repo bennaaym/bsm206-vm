@@ -29,6 +29,10 @@ class Parser implements IParser
         if(this.index < this.tokens.length) this.current = this.tokens[++this.index];
     }
 
+
+   
+
+
     // parses an expression and returns a Node instance
     private expression = ():[INode|null,IError|null] =>
     {
@@ -124,10 +128,10 @@ class Parser implements IParser
     // checks if the next token is a newline token or EOF token
     private nextTokenIsNLOrEOF = ():IError|null =>
     {
-        const position:IPosition = this.current.getPosition().copy();
+        // const position:IPosition = this.current.getPosition().copy();
         this.advance();
         if(this.current.getType() === ETOKEN.NL || this.current.getType() === ETOKEN.EOF) return null;
-        return new SyntaxError(`expected a newline`,position);
+        return new SyntaxError(`expected a newline`,this.current.getPosition());
     }
 }
 

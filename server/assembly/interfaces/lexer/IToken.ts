@@ -4,6 +4,7 @@ interface IToken
 {
     getType():string;
     getValue():string|null;
-    getPosition():IPosition;
+    getPositionStart():IPosition;
+    getPositionEnd():IPosition;
 }
 export default IToken;

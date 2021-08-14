@@ -6,21 +6,24 @@ class Token implements IToken
     // Properties
     private type:string;
     private value:string|null;
-    private position:IPosition;
+    private positionStart:IPosition;
+    private positionEnd:IPosition;
 
     // Constructor
-    constructor(type:string,position:IPosition,value:string|null=null)
+    constructor(type:string,positionStart:IPosition,positionEnd:IPosition,value:string|null=null)
     {
         this.type = type;
         this.value = value;
-        this.position = position.copy();
+        this.positionStart = positionStart.copy();
+        this.positionEnd = positionEnd.copy();
     }
 
     // Methods
 
-    public getType     =   (): string => this.type;
-    public getValue    =   (): string|null => this.value;
-    public getPosition =   ():IPosition => this.position;
+    public getType          =   (): string      => this.type;
+    public getValue         =   (): string|null => this.value;
+    public getPositionStart =   (): IPosition   => this.positionStart;
+    public getPositionEnd   =   (): IPosition   => this.positionEnd
 
 }
 
