@@ -56,6 +56,11 @@ class Lexer implements ILexer
                 if(token) tokens.push(token);
             }
 
+            // checks operands
+            if(this.current.match(/[0-9]/))
+            {
+                tokens.push(this.makeOperand());
+            }
 
             else
                 this.advance();
@@ -65,6 +70,7 @@ class Lexer implements ILexer
         tokens.push(new Token(ETOKEN.EOF,this.position));
         return [tokens,null];
     }
+
 
     
     private makeMnemonic = () : [IToken|null,IError|null] =>
@@ -79,7 +85,7 @@ class Lexer implements ILexer
         }
 
         mnemonic = mnemonic.toUpperCase();
-        
+
         // if the sequence of letters represents a mnemonic
         if((<any>Object).values(EMNEMONIC).includes(mnemonic))
         {
@@ -87,6 +93,20 @@ class Lexer implements ILexer
         }
 
         return [null,new SyntaxError(`undefined mnemonic << ${mnemonic} >>`,position)];
+    }
+
+    private makeOperand = (): IToken =>
+    {
+        let operand:string = '';
+        const position:IPosition = this.position.copy();
+
+        while(this.current !== ETOKEN.EOF && this.current.match(/[0-9]/))
+        {
+            operand += this.current;
+            this.advance();
+        }
+
+        return (new Token(ETOKEN.OPERAND,position,operand));
     }
 
 }
