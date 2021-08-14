@@ -3,6 +3,8 @@ import IError from "../../interfaces/Error/IError";
 import IToken from "../../interfaces/lexer/IToken";
 import INode from "../../interfaces/parser/INode";
 import IParser from "../../interfaces/parser/IParser";
+import SyntaxError from "../Error/SyntaxError";
+import Node from "./Node";
 
 class Parser implements IParser
 {
@@ -24,6 +26,53 @@ class Parser implements IParser
     {
         this.index++;
         if(this.index < this.tokens.length) this.current = this.tokens[this.index];
+    }
+
+    private expression = ():[INode|null,IError|null] =>
+    {
+
+        // checks new line tokens
+        if(this.current.getType() === ETOKEN.NL) return [null,null];
+
+        // checks mnemonic tokens
+        else if(this.current.getType() === ETOKEN.MNEMONIC)
+        {
+            const mnemonic:IToken = this.current;
+            this.advance();
+            
+            switch(this.current.getType())
+            {
+                case ETOKEN.NL : return this.makeNodeInherentMode(mnemonic);
+                case ETOKEN.OPERAND : return this.makeNodeDirectMode(mnemonic);
+                case ETOKEN.TAG : return this.makeNodeImmediateMode(mnemonic);
+            }
+        }
+
+        return [null,null];
+    }
+
+
+    private makeNodeInherentMode = (mnemonic:IToken) : [INode|null,IError|null] =>
+    {
+        return [new Node(mnemonic),null];
+    }
+
+    private makeNodeDirectMode = (mnemonic:IToken):[INode|null,IError|null] =>
+    {
+        return [new Node(mnemonic,null,this.current),null];
+    }
+
+    private makeNodeImmediateMode = (mnemonic:IToken):[INode|null,IError|null] =>
+    {
+        const ADRMD:IToken = this.current;
+        this.advance();
+
+        if(this.current.getType() === ETOKEN.OPERAND)
+        {
+            return [new Node(mnemonic,ADRMD,this.current),null];
+        }
+
+        return [null,new SyntaxError(`expected an operand but ${this.current.getValue()} found`,this.current.getPosition())]
     }
 
 }
