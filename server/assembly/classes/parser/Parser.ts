@@ -30,7 +30,19 @@ class Parser implements IParser
     }
 
 
-  
+    public parse = ():[INode[],IError|null]=>
+    {
+       let nodes:INode[] = [];
+
+       while(this.current.getType() !== ETOKEN.EOF)
+       {
+           const [node,error] = this.expression();
+           if(error) return [[],error];
+           if(node) nodes.push(node);
+       }
+
+       return [nodes,null];
+    }
 
 
     // parses an expression and returns a Node instance
@@ -49,7 +61,6 @@ class Parser implements IParser
         {
             const mnemonic:IToken = this.current;
             this.advance();
-            console.log(mnemonic.getType(),mnemonic.getValue(),mnemonic.getPositionStart().getLine())
             switch(this.current.getType())
             {
 

@@ -5,6 +5,7 @@ import INode from "./INode";
 interface IParser
 {
     advance():void;
+    parse():[INode[],IError|null]
 }
 
 export default IParser;
