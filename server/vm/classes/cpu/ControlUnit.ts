@@ -6,7 +6,6 @@ import IDecoder from "../../interfaces/cpu/IDecoder";
 import IRegister from "../../interfaces/cpu/IRegister";
 import IRegisters from "../../interfaces/cpu/IRegisters";
 import IMemory from "../../interfaces/memory/IMemory";
-import OutOfMemoryError from "../error/OutOfMemoryError ";
 import Memory from "../memory/Memory";
 import AddressingModeDecoder from "./decoders/AddressingModeDecoder";
 import InstructionDecoder from "./decoders/InstructionDecoder";
@@ -70,9 +69,6 @@ class ControlUnit implements IControlUnit
 
         const IDEC:number = instructionDecoder.decode(this.IR.read());
         const ADRMD:number = (IDEC === EIDEC.NOP)? EADRMD.INHERENT : addressingModeDecoder.decode(this.IR.read());
-
-        if(this.PC.read() === this.memoryRef.sizeInBytes() - 1 && IDEC !== EIDEC.HLT && IDEC !== EIDEC.RTS)
-            throw new OutOfMemoryError("<< HLT >> command not found");
 
 
         // T2 : AR <- PC, PC <- PC + 1
