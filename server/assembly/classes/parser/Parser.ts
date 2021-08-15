@@ -63,7 +63,7 @@ class Parser implements IParser
             this.advance();
             switch(this.current.getType())
             {
-
+                case ETOKEN.EOF:
                 case ETOKEN.NL : 
                 case ETOKEN.MNEMONIC:return this.makeNodeInherentMode(mnemonic);
                 case ETOKEN.OPERAND : return this.makeNodeDirectMode(mnemonic);
@@ -143,7 +143,7 @@ class Parser implements IParser
     // checks if the next token is a newline token or EOF token
     private nextTokenIsNLOrEOF = (position:IPosition = this.current.getPositionEnd()):IError|null =>
     {
-        if(this.current.getType() !== ETOKEN.NL && this.current.getType() !== ETOKEN.MNEMONIC)
+        if(this.current.getType() !== ETOKEN.EOF && this.current.getType() !== ETOKEN.NL && this.current.getType() !== ETOKEN.MNEMONIC)
             this.advance();
         
         switch(this.current.getType())
