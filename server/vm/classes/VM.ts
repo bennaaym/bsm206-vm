@@ -7,7 +7,6 @@ import IMemory from "../interfaces/memory/IMemory";
 import CPU from "./cpu/CPU";
 import Registers from "./cpu/Registers";
 import Memory from "./memory/Memory";
-import { performance } from "perf_hooks";
 
 class VM implements IVM
 {

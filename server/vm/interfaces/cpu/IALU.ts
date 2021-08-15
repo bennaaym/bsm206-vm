@@ -5,7 +5,8 @@ interface IALU
     sub(reg_1:number,reg_2:number,carry:number):{sub:number,carry:number};
     mult(reg_1:number,reg_2:number):number // 8 bits multiplication
     div(reg_1:number,reg_2:number):{quotient:number,remainder:number} // 8 bits division
-
+    cmp(reg:number):number;
+    
     // Logic operations
     neg(reg:number):number; // returns the 2's complement of the argument
     com(reg:number):number; // returns the 1's complement of the argument

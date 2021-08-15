@@ -87,9 +87,10 @@ abstract class BaseExecutor
         const DR = this.registersRef.getRegister(EREG.DR);
         const AC = this.registersRef.getRegister(EREG.AC);
         const CCR = this.registersRef.getRegister(EREG.CCR);
-        const {sub,carry} = this.ALURef.sub(AC.read(),DR.read(),0);
+        const {sub,carry} = this.ALURef.sub(DR.read(),AC.read(),0);
         AC.write(sub);
         CCR.setFlag(EFLAG.C,carry);
+        CCR.setFlag(EFLAG.Z,this.ALURef.cmp(AC.read()));
     }
 
     protected SUBC = () =>
@@ -99,9 +100,10 @@ abstract class BaseExecutor
         const DR = this.registersRef.getRegister(EREG.DR);
         const AC = this.registersRef.getRegister(EREG.AC);
         const CCR = this.registersRef.getRegister(EREG.CCR);
-        const {sub,carry} = this.ALURef.sub(AC.read(),DR.read(),CCR.getFlag(EFLAG.C)!);
+        const {sub,carry} = this.ALURef.sub(DR.read(),AC.read(),CCR.getFlag(EFLAG.C)!);
         AC.write(sub);
         CCR.setFlag(EFLAG.C,carry);
+        CCR.setFlag(EFLAG.Z,this.ALURef.cmp(AC.read()));
     }
 
 

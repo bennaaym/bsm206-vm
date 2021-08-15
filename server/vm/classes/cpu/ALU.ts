@@ -54,6 +54,9 @@ class ALU implements IALU
     }
 
 
+    public cmp = (reg:number):number => (reg.toString(2).padStart(16,'0')[0] === '1')? 1 : 0;
+    
+        
     // Logic operations
     public neg = (reg:number): number =>
     {
