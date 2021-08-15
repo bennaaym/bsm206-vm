@@ -78,6 +78,20 @@ export const MNEMONICS:{[key:string]:{[key:string]:number}} =
     {
         JSR     : 0B01101,       
         JMP     : 0B01100, 
+
+        LDA     : 0B01010,      
+        LDAX    : 0B10001,     
+        STA     : 0B10000,      
+
+        ADD     : 0B00000,
+        ADDC    : 0B00001,       
+        SUB     : 0B01110,
+        SUBC    : 0B01111,  
+        DIV     : 0B00101,
+        MUL     : 0B10101,
+        AND     : 0B00010,
+        OR      : 0B01011,
+        XOR     : 0B00110,
     },
 
     RELATIVE:
