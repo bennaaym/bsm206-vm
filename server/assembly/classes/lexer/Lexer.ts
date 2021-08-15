@@ -47,7 +47,7 @@ class Lexer implements ILexer
             }
 
             // checks operands
-            else if(this.current.match(/[0-9]/))
+            else if(this.current.match(/[0-9a-f]/i))
             {
                 tokens.push(this.makeOperand());
             }
@@ -131,7 +131,7 @@ class Lexer implements ILexer
         let operand:string = '';
         const positionStart:IPosition = this.position.copy();
 
-        while(this.current !== ETOKEN.EOF && this.current.match(/[0-9]/))
+        while(this.current !== ETOKEN.EOF && this.current.match(/[0-9a-f]/i))
         {
             operand += this.current;
             this.advance();

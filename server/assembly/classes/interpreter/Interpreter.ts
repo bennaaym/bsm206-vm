@@ -22,6 +22,7 @@ class Interpreter implements IInterpreter
     public interpret = (): [string[],IError|null] => 
     {
         let machineCode:string[] = [];
+        
         for(let i=0 ;i<this.nodes.length;i++)
         {
             const [opcode,error] = this.nodeToOpcode(this.nodes[i]);
