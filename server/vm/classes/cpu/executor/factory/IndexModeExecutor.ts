@@ -36,6 +36,42 @@ class IndexModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.LDAX:
                 this.LDAX();
                 break;
+
+            case EIDEC.ADD:
+                this.ADD();
+                break;
+
+            case EIDEC.ADDC:
+                this.ADDC();
+                break;
+
+            case EIDEC.SUB:
+                this.SUB();
+                break;
+            
+            case EIDEC.SUBC:
+                this.SUBC();
+                break;
+
+            case EIDEC.DIV:
+                this.DIV();
+                break;
+            
+            case EIDEC.MUL:
+                this.MUL();
+                break;
+
+            case EIDEC.AND:
+                this.AND();
+                break;
+
+            case EIDEC.OR:
+                this.OR();
+                break;
+
+            case EIDEC.XOR:
+                this.XOR();
+                break;
        }
     };
 
