@@ -6,7 +6,6 @@ import IMemory from "../../../interfaces/memory/IMemory";
 import Memory from "../../memory/Memory";
 import ALU from "../ALU";
 import Registers from "../Registers";
-import ImmediateModeExecutor from "./factory/ImmediateModeExecutor";
 
 
 abstract class BaseExecutor
@@ -90,7 +89,8 @@ abstract class BaseExecutor
         const {sub,carry} = this.ALURef.sub(DR.read(),AC.read(),0);
         AC.write(sub);
         CCR.setFlag(EFLAG.C,carry);
-        CCR.setFlag(EFLAG.Z,this.ALURef.cmp(AC.read()));
+        CCR.setFlag(EFLAG.Z,this.ALURef.zero(AC.read()));
+        CCR.setFlag(EFLAG.N,this.ALURef.sign(AC.read()));
     }
 
     protected SUBC = () =>
@@ -103,7 +103,8 @@ abstract class BaseExecutor
         const {sub,carry} = this.ALURef.sub(DR.read(),AC.read(),CCR.getFlag(EFLAG.C)!);
         AC.write(sub);
         CCR.setFlag(EFLAG.C,carry);
-        CCR.setFlag(EFLAG.Z,this.ALURef.cmp(AC.read()));
+        CCR.setFlag(EFLAG.Z,this.ALURef.zero(AC.read()));
+        CCR.setFlag(EFLAG.N,this.ALURef.sign(AC.read()));
     }
 
 
