@@ -1,11 +1,11 @@
 import ESYMBOL from "../../enums/ESYMBOL";
 import ETOKEN from "../../enums/ETOKEN";
-import IError from "../../interfaces/Error/IError";
+import IError from "../../interfaces/error/IError";
 import IPosition from "../../interfaces/lexer/IPosition";
 import IToken from "../../interfaces/lexer/IToken";
 import INode from "../../interfaces/parser/INode";
 import IParser from "../../interfaces/parser/IParser";
-import SyntaxError from "../Error/SyntaxError";
+import SyntaxError from "../error/SyntaxError";
 import Node from "./Node";
 
 class Parser implements IParser

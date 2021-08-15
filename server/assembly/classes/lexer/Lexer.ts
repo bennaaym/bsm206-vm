@@ -1,11 +1,11 @@
 import EMNEMONIC from "../../enums/EMNEMONIC";
 import ESYMBOL from "../../enums/ESYMBOL";
 import ETOKEN from "../../enums/ETOKEN";
-import IError from "../../interfaces/Error/IError";
+import IError from "../../interfaces/error/IError";
 import ILexer from "../../interfaces/lexer/ILexer";
 import IPosition from "../../interfaces/lexer/IPosition";
 import IToken from "../../interfaces/lexer/IToken";
-import SyntaxError from "../Error/SyntaxError";
+import SyntaxError from "../error/SyntaxError";
 import Postion from "./Postion";
 import Token from "./Token";
 

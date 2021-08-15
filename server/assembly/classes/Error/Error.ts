@@ -1,4 +1,4 @@
-import IError from "../../interfaces/Error/IError";
+import IError from "../../interfaces/error/IError";
 import IPosition from "../../interfaces/lexer/IPosition";
 
 abstract class Error implements IError 

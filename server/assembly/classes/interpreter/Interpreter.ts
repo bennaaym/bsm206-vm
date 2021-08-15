@@ -1,10 +1,10 @@
-import IError from "../../interfaces/Error/IError";
+import IError from "../../interfaces/error/IError";
 import IInterpreter from "../../interfaces/interpreter/IInterpreter";
 import INode from "../../interfaces/parser/INode";
 import {MNEMONICS} from "./MNEMONIC";
 import {ADRMD} from "./ADRMD";
 import EADRMD from "../../enums/EADRMD";
-import RunTimeError from "../Error/RunTimeError";
+import RunTimeError from "../error/RunTimeError";
 import ETOKEN from "../../enums/ETOKEN";
 
 class Interpreter implements IInterpreter

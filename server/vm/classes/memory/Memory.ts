@@ -37,11 +37,13 @@ class Memory implements IMemory
 
     public read = (adr:number): number => this.view.getUint8(adr);
     public write = (adr:number,data:number): void => this.view.setUint8(adr,data);
+    public sizeInBytes = ():number =>this.view.byteLength;
 
     // Debug
     public debug = (): void =>
     {
         console.log(this.view);
+        
     }
 }
 

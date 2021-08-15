@@ -1,4 +1,4 @@
-import IError from "../Error/IError";
+import IError from "../error/IError";
 
 interface IInterpreter
 {
