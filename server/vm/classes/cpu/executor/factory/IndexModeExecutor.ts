@@ -24,10 +24,31 @@ class IndexModeExecutor extends BaseExecutor implements IExecutor
             case EIDEC.JMP:
                 this.JMP();
                 break;
+
+            case EIDEC.LDA:
+                this.LDA();
+                break;
+
+            case EIDEC.STA:
+                this.STA();
+                break;
+
+            case EIDEC.LDAX:
+                this.LDAX();
+                break;
        }
     };
 
 
+
+    protected maxCommonSteps = (): void =>
+    {
+        this.T3();
+        this.T4();
+        this.T5();
+    }
+
+    protected minCommonSteps =(): void => this.T3();
 
     private JSR = (): void =>
     {
@@ -72,6 +93,34 @@ class IndexModeExecutor extends BaseExecutor implements IExecutor
        PC.write(effectiveAddress);
     }
 
+
+
+    private T3 = (): void =>
+    {
+        // T3 : AR <- effective address
+        const AR = this.registersRef.getRegister(EREG.AR);
+        const IX = this.registersRef.getRegister(EREG.IX);
+        const offset = this.memoryRef.read(AR.read());
+        const effectiveAddress = this.ALURef.calculateEffectiveAddress(IX.read(),offset,true);
+        AR.write(effectiveAddress);
+    }
+
+    private T4 = (): void =>
+    {
+        // T4 : DR_H <- M[AR], AR <- AR + 1 
+        const AR = this.registersRef.getRegister(EREG.AR);
+        const data = this.memoryRef.read(AR.read());
+        this.registersRef.getRegister(EREG.DR).writeMSB(data);
+        AR.increment();
+    }
+
+    private T5 = (): void =>
+    {
+        // T4 : DR_L <- M[AR]
+        const AR = this.registersRef.getRegister(EREG.AR);
+        const data = this.memoryRef.read(AR.read());
+        this.registersRef.getRegister(EREG.DR).writeLSB(data);
+    }
 
 }
 

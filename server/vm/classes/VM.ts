@@ -7,6 +7,8 @@ import IMemory from "../interfaces/memory/IMemory";
 import CPU from "./cpu/CPU";
 import Registers from "./cpu/Registers";
 import Memory from "./memory/Memory";
+import { performance } from "perf_hooks";
+import MaxExecutionTimeError from "./error/MaxExecutionTimeError";
 
 class VM implements IVM
 {
@@ -29,16 +31,25 @@ class VM implements IVM
         
         this.loadCodeIntoMemory();
         
+        const MAX_TIME  = 30 * 1000 // 30 seconds
+        const startTime = performance.now();
+
         while(true)
         {
             try
             {
                 this.cpu.instructionCycle();
+                
+                if(performance.now() - startTime > MAX_TIME)
+                {
+                    throw new MaxExecutionTimeError("maximum execution time threshold exceeded, likely to have an infinite loop or an << HLT >> instruction not found");
+                }
+
             }
             catch(error)
             {
                 if(error === EIDEC.HLT) break;
-                return [null,error.get()]
+                return [null,error.get()];
             }
         }
 

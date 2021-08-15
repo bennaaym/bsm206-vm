@@ -2,7 +2,7 @@ export const MNEMONICS:{[key:string]:{[key:string]:number}} =
 {
     INHERENT:
     {
-        string  : 0B00001,      
+        CLR     : 0B00001,      
         DECR    : 0B00010,      
         INCR    : 0B00011,      
         DECX    : 0B01010,      
