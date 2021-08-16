@@ -26,13 +26,14 @@ class VM implements IVM
     }
 
     // Methods
-    public run = (): [{regs:{[reg:string]:string}[],memory:string[]}|null,string|null] =>
+    public run = (): [{regs:{[reg:string]:string}[],memory:string[]}[]|null,string|null] =>
     {
         
         this.loadCodeIntoMemory();
         
         const MAX_TIME  = 30 * 1000 // 30 seconds
         const startTime = performance.now();
+        let output: {regs:{[reg:string]:string}[],memory:string[]}[] = [];
 
         while(true)
         {
@@ -45,6 +46,7 @@ class VM implements IVM
                     throw new MaxExecutionTimeError("maximum execution time threshold exceeded, likely to have an infinite loop or an << HLT >> instruction not found");
                 }
 
+                output.push({regs:this.buildRegsArray(),memory:this.buildMemoryView()});
             }
             catch(error)
             {
@@ -52,25 +54,8 @@ class VM implements IVM
                 return [null,error.get()];
             }
         }
-
-        // build regs array
-        const registersRef = Registers.getInstance();
-        let regs:{[reg:string]:string}[] = [];
-
-        for(let reg in EREG)
-        {
-            const buffer:IRegister = registersRef.getRegister(reg);
-            regs.push( {[reg] : buffer.read().toString(16).padStart(buffer.sizeInBytes() * 2,'0').toUpperCase()} )
-        }
-
-        // build memory array
-        let memory:string[] = [];
-        for(let adr =0 ;adr<this.memory.sizeInBytes();adr++)
-        {
-            memory.push(this.memory.read(adr).toString(16).padStart(2,'0').toUpperCase());
-        }
-
-        return [{regs,memory},null];
+        
+        return [output,null];
     }
 
     
@@ -80,6 +65,35 @@ class VM implements IVM
             this.memory.write(index,parseInt(byte,2));
         });
     }
+
+    // return an array of object {reg:value}
+    private buildRegsArray = ():{[reg:string]:string}[] =>
+    {
+        const registersRef = Registers.getInstance();
+        let regs:{[reg:string]:string}[] = [];
+
+        for(let reg in EREG)
+        {
+            const buffer:IRegister = registersRef.getRegister(reg);
+            regs.push( {[reg] : buffer.read().toString(16).padStart(buffer.sizeInBytes() * 2,'0').toUpperCase()} )
+        }
+
+        return regs;
+    }
+
+    // returns the memory view as an array of strings
+    private buildMemoryView = ():string[] =>
+    {
+        // build memory array
+        let memory:string[] = [];
+        for(let adr =0 ;adr<this.memory.sizeInBytes();adr++)
+        {
+            memory.push(this.memory.read(adr).toString(16).padStart(2,'0').toUpperCase())
+        }
+
+        return memory;
+    }
+
 }
 
 export default VM;
