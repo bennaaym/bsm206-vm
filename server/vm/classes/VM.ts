@@ -21,14 +21,13 @@ class VM implements IVM
     constructor(code:string[])
     {
         this.code = code;
-        this.cpu = CPU.getInstance();
-        this.memory = Memory.getInstance();
+        this.cpu = CPU.getInstance().reset();
+        this.memory = Memory.getInstance().reset();
     }
 
     // Methods
     public run = (): [{regs:{[reg:string]:string}[],memory:string}[]|null,string|null] =>
     {
-        console.log(Registers.getInstance().getRegister(EREG.PC).read());
         this.loadCodeIntoMemory();
         
         const MAX_TIME  = 15 * 1000 // 15 seconds
@@ -50,7 +49,11 @@ class VM implements IVM
             }
             catch(error)
             {
-                if(error === EIDEC.HLT) break;
+                if(error === EIDEC.HLT)
+                {
+                    output.push({regs:this.buildRegsArray(),memory:this.buildMemoryView()});
+                    break;
+                }
                 return [null,error.get()];
             }
         }
