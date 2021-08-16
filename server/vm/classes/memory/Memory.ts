@@ -18,8 +18,7 @@ class Memory implements IMemory
     // Constructor
     private constructor()
     {
-        const arrayBuffer = new ArrayBuffer(65536);
-        this.view = new DataView(arrayBuffer);
+        this.reset();
     }
 
     // Methods
@@ -39,11 +38,11 @@ class Memory implements IMemory
     public write = (adr:number,data:number): void => this.view.setUint8(adr,data);
     public sizeInBytes = ():number =>this.view.byteLength;
 
-    // Debug
-    public debug = (): void =>
+    public reset = (): IMemory => 
     {
-        console.log(this.view);
-        
+        const arrayBuffer = new ArrayBuffer(65536);
+        this.view = new DataView(arrayBuffer);
+        return Memory.instance;
     }
 }
 
