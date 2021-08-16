@@ -27,10 +27,10 @@ class ControlUnit implements IControlUnit
     //Constructor
     private constructor()
     {
-        this.PC = Registers.getInstance().getRegister(EREG.PC);
-        this.IR = Registers.getInstance().getRegister(EREG.IR);
         this.registersRef = Registers.getInstance();
         this.memoryRef = Memory.getInstance();
+        this.PC = Registers.getInstance().getRegister(EREG.PC);
+        this.IR = Registers.getInstance().getRegister(EREG.IR);
     }
 
     //Methods
