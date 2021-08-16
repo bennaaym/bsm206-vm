@@ -28,6 +28,7 @@ enum EIDEC
 
     LDA     = 0B01010,      // assigns the operand to the accumulator
     LDAX    = 0B10001,      // assigns the operand to the index register(IX)
+    LDAS    = 0B10010,      // assigns the operand to the stack pointer register(SP)
     STA     = 0B10000,      // writes the value of the accumulator into memory
     STAX    = 0B10011,
     

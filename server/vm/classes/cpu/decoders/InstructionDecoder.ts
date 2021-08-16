@@ -38,6 +38,7 @@ class InstructionDecoder implements IDecoder
 
             case EIDEC.LDA          :   return EIDEC.LDA;
             case EIDEC.LDAX         :   return EIDEC.LDAX;
+            case EIDEC.LDAS         :   return EIDEC.LDAS;
             case EIDEC.STA          :   return EIDEC.STA;
             case EIDEC.STAX         :   return EIDEC.STAX;
 

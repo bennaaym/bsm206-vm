@@ -193,6 +193,22 @@ abstract class BaseExecutor
 
     }   
 
+
+    protected LDAS ()
+    {
+        this.minCommonSteps();
+
+        // T_BEFORE_LAST : SP_H <- M[AR] , AR <- AR + 1
+        const SP = this.registersRef.getRegister(EREG.SP);
+        const AR = this.registersRef.getRegister(EREG.AR);
+        let data = this.memoryRef.read(AR.read());
+        SP.writeMSB(data);
+        AR.increment();
+        // T_LAST : SP_L <- M[AR]
+        data = this.memoryRef.read(AR.read());
+        SP.writeLSB(data);
+    }
+
 }
 
 export default BaseExecutor;

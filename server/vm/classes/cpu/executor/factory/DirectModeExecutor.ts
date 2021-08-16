@@ -26,6 +26,10 @@ class DirectModeExecutor extends BaseExecutor implements IExecutor
                 this.LDAX();
                 break;
 
+            case EIDEC.LDAS:
+                this.LDAS();
+                break;
+
             case EIDEC.STA:
                 this.STA();
                 break;
