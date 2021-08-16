@@ -1,6 +1,7 @@
 import IControlUnit from "../../interfaces/cpu/IControlUnit";
 import ICPU from "../../interfaces/cpu/ICPU";
 import ControlUnit from "./ControlUnit";
+import Registers from "./Registers";
 
 class CPU implements ICPU
 {
@@ -32,6 +33,12 @@ class CPU implements ICPU
         this.controlUnit.fetch();
         const {ADRMD,IDEC} = this.controlUnit.decode();
         this.controlUnit.execute(ADRMD,IDEC);
+    }
+
+    public reset = (): ICPU => 
+    {
+        Registers.getInstance().reset();
+        return CPU.instance;
     }
 }
 
