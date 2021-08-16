@@ -23,6 +23,7 @@ enum EMNEMONIC
 
     LDA     = 'LDA',      // assigns the operand to the accumulator
     LDAX    = 'LDAX',     // assigns the operand to the index register(IX)
+    LDAS    = 'LDAS',     // assigns the operand to the stack pointer register(SP)
     STA     = 'STA',      // writes the value of the accumulator into memory
     STAX    = 'STAX',
     

@@ -28,7 +28,8 @@ export const MNEMONICS:{[key:string]:{[key:string]:number}} =
     IMMEDIATE:
     {
         LDA     : 0B01010,      
-        LDAX    : 0B10001,      
+        LDAX    : 0B10001, 
+        LDAS    : 0B10010,     
         ADD     : 0B00000,
         ADDC    : 0B00001,       
         SUB     : 0B01110,
@@ -44,6 +45,7 @@ export const MNEMONICS:{[key:string]:{[key:string]:number}} =
     {
         LDA     : 0B01010,      
         LDAX    : 0B10001,  
+        LDAS    : 0B10010,     
         STA     : 0B10000,      
         STAX    : 0B10011,    
         ADD     : 0B00000,
@@ -61,6 +63,7 @@ export const MNEMONICS:{[key:string]:{[key:string]:number}} =
     {
         LDA     : 0B01010,      
         LDAX    : 0B10001,  
+        LDAS    : 0B10010,     
         STA     : 0B10000,      
         STAX    : 0B10011,    
         ADD     : 0B00000,
@@ -80,7 +83,8 @@ export const MNEMONICS:{[key:string]:{[key:string]:number}} =
         JMP     : 0B01100, 
 
         LDA     : 0B01010,      
-        LDAX    : 0B10001,     
+        LDAX    : 0B10001,   
+        LDAS    : 0B10010,       
         STA     : 0B10000,      
 
         ADD     : 0B00000,
