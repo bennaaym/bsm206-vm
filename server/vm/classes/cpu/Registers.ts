@@ -47,23 +47,23 @@ class Registers implements IRegisters
         {
             if (reg === EREG.PC) continue; 
             map[reg] = (reg === EREG.IR || reg === EREG.CCR)? new Register(reg,1):new Register(reg);
-
             if(reg === EREG.SP) map[reg].write(0xFFFF); // SP initial address
         } 
 
         return map
     }   
 
-    //Debug;
-    public debug = (): void => 
+
+    public reset = ():IRegisters =>
     {
         for(let reg in EREG)
         {
-            console.log(`${reg.padEnd(4,' ')} => 0x${this.map[reg].read().toString(16).padStart(this.map[reg].sizeInBytes()*2,'0')}`)
+            this.map[reg].write(0);
         }
+        
+        return Registers.instance;
+    }
 
-        console.log();
-    };
 
 }
 
