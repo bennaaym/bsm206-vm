@@ -1,11 +1,15 @@
+import Nav from "./components/nav/Nav"
+import ThemeContextProvider from "./contexts/ThemeContextProvider";
 
 const App = () => 
 {
   return(
     <>
-      <div className="App">
-        
-      </div>
+      <ThemeContextProvider>
+        <div className="App">
+            <Nav/>
+        </div>
+      </ThemeContextProvider>
     </>
   )
 }

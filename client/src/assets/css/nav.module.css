@@ -1,0 +1,63 @@
+@layer components 
+{
+    .nav
+    {
+        @apply w-full  flex justify-between items-center px-6 py-4  font-medium
+    }
+    
+    .nav-light
+    {
+        @apply text-light-text-300 bg-light-background-100
+    }
+
+    .nav-dark
+    {
+        @apply text-dark-text-300 bg-dark-background-100
+    }
+
+    .logo
+    {
+        @apply font-semibold text-lg uppercase tracking-wider
+    }
+
+    .mobile-menu-bar
+    {
+        @apply text-2xl md:hidden z-50
+    }
+
+    .desktop-menu
+    {
+        @apply hidden md:flex justify-between items-center space-x-4  font-medium capitalize
+    }
+
+
+    .side-bar-overlay
+    {
+        @apply absolute top-0 left-0 h-screen w-full  bg-dark-background-100 bg-opacity-25 md:hidden
+    }
+
+    .side-bar
+    {
+        @apply absolute top-0 left-0 h-screen w-8/12  px-2 py-4 transition ease-in-out transform
+    }
+
+    .side-bar-light
+    {
+        @apply text-light-text-300 bg-light-background-100
+    }
+
+    .side-bar-dark
+    {
+        @apply text-dark-text-300 bg-dark-background-400
+    }
+
+    .side-bar-logo
+    {
+        @apply  text-xl 
+    }
+
+    .side-bar-menu
+    {
+        @apply flex flex-col space-y-2 mx-2 my-6 capitalize
+    }
+}
