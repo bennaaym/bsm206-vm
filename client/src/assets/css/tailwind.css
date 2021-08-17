@@ -19,7 +19,17 @@
 
     .App
     {
-        @apply min-h-screen
+        @apply flex flex-col min-h-screen 
+    }
+
+    .icon-btn
+    {
+        @apply text-2xl
+    }
+
+    .label-btn
+    {
+        @apply px-3 py-2 rounded-sm text-xs sm:text-sm md:text-base 
     }
 }
 

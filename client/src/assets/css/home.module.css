@@ -1,0 +1,35 @@
+@layer components
+{
+   
+
+    .tab-btn-active
+    {
+        @apply bg-light-accent text-dark-text-300
+    }
+
+    .tab-btn-passive
+    {
+        @apply text-light-accent
+    }
+
+
+    .tab
+    {
+        @apply w-full py-3 
+    }
+
+    .tab-light
+    {
+        @apply bg-light-background-200
+    }
+
+    .tab-dark
+    {
+        @apply bg-dark-background-200
+    }
+
+    .tab-items
+    {
+        @apply flex items-center justify-center
+    }
+}

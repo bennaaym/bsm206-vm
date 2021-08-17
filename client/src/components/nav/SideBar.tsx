@@ -1,8 +1,9 @@
 import { IMenu } from "./Nav";
 import { Link } from "react-router-dom";
 import styles from "../../assets/css/nav.module.css";
-import ThemeButton from "./ThemeButton";
 import {useTheme} from "../../contexts/ThemeContextProvider";
+import IconButton from "../buttons/IconButton";
+import { faAdjust, faSun } from "@fortawesome/free-solid-svg-icons";
 
 interface IProps
 {
@@ -13,7 +14,7 @@ interface IProps
 
 const SideBar:React.FC<IProps> = ({items,active,toggle}) => {
 
-    const {isLight} = useTheme();
+    const {isLight,toggleTheme} = useTheme();
 
     return (
         <>
@@ -23,7 +24,10 @@ const SideBar:React.FC<IProps> = ({items,active,toggle}) => {
                     <h1 className={`${styles.logo} ${styles['side-bar-logo']}`}>
                         bsm206 vm 
                     </h1>
-                    {active && <ThemeButton/>}
+                    {
+                        active && 
+                        <IconButton styles={'icon-btn'} icon={isLight?faAdjust:faSun} onClickAction={toggleTheme} />
+                    }
                 </div>
                 <ul className={styles['side-bar-menu']}>
                     {

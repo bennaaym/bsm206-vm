@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faAdjust, faBars, faSun } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../assets/css/nav.module.css';
 import { Link } from 'react-router-dom';
 import SideBar from './SideBar';
 import { useTheme } from '../../contexts/ThemeContextProvider';
-import ThemeButton from './ThemeButton';
+import IconButton from '../buttons/IconButton';
 
 export interface IMenu 
 {
@@ -20,9 +19,7 @@ const items:IMenu['items'] = [
 const Nav = () =>
 {
 
-    const {isLight} = useTheme();
-    
-
+    const {isLight,toggleTheme} = useTheme();
     const [sideBarState,setSideBarState] = useState(false);
     const toggleSideBarMenu = () => setSideBarState((currentState) => !currentState);
 
@@ -33,12 +30,8 @@ const Nav = () =>
                     bsm206 vm
                 </h1>
 
-                <button 
-                    className ={styles['mobile-menu-bar']}
-                    onClick={toggleSideBarMenu}
-                >
-                    <FontAwesomeIcon icon={faBars}/>
-                </button>
+                <IconButton styles={styles['mobile-menu-bar']} icon={faBars} onClickAction={toggleSideBarMenu} />
+
 
                 <ul className={styles['desktop-menu']}>
                     {
@@ -53,7 +46,7 @@ const Nav = () =>
                         })
                     }
 
-                    <ThemeButton/>
+                    <IconButton styles={'icon-btn'} icon={isLight?faAdjust:faSun} onClickAction={toggleTheme} />
                 </ul>
             </nav>
 

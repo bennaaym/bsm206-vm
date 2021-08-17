@@ -7,12 +7,12 @@ module.exports = {
         background:{
           100:'#fff',
           200:'#fbfbfb',
-          300:'f5f5f5',
+          300:'#E5E7EB',
         },
         text:{
           300:'#111827'
         },
-        accent:'#0556F3'
+        accent:'#3B82F6'
       },
 
       dark:{
@@ -25,7 +25,7 @@ module.exports = {
         text:{
           300:'#fff'
         },
-        accent:'#0556F3'
+        accent:'#3B82F6'
 
       }
     },
