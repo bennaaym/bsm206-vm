@@ -6,15 +6,16 @@ import Registers from "./Registers";
 import styles from "../../assets/css/home.module.css";
 import { useTheme } from "../../contexts/ThemeContextProvider";
 import LabelButton from "../buttons/LabelButton";
+import IconButton from "../buttons/IconButton";
+import { faStepForward, faSync } from "@fortawesome/free-solid-svg-icons";
 
-const tabs = [
-    'input',
-    'output',
-    'registers',
-    'memory'
-]
 
-const TabBar = () =>
+interface IProps
+{
+    tabs:string[]
+}
+
+const Tabs:React.FC<IProps> = ({tabs}) =>
 {
 
     const {isLight} = useTheme();
@@ -40,14 +41,27 @@ const TabBar = () =>
                 </ul>
             </nav>
 
-            <div className="flex-grow bg-light-background-300">
-                {activeTabIndex === 0 && <CodeEditor/>}
-                {activeTabIndex === 1 && <Output/>}
-                {activeTabIndex === 2 && <Registers/>}
-                {activeTabIndex === 3 && <Memory/>}
+            <div className={`${styles['tab-content']} ${isLight?'text-light-text-300 bg-light-background-300':'text-dark-text-300 bg-dark-background-300'}`}>
+                {tabs[activeTabIndex] === 'input'     && <CodeEditor/>}
+                {tabs[activeTabIndex] === 'output'    && <Output/>}
+                {tabs[activeTabIndex] === 'registers' && <Registers/>}
+                {tabs[activeTabIndex] === 'memory'   && <Memory/>}
             </div>
+            
+
+            {
+                activeTabIndex === 0 && tabs[activeTabIndex] === 'input' &&
+
+
+                <div className="absolute right-5 bottom-8">
+                    <div className="space-x-2 text-2xl">
+                        <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faSync} onClickAction={()=>{}}/>
+                        <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faStepForward} onClickAction={()=>{}}/>
+                    </div>
+                </div>
+            }
         </>
     )
 }
 
-export default TabBar;
+export default Tabs;

@@ -32,4 +32,35 @@
     {
         @apply flex items-center justify-center
     }
+
+    .tab-content
+    {
+        @apply flex-grow 
+    }
+
+    .flex-col-grow
+    {
+        @apply flex flex-col flex-grow
+    }
+
+    .flex-col-1
+    {
+        @apply flex flex-col flex-1
+    }
+
+    .mobile-tab
+    {
+        @apply md:hidden
+    }
+
+    .desktop-tab
+    {
+        @apply hidden md:flex flex-row flex-grow
+    }
+
+
+    .input-bar
+    {
+        @apply flex flex-row items-center justify-between pr-6 
+    }
 }
