@@ -55,7 +55,7 @@
 
     .desktop-tab
     {
-        @apply hidden md:flex flex-row flex-grow
+        @apply hidden md:flex flex-row flex-grow 
     }
 
 
