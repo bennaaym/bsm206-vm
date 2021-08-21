@@ -8,7 +8,7 @@ const Editor = () =>
 
     return(
         <>
-            <div className="h-full flex-grow flex flex-col ">
+            <div className="h-full flex-grow flex flex-col p-2 ">
                 <HighlightWithinTextarea code={code} setCode={setCode}/>
             </div>
         </>

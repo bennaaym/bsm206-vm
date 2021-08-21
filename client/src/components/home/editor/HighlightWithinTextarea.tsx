@@ -4,6 +4,7 @@ import styles from "../../../assets/css/editor.module.css";
 import { highLightCode } from "../../../assembly/asm";
 import { useTheme } from "../../../contexts/ThemeContextProvider";
 import { useEffect } from "react";
+import LineCounter from "./LineCounter";
 
 export interface IProps 
 {
@@ -18,6 +19,7 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
 
     const highlightsRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const lineCounterRef = useRef<HTMLDivElement|null>(null);
 
     const handleCodeChange = (event:React.ChangeEvent<HTMLTextAreaElement>) =>
     {
@@ -33,15 +35,20 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
 
     const handleScroll =(event : React.UIEvent<HTMLTextAreaElement, UIEvent>) =>
     {
-        if(textareaRef.current && highlightsRef.current)
+        if(textareaRef.current && highlightsRef.current && lineCounterRef.current)
         {
             highlightsRef.current.scrollTop = textareaRef.current.scrollTop;
+            lineCounterRef.current.scrollTop = textareaRef.current.scrollTop;
         }
     }
  
 
     return (
-        <div className={styles['textarea-wrapper']}> 
+        
+        <div className={styles['textarea-wrapper']}>
+
+            <LineCounter code={code} reference={lineCounterRef}/>
+            
             <textarea
                 ref={textareaRef}
                 className={`${styles.codearea}  overflow-y-auto bg-transparent text-transparent ${isLight? 'light-caret-color':'dark-caret-color'}`}
