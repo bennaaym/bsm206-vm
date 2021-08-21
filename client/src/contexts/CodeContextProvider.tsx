@@ -1,6 +1,6 @@
 import { ReactNode, useState,createContext, useContext } from "react";
 
-interface ICode
+export interface ICode
 {
     code:string,
     setCode:React.Dispatch<React.SetStateAction<string>>,

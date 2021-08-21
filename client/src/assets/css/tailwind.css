@@ -13,6 +13,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
+
 
 @layer components 
 {
@@ -33,4 +38,26 @@
     }
 }
 
+
+
+
+.bg-transparent
+{
+    background: transparent ;
+}
+
+.text-transparent
+{
+    color:transparent;
+}
+
+.dark-caret-color
+{
+    caret-color: #fff;
+}
+
+.light-caret-color
+{
+    caret-color: #000;
+}
 

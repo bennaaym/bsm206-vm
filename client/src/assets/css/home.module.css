@@ -35,7 +35,7 @@
 
     .tab-content
     {
-        @apply flex-grow 
+        @apply flex-grow flex flex-col
     }
 
     .flex-col-grow

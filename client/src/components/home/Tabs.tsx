@@ -1,5 +1,4 @@
 import { useState } from "react"
-import CodeEditor from "./CodeEditor";
 import Memory from "./Memory";
 import Output from "./Output";
 import Registers from "./Registers";
@@ -8,6 +7,7 @@ import { useTheme } from "../../contexts/ThemeContextProvider";
 import LabelButton from "../buttons/LabelButton";
 import IconButton from "../buttons/IconButton";
 import { faStepForward, faSync } from "@fortawesome/free-solid-svg-icons";
+import Editor from "./editor/Editor";
 
 
 interface IProps
@@ -40,12 +40,12 @@ const Tabs:React.FC<IProps> = ({tabs}) =>
                     }                    
                 </ul>
             </nav>
-
+            
             <div className={`${styles['tab-content']} ${isLight?'text-light-text-300 bg-light-background-300':'text-dark-text-300 bg-dark-background-300'}`}>
-                {tabs[activeTabIndex] === 'input'     && <CodeEditor/>}
+                {tabs[activeTabIndex] === 'input'     && <Editor/>}
                 {tabs[activeTabIndex] === 'output'    && <Output/>}
                 {tabs[activeTabIndex] === 'registers' && <Registers/>}
-                {tabs[activeTabIndex] === 'memory'   && <Memory/>}
+                {tabs[activeTabIndex] === 'memory'    && <Memory/>}
             </div>
             
 

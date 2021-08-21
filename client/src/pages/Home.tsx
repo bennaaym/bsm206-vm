@@ -1,9 +1,9 @@
 import { faStepForward, faSync } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../components/buttons/IconButton";
-import CodeEditor from "../components/home/CodeEditor";
 import Tabs from "../components/home/Tabs";
 import { useTheme } from "../contexts/ThemeContextProvider";
 import styles from "../assets/css/home.module.css";
+import Editor from "../components/home/editor/Editor";
 // import Editor from "../components/home/Editor";
 
 const Home = () =>
@@ -42,7 +42,7 @@ const Home = () =>
                             </div>
                         </div>
                         <div className={`flex-grow border-r-2 ${isLight?'text-light-text-300 bg-light-background-300 border-light-background-200':'text-dark-text-300 bg-dark-background-300 border-dark-background-400'}`}>
-                            <CodeEditor/>
+                            <Editor/>
                         </div>
                     </div>
                     <div className={styles['flex-col-1']}>

@@ -1,0 +1,19 @@
+@layer components
+{
+    .textarea-wrapper
+    {
+        @apply h-full relative flex-grow flex
+    }
+
+    .codearea 
+    {
+        @apply  z-10 absolute h-full w-full uppercase outline-none resize-none flex-grow uppercase
+    }
+
+    .highlights 
+    {
+        @apply  h-full w-full absolute uppercase
+    }
+}
+
+

@@ -13,7 +13,11 @@ module.exports = {
         text:{
           300:'#111827'
         },
-        accent:'#3B82F6'
+        accent:'#3B82F6',
+        keyword:'#0082FF',
+        symbol:'#318495',
+        number:'#C5060B',
+        comment:'#4C886B'
       },
 
       dark:{
@@ -26,7 +30,11 @@ module.exports = {
         text:{
           300:'#fff'
         },
-        accent:'#3B82F6'
+        accent:'#3B82F6',
+        keyword:'#BDA354',
+        symbol:'#CCAC8D',
+        number:'#BD588C',
+        comment:'#4C886B'
 
       }
     },
