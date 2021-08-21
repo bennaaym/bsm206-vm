@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false,
   theme: {
     colors:{
+
+      error:'#EF4444',
+
       light:{
         background:{
           100: '#F9FAFB',

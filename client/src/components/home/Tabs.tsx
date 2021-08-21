@@ -1,7 +1,7 @@
 import { useState } from "react"
-import Memory from "./Memory";
-import Output from "./Output";
-import Registers from "./Registers";
+import Memory from "./outputs/Memory";
+import Output from "./outputs/Output";
+import Registers from "./outputs/Registers";
 import styles from "../../assets/css/home.module.css";
 import { useTheme } from "../../contexts/ThemeContextProvider";
 import LabelButton from "../buttons/LabelButton";

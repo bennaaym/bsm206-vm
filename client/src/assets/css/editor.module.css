@@ -7,12 +7,12 @@
 
     .codearea 
     {
-        @apply  left-8 z-10 absolute h-full w-full flex uppercase outline-none resize-none flex-grow uppercase overflow-y-auto 
+        @apply pl-8 z-10 absolute h-full w-full flex flex-grow uppercase break-words outline-none resize-none  uppercase overflow-y-auto 
     }
 
     .highlights 
     {
-        @apply  left-8 h-full w-full absolute uppercase overflow-y-auto 
+        @apply pl-8 h-full w-full absolute uppercase break-words overflow-y-auto 
     }
 }
 

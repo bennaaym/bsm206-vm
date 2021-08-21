@@ -1,14 +1,16 @@
-import { faStepForward, faSync } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faStepForward, faSync } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../components/buttons/IconButton";
 import Tabs from "../components/home/Tabs";
 import { useTheme } from "../contexts/ThemeContextProvider";
 import styles from "../assets/css/home.module.css";
 import Editor from "../components/home/editor/Editor";
-// import Editor from "../components/home/Editor";
+import { useCode } from "../contexts/CodeContextProvider";
+
 
 const Home = () =>
 {
     const {isLight} = useTheme();
+    const {run,build} = useCode();
 
     return(
         <>
@@ -32,7 +34,12 @@ const Home = () =>
                                 <IconButton 
                                     styles={`label-btn text-sm rounded-full hover:bg-opacity-75 ${styles['tab-btn-active']} ${!isLight?'text-dark-text-300':''}`}
                                     icon={faSync} 
-                                    onClickAction={()=>{}}
+                                    onClickAction={build}
+                                /> 
+                                <IconButton 
+                                    styles={`label-btn text-sm rounded-full hover:bg-opacity-75 ${styles['tab-btn-active']} ${!isLight?'text-dark-text-300':''}`}
+                                    icon={faPlay} 
+                                    onClickAction={run}
                                 /> 
                                 <IconButton 
                                     styles={`label-btn text-sm rounded-full hover:bg-opacity-75 ${styles['tab-btn-active']} ${!isLight?'text-dark-text-300':''}`}
@@ -45,7 +52,7 @@ const Home = () =>
                             <Editor/>
                         </div>
                     </div>
-                    <div className={`${styles['flex-col-1']} `}>
+                    <div className={`${styles['flex-col-1']}`}>
                         <Tabs tabs={['output','registers','memory']}/>
                     </div>
                 </div>

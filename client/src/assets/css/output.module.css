@@ -1,0 +1,7 @@
+@layer components
+{
+    .output
+    {
+        @apply flex-grow flex p-2
+    }
+}
