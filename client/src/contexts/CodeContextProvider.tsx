@@ -7,7 +7,7 @@ export interface ICode
     error:string;
     machineCode:string,
     memory:string;
-    registers:{[reg:string]:string}[];
+    registers:{[reg:string]:string};
     
     setCode:React.Dispatch<React.SetStateAction<string>>;
     build:() => Promise<void>;
@@ -16,7 +16,7 @@ export interface ICode
 
 interface ISypes
 {
-    steps:{regs:{[reg:string]:string}[],memory:string}[]|null;
+    steps:{regs:{[reg:string]:string},memory:string}[]|null;
 }
 
 
@@ -42,7 +42,7 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
     const [error,setError] = useState<ICode['error']>('');
     const [machineCode,setMachineCode] = useState<ICode['machineCode']>('');
     const [memory,setMemory] = useState<ICode['memory']>('');
-    const [registers,setRegisters] = useState<ICode['registers']>([]);
+    const [registers,setRegisters] = useState<ICode['registers']>({});
 
 
     const build = async () =>

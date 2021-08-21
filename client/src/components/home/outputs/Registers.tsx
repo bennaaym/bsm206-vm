@@ -1,18 +1,33 @@
 import { useCode } from "../../../contexts/CodeContextProvider";
 import styles from "../../../assets/css/output.module.css";
 import Error from "./Error";
+import { useTheme } from "../../../contexts/ThemeContextProvider";
 
 const Registers = () =>
 {
     const {error,registers} = useCode();
+    const {isLight} = useTheme();
+
     return(
         <>
             <div className={styles.output}>
                 {error && <Error message={error}/>}  
                 {
                     !error &&
-                    <ul className="flex-grow flex flex-col space-y-1">
-                        registers
+                    <ul className={styles.registers}>
+                        {
+                            Object.keys(registers).map(key=>
+                                {
+                                    return(
+                                        <li 
+                                        className={`${styles.register} ${isLight? 'bg-light-background-200':'bg-dark-background-100'}`}
+                                        key={key}>
+                                            <span>{key}</span>
+                                            <span>0x{registers[key]}</span>
+                                        </li>
+                                    )
+                                })
+                        }
                     </ul>
                 
                 }

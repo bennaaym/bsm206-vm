@@ -4,4 +4,14 @@
     {
         @apply flex-grow flex p-2
     }
+
+    .registers
+    {
+        @apply flex-grow flex flex-col space-y-1
+    }
+
+    .register
+    {
+        @apply flex justify-between items-center px-3 py-2 rounded
+    }
 }
