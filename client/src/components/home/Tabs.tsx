@@ -41,7 +41,7 @@ const Tabs:React.FC<IProps> = ({tabs}) =>
                 </ul>
             </nav>
             
-            <div className={`${styles['tab-content']} ${isLight?'text-light-text-300 bg-light-background-300':'text-dark-text-300 bg-dark-background-300'}`}>
+            <div className={`${styles['tab-content']} border-l ${isLight?'text-light-text-300 bg-light-background-300 border-light-background-200':'text-dark-text-300 bg-dark-background-300 border-dark-background-400'}`}>
                 {tabs[activeTabIndex] === 'input'     && <Editor/>}
                 {tabs[activeTabIndex] === 'output'    && <Output/>}
                 {tabs[activeTabIndex] === 'registers' && <Registers/>}

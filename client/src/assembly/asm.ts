@@ -40,7 +40,6 @@ export const highLightCode = (code:string,isLight:boolean):string =>
                 const prev = splittedCommand[0];
                 const next = splittedCommand[1];
                 
-                console.log(prev,next);
                 
                 // keyword
                 if(CONFIG.KEYWORDS.includes(prev))
@@ -54,11 +53,11 @@ export const highLightCode = (code:string,isLight:boolean):string =>
                     const ADR_CHAR = prev[0];
                     const next = prev.slice(1,prev.length);
                     
-                    output += MARKUPIFY.highLightAddressingChar(ADR_CHAR);
+                    output += MARKUPIFY.highLightAddressingChar(ADR_CHAR,isLight);
 
                     if(next.match(CONFIG.HEX_NUMBER_REGEX))
                     {
-                        output += MARKUPIFY.highLightHexValue(next);
+                        output += MARKUPIFY.highLightHexValue(next,isLight);
                     }
 
                 }
@@ -73,8 +72,7 @@ export const highLightCode = (code:string,isLight:boolean):string =>
                     output += prev
 
                 const comment = CONFIG.COMMENT_CHAR + next +  CONFIG.WHITE_SPACE + commands.slice(j+1,commands.length).join(' ');
-                console.log(comment);
-                output += MARKUPIFY.highLightComment(comment);
+                output += MARKUPIFY.highLightComment(comment,isLight);
                 break;
             }
             

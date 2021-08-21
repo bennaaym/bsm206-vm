@@ -3,6 +3,7 @@ import { ICode } from "../../../contexts/CodeContextProvider";
 import styles from "../../../assets/css/editor.module.css";
 import { highLightCode } from "../../../assembly/asm";
 import { useTheme } from "../../../contexts/ThemeContextProvider";
+import { useEffect } from "react";
 
 export interface IProps 
 {
@@ -21,10 +22,13 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
     const handleCodeChange = (event:React.ChangeEvent<HTMLTextAreaElement>) =>
     {
        const upperCaseCode = event.target.value.toUpperCase();
-       setCode(upperCaseCode);
-       if(highlightsRef.current) highlightsRef.current.innerHTML = highLightCode(upperCaseCode,isLight);
-        
+       setCode(upperCaseCode);        
     }
+
+    useEffect(()=>
+    {
+        if(highlightsRef.current) highlightsRef.current.innerHTML = highLightCode(code.toUpperCase(),isLight);
+    },[code,isLight])
 
 
     const handleScroll =(event : React.UIEvent<HTMLTextAreaElement, UIEvent>) =>
