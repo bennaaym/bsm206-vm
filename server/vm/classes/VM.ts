@@ -26,13 +26,13 @@ class VM implements IVM
     }
 
     // Methods
-    public run = (): [{regs:{[reg:string]:string}[],memory:string}[]|null,string|null] =>
+    public run = (): [{regs:{[reg:string]:string},memory:string}[]|null,string|null] =>
     {
         this.loadCodeIntoMemory();
         
         const MAX_TIME  = 15 * 1000 // 15 seconds
         const startTime = performance.now();
-        let output: {regs:{[reg:string]:string}[],memory:string}[] = [];
+        let output: {regs:{[reg:string]:string},memory:string}[] = [];
 
         while(true)
         {
@@ -45,13 +45,13 @@ class VM implements IVM
                     throw new MaxExecutionTimeError("maximum execution time threshold exceeded, likely to have an infinite loop or  << HLT >> instruction not found");
                 }
 
-                output.push({regs:this.buildRegsArray(),memory:this.buildMemoryView()});
+                output.push({regs:this.buildRegs(),memory:this.buildMemoryView()});
             }
             catch(error)
             {
                 if(error === EIDEC.HLT)
                 {
-                    output.push({regs:this.buildRegsArray(),memory:this.buildMemoryView()});
+                    output.push({regs:this.buildRegs(),memory:this.buildMemoryView()});
                     break;
                 }
                 return [null,error.get()];
@@ -70,15 +70,15 @@ class VM implements IVM
     }
 
     // return an array of object {reg:value}
-    private buildRegsArray = ():{[reg:string]:string}[] =>
+    private buildRegs = ():{[reg:string]:string} =>
     {
         const registersRef = Registers.getInstance();
-        let regs:{[reg:string]:string}[] = [];
+        let regs:{[reg:string]:string} = {};
 
         for(let reg in EREG)
         {
             const buffer:IRegister = registersRef.getRegister(reg);
-            regs.push( {[reg] : buffer.read().toString(16).padStart(buffer.sizeInBytes() * 2,'0').toUpperCase()} )
+            regs[reg] = buffer.read().toString(16).padStart(buffer.sizeInBytes() * 2,'0').toUpperCase();
         }
 
         return regs;
