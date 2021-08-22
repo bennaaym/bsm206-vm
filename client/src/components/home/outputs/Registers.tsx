@@ -14,7 +14,7 @@ const Registers = () =>
                 {error && <Error message={error}/>}  
                 {
                     !error &&
-                    <ul className={styles.registers}>
+                    <ul className={`${styles.registers} p-2`}>
                         {
                             Object.keys(registers).map(key=>
                                 {

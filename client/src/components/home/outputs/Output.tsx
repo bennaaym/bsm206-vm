@@ -52,8 +52,8 @@ const Output = () =>
               >
               </LabelButton>
 
-              <div className="p-2 h-full w-full absolute tracking-wide font-semibold  break-words overflow-y-auto ">
-                {output}
+              <div className="h-full w-full absolute   break-words  overflow-y-auto ">
+                <p className="pl-2 pt-2">{output}</p>
               </div>
             </>
           }

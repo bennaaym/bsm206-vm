@@ -8,7 +8,7 @@ const Error: React.FC<IProps> = ({message}) => {
     
     return (
         <>
-            <div className="flex-grow flex flex-col text-error items-center tracking-wide font-medium">
+            <div className="p-2 text-justify flex-grow flex flex-col text-error ">
                     <div>
                         {message}
                     </div>
