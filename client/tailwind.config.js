@@ -11,7 +11,7 @@ module.exports = {
           100: '#F9FAFB',
           200: '#E5E7EB',
           300: '#F9FAFB',
-          400: '#F3F4F6'
+          400: '#F3F4F6',
         },
         text:{
           300:'#111827'

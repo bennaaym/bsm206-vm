@@ -22,8 +22,8 @@ const Registers = () =>
                                         <li 
                                         className={`${styles.register} ${isLight? 'bg-light-background-200':'bg-dark-background-100'}`}
                                         key={key}>
-                                            <span>{key}</span>
-                                            <span>0x{registers[key]}</span>
+                                            <span className="font-semibold">{key}</span>
+                                            <span className="font-medium">0x{registers[key]}</span>
                                         </li>
                                     )
                                 })

@@ -55,7 +55,7 @@ const Tabs:React.FC<IProps> = ({tabs}) =>
                 activeTabIndex === 0 && tabs[activeTabIndex] === 'input' &&
 
 
-                <div className="absolute right-5 bottom-8">
+                <div className="absolute z-30 right-5 bottom-8">
                     <div className="space-x-2 text-2xl">
                         <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faSync} onClickAction={build}/>
                         <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faPlay} onClickAction={run}/>

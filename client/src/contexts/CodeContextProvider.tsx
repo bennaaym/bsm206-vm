@@ -8,7 +8,8 @@ export interface ICode
     machineCode:string,
     memory:string;
     registers:{[reg:string]:string};
-    
+    isBuilding:boolean;
+
     setCode:React.Dispatch<React.SetStateAction<string>>;
     build:() => Promise<void>;
     run:() => void;
@@ -43,18 +44,23 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
     const [machineCode,setMachineCode] = useState<ICode['machineCode']>('');
     const [memory,setMemory] = useState<ICode['memory']>('');
     const [registers,setRegisters] = useState<ICode['registers']>({});
+    const [isBuilding,setIsBuilding] = useState(false);
 
 
     const build = async () =>
     {
         if(!code) return ;
 
+        setIsBuilding(true);
+
         try
         {
             if(API_ENDPOINT)
             {
-                const {data:{data,error}} = await axios.post(API_ENDPOINT,{assemblyCode:`${code}\nHLT`});
+                const {data:{data,error}} = await axios.post(API_ENDPOINT,{assemblyCode:code});
                 setError(error);
+                setIsBuilding(false);
+                if(!data ) return;
                 setMachineCode(data.machineCode);
                 setSteps(data.steps);
             }                    
@@ -79,6 +85,7 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
             machineCode,
             memory,
             registers,
+            isBuilding,
             setCode,
             build,
             run

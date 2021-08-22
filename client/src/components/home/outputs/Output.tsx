@@ -1,22 +1,26 @@
 import { useCode } from "../../../contexts/CodeContextProvider";
 import Error from "./Error";
 import styles from "../../../assets/css/output.module.css";
+import SpinAnimation from "./SpinAnimation";
 
 const Output = () =>
 {
 
-    const {machineCode,error} = useCode();
+    const {machineCode,error,isBuilding} = useCode();
 
     return(
         <>
         <div className={styles.output}>
-          {error && <Error message={error}/>}  
+          {!isBuilding && error && <Error message={error}/>}  
           {
-            !error &&
+            !isBuilding && !error &&
             <div>
               {machineCode}
             </div>
           
+          }
+          {
+            isBuilding && <SpinAnimation message="building"/>
           }
         </div>
         </>
