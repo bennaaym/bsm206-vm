@@ -80,7 +80,6 @@ class VM implements IVM
             const buffer:IRegister = registersRef.getRegister(reg);
             regs[reg] = buffer.read().toString(16).padStart(buffer.sizeInBytes() * 2,'0').toUpperCase();
         }
-
         return regs;
     }
 

@@ -61,6 +61,7 @@ class Registers implements IRegisters
             this.map[reg].write(0);
         }
         
+        this.map[EREG.SP].write(0xFFFF);
         return Registers.instance;
     }
 
