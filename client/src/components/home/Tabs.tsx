@@ -1,6 +1,6 @@
 import { useState } from "react"
-import Memory from "./outputs/Memory";
-import Output from "./outputs/Output";
+import Memory from "./outputs/memory/Memory";
+import Output from "./outputs/output/Output";
 import Registers from "./outputs/Registers";
 import styles from "../../assets/css/home.module.css";
 import { useTheme } from "../../contexts/ThemeContextProvider";

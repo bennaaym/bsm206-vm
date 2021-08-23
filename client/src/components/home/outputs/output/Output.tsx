@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useCode } from "../../../contexts/CodeContextProvider";
-import Error from "./Error";
+import { useCode } from "../../../../contexts/CodeContextProvider";
+import Error from "../Error";
 import SpinAnimation from "./SpinAnimation";
-import LabelButton from "../../buttons/LabelButton";
+import LabelButton from "../../../buttons/LabelButton";
 import { useEffect } from "react";
 
 const Output = () =>

@@ -1,5 +1,5 @@
 
-export interface IProps 
+interface IProps 
 {
     message:string;    
 }
