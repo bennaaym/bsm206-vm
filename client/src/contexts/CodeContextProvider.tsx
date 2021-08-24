@@ -1,4 +1,4 @@
-import { ReactNode, useState,createContext, useContext } from "react";
+import { ReactNode, useState, createContext, useContext } from "react";
 import axios from "axios";
 
 export interface ICode
@@ -8,14 +8,17 @@ export interface ICode
     machineCode:string,
     memory:string;
     registers:{[reg:string]:string};
+    currentStep:number;
+    totalSteps:number;
     isBuilding:boolean;
 
     setCode:React.Dispatch<React.SetStateAction<string>>;
     build:() => Promise<void>;
-    run:() => void;
+    nextStep:() => void;
+    prevStep:() => void;
 }
 
-interface ISypes
+interface ISteps
 {
     steps:{regs:{[reg:string]:string},memory:string}[]|null;
 }
@@ -39,11 +42,13 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
 {
 
     const [code,setCode] = useState('');
-    const [steps,setSteps] = useState<ISypes['steps']|null>(null);
+    const [steps,setSteps] = useState<ISteps['steps']|null>(null);
     const [error,setError] = useState<ICode['error']>('');
     const [machineCode,setMachineCode] = useState<ICode['machineCode']>('');
     const [memory,setMemory] = useState<ICode['memory']>('');
     const [registers,setRegisters] = useState<ICode['registers']>({});
+    const [currentStep,setCurrentStep] = useState<ICode['currentStep']>(1);
+    const [totalSteps,setTotalSteps] = useState<ICode['totalSteps']>(0);
     const [isBuilding,setIsBuilding] = useState(false);
 
 
@@ -63,6 +68,9 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
                 if(!data ) return;
                 setMachineCode(data.machineCode);
                 setSteps(data.steps);
+                setTotalSteps(data.steps.length);
+                run(data.steps);
+                console.log('run');
             }                    
         }
         catch(error)
@@ -78,11 +86,25 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
         }
     }
 
-    const run = () =>
+    const run = (steps:ISteps['steps']) =>
     {
         if(!steps) return;
-        setMemory(steps[steps.length - 1].memory);
-        setRegisters(steps[steps.length - 1].regs)
+        setMemory(steps[currentStep - 1].memory);
+        setRegisters(steps[currentStep - 1].regs);
+    }
+
+    const nextStep = () =>
+    {
+        if(!totalSteps) return;
+        setCurrentStep(current => ((current% totalSteps) + 1));
+        run(steps);
+    }
+
+    const prevStep = () =>
+    {
+        if(!totalSteps) return;
+        setCurrentStep(current => ((current > 1)? (current-1) : totalSteps));
+        run(steps);
     }
 
     return(
@@ -92,10 +114,13 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
             machineCode,
             memory,
             registers,
+            currentStep,
+            totalSteps,
             isBuilding,
             setCode,
             build,
-            run
+            prevStep,
+            nextStep
         }}>
             {children}
         </CodeContext.Provider>

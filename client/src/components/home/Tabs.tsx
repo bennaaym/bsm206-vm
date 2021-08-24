@@ -6,9 +6,10 @@ import styles from "../../assets/css/home.module.css";
 import { useTheme } from "../../contexts/ThemeContextProvider";
 import LabelButton from "../buttons/LabelButton";
 import IconButton from "../buttons/IconButton";
-import { faPlay, faStepForward, faSync } from "@fortawesome/free-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 import Editor from "./editor/Editor";
 import { useCode } from "../../contexts/CodeContextProvider";
+import Steps from "./Steps";
 
 
 interface IProps
@@ -19,7 +20,7 @@ interface IProps
 const Tabs:React.FC<IProps> = ({tabs}) =>
 {
 
-    const {build,run} = useCode();
+    const {build} = useCode();
     const {isLight} = useTheme();
     const [activeTabIndex,setActiveTabIndex] = useState(0);
     const updateActiveTabIndex = (index:number) => setActiveTabIndex(index);
@@ -39,7 +40,8 @@ const Tabs:React.FC<IProps> = ({tabs}) =>
                                 />
                             )
                         })
-                    }                    
+                    }     
+                    {tabs[activeTabIndex] !== 'input' && <Steps/>}
                 </ul>
             </nav>
             
@@ -58,8 +60,6 @@ const Tabs:React.FC<IProps> = ({tabs}) =>
                 <div className="absolute z-30 right-5 bottom-8">
                     <div className="space-x-2 text-2xl">
                         <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faSync} onClickAction={build}/>
-                        <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faPlay} onClickAction={run}/>
-                        <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faStepForward} onClickAction={()=>{}}/>
                     </div>
                 </div>
             }

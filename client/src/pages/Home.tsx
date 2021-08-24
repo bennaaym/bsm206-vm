@@ -1,4 +1,4 @@
-import { faPlay, faStepForward, faSync } from "@fortawesome/free-solid-svg-icons";
+import {faSync } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../components/buttons/IconButton";
 import Tabs from "../components/home/Tabs";
 import { useTheme } from "../contexts/ThemeContextProvider";
@@ -10,7 +10,7 @@ import { useCode } from "../contexts/CodeContextProvider";
 const Home = () =>
 {
     const {isLight} = useTheme();
-    const {run,build} = useCode();
+    const {build} = useCode();
 
     return(
         <>
@@ -35,16 +35,6 @@ const Home = () =>
                                     styles={`label-btn text-sm rounded-full hover:bg-opacity-75 ${styles['tab-btn-active']} ${!isLight?'text-dark-text-300':''}`}
                                     icon={faSync} 
                                     onClickAction={build}
-                                /> 
-                                <IconButton 
-                                    styles={`label-btn text-sm rounded-full hover:bg-opacity-75 ${styles['tab-btn-active']} ${!isLight?'text-dark-text-300':''}`}
-                                    icon={faPlay} 
-                                    onClickAction={run}
-                                /> 
-                                <IconButton 
-                                    styles={`label-btn text-sm rounded-full hover:bg-opacity-75 ${styles['tab-btn-active']} ${!isLight?'text-dark-text-300':''}`}
-                                    icon={faStepForward} 
-                                    onClickAction={()=>{}}
                                 /> 
                             </div>
                         </div>

@@ -34,7 +34,7 @@
 
     .icon-btn
     {
-        @apply text-2xl
+        @apply text-2xl flex items-center justify-center
     }
 
     .label-btn
