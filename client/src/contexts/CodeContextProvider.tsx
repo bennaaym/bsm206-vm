@@ -67,7 +67,14 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
         }
         catch(error)
         {
-            console.log(error);
+            setIsBuilding(false);
+            
+            const err = error.toString().toLowerCase();
+            let message = err;
+            if(err.includes('network error'))
+                message = 'Could not connect to server. Please check your internet connexion and try again'
+            
+            alert(message);
         }
     }
 
