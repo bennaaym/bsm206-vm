@@ -19,21 +19,31 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
 
     const highlightsRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const textareaIndexRef = useRef(0);
     const lineCounterRef = useRef<HTMLDivElement|null>(null);
 
     const handleCodeChange = (event:React.ChangeEvent<HTMLTextAreaElement>) =>
     {
        const upperCaseCode = event.target.value.toUpperCase();
+       if(textareaIndexRef && textareaRef.current) 
+       {
+           textareaIndexRef.current = textareaRef.current.selectionStart;
+       }
        setCode(upperCaseCode);        
     }
 
     useEffect(()=>
     {
         if(highlightsRef.current) highlightsRef.current.innerHTML = highLightCode(code.toUpperCase(),isLight);
+        if(textareaRef.current)
+        {
+            textareaRef.current.selectionStart = textareaIndexRef.current;
+            textareaRef.current.selectionEnd = textareaIndexRef.current;
+        }
+        
     },[code,isLight])
-
-
-    const handleScroll =(event : React.UIEvent<HTMLTextAreaElement, UIEvent>) =>
+    
+    const handleScroll =() =>
     {
         if(textareaRef.current && highlightsRef.current && lineCounterRef.current)
         {
