@@ -14,6 +14,11 @@
     {
         @apply pl-8 h-full w-full absolute  break-words overflow-y-auto 
     }
+
+    .highlightedline
+    {
+        @apply rounded 
+    }
 }
 
 

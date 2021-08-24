@@ -1,7 +1,8 @@
 import * as CONFIG from "./config";
 import * as MARKUPIFY from "./markupify";
+import styles from "../assets/css/editor.module.css";
 
-export const highLightCode = (code:string,isLight:boolean):string =>
+export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1):string =>
 {
     let output = CONFIG.EMPTY_CHAR;
 
@@ -12,6 +13,9 @@ export const highLightCode = (code:string,isLight:boolean):string =>
     for(let i = 0 ;i<lines.length;i++)
     {
         const commands = lines[i].split(CONFIG.WHITE_SPACE);
+        output +=(currentLine - 1 === i)? 
+            `<div class="${styles.highlightedline} ${isLight?'bg-light-line':'bg-dark-line'}"`:
+            '<div>';
 
         // process line
         for(let j=0;j<commands.length;j++)
@@ -125,8 +129,8 @@ export const highLightCode = (code:string,isLight:boolean):string =>
             output += command;
             output += MARKUPIFY.whiteSpace();
         }
-
-        output += MARKUPIFY.newLine();
+        output+='</div>'
+        // output += MARKUPIFY.newLine();
     }
 
     return output;

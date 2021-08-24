@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { ICode } from "../../../contexts/CodeContextProvider";
+import { ICode, useCode } from "../../../contexts/CodeContextProvider";
 import styles from "../../../assets/css/editor.module.css";
 import { highLightCode } from "../../../assembly/asm";
 import { useTheme } from "../../../contexts/ThemeContextProvider";
@@ -16,6 +16,7 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
     
 
     const {isLight} = useTheme();
+    const {currentStepIndex} = useCode();
 
     const highlightsRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -34,14 +35,14 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
 
     useEffect(()=>
     {
-        if(highlightsRef.current) highlightsRef.current.innerHTML = highLightCode(code.toUpperCase(),isLight);
+        if(highlightsRef.current) highlightsRef.current.innerHTML = highLightCode(code.toUpperCase(),isLight,(code?currentStepIndex:-1));
         if(textareaRef.current)
         {
             textareaRef.current.selectionStart = textareaIndexRef.current;
             textareaRef.current.selectionEnd = textareaIndexRef.current;
         }
         
-    },[code,isLight])
+    },[code,isLight,currentStepIndex])
     
     const handleScroll =() =>
     {
