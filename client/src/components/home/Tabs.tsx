@@ -9,7 +9,7 @@ import IconButton from "../buttons/IconButton";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import Editor from "./editor/Editor";
 import { useCode } from "../../contexts/CodeContextProvider";
-import Steps from "./Steps";
+import Steps from "./outputs/Steps";
 
 
 interface IProps
@@ -41,7 +41,7 @@ const Tabs:React.FC<IProps> = ({tabs}) =>
                             )
                         })
                     }     
-                    {tabs[activeTabIndex] !== 'input' && <Steps/>}
+                    {!['input','output'].includes(tabs[activeTabIndex]) && <Steps/>}
                 </ul>
             </nav>
             

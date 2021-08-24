@@ -46,7 +46,7 @@
 
     .memory > div 
     {
-        @apply flex items-center space-x-4 text-xs sm:text-sm lg:text-base 2xl:text-lg
+        @apply flex items-center space-x-4 text-xs sm:text-sm md:text-base 2xl:text-lg font-medium
     }
 
     .memory > div > span:first-child
@@ -72,6 +72,21 @@
     .search-bar-form > div > input 
     {
         @apply px-10 w-full   border border-light-text-300 uppercase  outline-none rounded
+    }
+
+    .steps
+    {
+        @apply relative  flex flex-col items-center justify-center  ml-6 space-y-2 
+    }
+
+    .step-btn
+    {
+        @apply flex justify-center  text-xs sm:text-sm hover:opacity-50 
+    }
+
+    .steps-tooltip
+    {
+        @apply  hidden sm:flex flex-col  items-center justify-center absolute z-10 -top-3 left-4 w-16 p-1 text-sm rounded
     }
 
 }
