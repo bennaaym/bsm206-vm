@@ -8,12 +8,14 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
 
     // split input code into lines
     const lines = code.split(CONFIG.NEW_LINE);
-
+    let counter = -1;
     // process the code line by line
     for(let i = 0 ;i<lines.length;i++)
     {
+        if(lines[i]!==CONFIG.EMPTY_CHAR) counter++;
+
         const commands = lines[i].split(CONFIG.WHITE_SPACE);
-        output +=(currentLine - 1 === i)? 
+        output +=((currentLine - 1 === counter) && lines[i]!==CONFIG.EMPTY_CHAR)? 
             `<div class="${styles.highlightedline} ${isLight?'bg-light-line':'bg-dark-line'}"`:
             '<div>';
 
