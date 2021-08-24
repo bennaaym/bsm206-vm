@@ -2,7 +2,7 @@
 {
     .textarea-wrapper
     {
-        @apply h-full relative flex-grow flex  text-sm sm:text-base xl:text-lg
+        @apply h-full relative flex-grow flex  text-sm sm:text-base 2xl:text-lg
     }
 
     .codearea 

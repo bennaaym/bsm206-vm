@@ -26,7 +26,7 @@
 
     .machine-code
     {
-        @apply h-full w-full absolute   break-words  overflow-y-auto  text-sm sm:text-base xl:text-lg
+        @apply h-full w-full absolute   break-words  overflow-y-auto  text-sm sm:text-base 2xl:text-lg
     }
 
     .machine-code > p 
@@ -36,22 +36,42 @@
 
     .memory-wrapper
     {
-        @apply flex flex-col w-full pt-2
+        @apply flex flex-col w-full pt-2 px-2 w-8/12 items-center
     }
 
     .memory
     {
-        @apply p-3 break-words w-full flex flex-col items-center
+        @apply pt-3 break-words flex flex-col
     }
 
     .memory > div 
     {
-        @apply flex items-center justify-between space-x-4 text-xs sm:text-sm lg:text-base 2xl:text-lg
+        @apply flex items-center space-x-4 text-xs sm:text-sm lg:text-base 2xl:text-lg
     }
 
     .memory > div > span:first-child
     {
         @apply opacity-50 text-center
+    }
+
+    .search-bar-form
+    {
+        @apply  justify-center pt-2  text-light-text-300  sm:w-7/12 md:w-8/12 
+    }
+
+    .search-bar-form > div
+    {
+        @apply relative flex items-center
+    }
+
+    .search-bar-form > div > span
+    {
+        @apply absolute  left-6 opacity-50
+    }
+
+    .search-bar-form > div > input 
+    {
+        @apply px-10 w-full   border border-light-text-300 uppercase  outline-none rounded
     }
 
 }

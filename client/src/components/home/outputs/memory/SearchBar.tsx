@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "../../../../assets/css/output.module.css";
 
 interface IProps
 {
@@ -23,14 +24,11 @@ const SearchBar: React.FC<IProps> = ({action}) => {
         <>
             <form 
                 onSubmit={handleSubmit}
-                className="flex justify-center pt-2"
+                className={styles['search-bar-form']}
             >
-                <div className="text-light-text-300 relative w-full sm:w-8/12 md:w-full lg:w-10/12 xl:w-8/12 px-4 flex items-center">
-                    <span className ="absolute  left-6 opacity-50 ">
-                        @:
-                    </span>
+                <div>
+                    <span>@:</span>
                     <input
-                        className="px-6 w-full border border-light-text-100  uppercase  outline-none rounded"
                         type="text"
                         pattern="0x[0-9a-fA-F]{4}"
                         placeholder="0x0000"
