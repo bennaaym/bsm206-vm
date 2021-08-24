@@ -4,14 +4,54 @@
     {
         @apply flex-grow flex 
     }
-
+    
+    .error
+    {
+        @apply flex-grow flex flex-col p-2 text-justify text-error text-sm md:text-base xl:text-lg
+    }
     .registers
     {
-        @apply flex-grow flex flex-col justify-center space-y-1
+        @apply flex-grow flex flex-col justify-center space-y-1 
     }
 
     .register
     {
-        @apply flex justify-between items-center px-3 py-2 rounded 
+        @apply flex justify-between items-center px-3 py-2 rounded  text-sm sm:text-base 
     }
+
+    .hex-bin-btn
+    {
+        @apply z-10 absolute bottom-8  hover:opacity-50 right-5 flex items-center justify-center text-dark-text-300 text-sm  uppercase bg-light-accent rounded-full p-2
+    }
+
+    .machine-code
+    {
+        @apply h-full w-full absolute   break-words  overflow-y-auto  text-sm sm:text-base xl:text-lg
+    }
+
+    .machine-code > p 
+    {
+        @apply px-2 pt-2
+    }
+
+    .memory-wrapper
+    {
+        @apply flex flex-col w-full pt-2
+    }
+
+    .memory
+    {
+        @apply p-3 break-words w-full flex flex-col items-center
+    }
+
+    .memory > div 
+    {
+        @apply flex items-center justify-between space-x-4 text-xs sm:text-sm lg:text-base 2xl:text-lg
+    }
+
+    .memory > div > span:first-child
+    {
+        @apply opacity-50 text-center
+    }
+
 }

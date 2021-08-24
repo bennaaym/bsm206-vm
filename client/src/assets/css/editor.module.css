@@ -2,17 +2,17 @@
 {
     .textarea-wrapper
     {
-        @apply h-full relative flex-grow flex 
+        @apply h-full relative flex-grow flex  text-sm sm:text-base xl:text-lg
     }
 
     .codearea 
     {
-        @apply pl-8 z-10 absolute h-full w-full flex flex-grow uppercase break-words outline-none resize-none  uppercase overflow-y-auto 
+        @apply pl-8 z-10 absolute h-full w-full flex flex-grow  break-words overflow-y-auto outline-none resize-none   
     }
 
     .highlights 
     {
-        @apply pl-8 h-full w-full absolute uppercase break-words overflow-y-auto 
+        @apply pl-8 h-full w-full absolute  break-words overflow-y-auto 
     }
 }
 

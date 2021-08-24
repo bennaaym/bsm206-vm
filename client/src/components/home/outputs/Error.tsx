@@ -1,3 +1,4 @@
+import styles from "../../../assets/css/output.module.css";
 
 interface IProps 
 {
@@ -8,7 +9,7 @@ const Error: React.FC<IProps> = ({message}) => {
     
     return (
         <>
-            <div className="p-2 text-justify flex-grow flex flex-col text-error ">
+            <div className={styles.error}>
                     <div>
                         {message}
                     </div>

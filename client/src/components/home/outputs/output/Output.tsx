@@ -4,6 +4,7 @@ import Error from "../Error";
 import SpinAnimation from "./SpinAnimation";
 import LabelButton from "../../../buttons/LabelButton";
 import { useEffect } from "react";
+import styles from "../../../../assets/css/output.module.css";
 
 const Output = () =>
 {
@@ -46,14 +47,16 @@ const Output = () =>
             !isBuilding && !error &&
             <>
               <LabelButton 
-                styles="z-10 absolute bottom-8  hover:opacity-50 right-5 flex items-center justify-center text-dark-text-300 text-sm  uppercase bg-light-accent rounded-full p-2"
+                styles={styles['hex-bin-btn']}
                 label={base}
                 onClickAction = {convertBase}
               >
               </LabelButton>
 
-              <div className="h-full w-full absolute   break-words  overflow-y-auto ">
-                <p className="pl-2 pt-2">{output}</p>
+              <div className={styles['machine-code']}>
+                <p>
+                  {output}
+                </p>
               </div>
             </>
           }

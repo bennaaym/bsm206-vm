@@ -51,7 +51,7 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
             
             <textarea
                 ref={textareaRef}
-                className={`${styles.codearea}  overflow-y-auto bg-transparent text-transparent ${isLight? 'light-caret-color':'dark-caret-color'}`}
+                className={`${styles.codearea}  bg-transparent text-transparent ${isLight? 'light-caret-color':'dark-caret-color'}`}
                 value={code}
                 onChange={handleCodeChange}
                 onScroll={handleScroll}
@@ -59,7 +59,7 @@ const HighlightWithinTextarea: React.FC<IProps> = ({code,setCode}) => {
 
             <div
                 ref={highlightsRef}
-                className={`${styles.highlights} overflow-y-auto bg-transparent-keyword `}
+                className={`${styles.highlights} bg-transparent`}
             ></div>
         </div>
     );
