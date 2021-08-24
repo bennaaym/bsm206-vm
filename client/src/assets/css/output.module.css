@@ -26,7 +26,7 @@
 
     .machine-code
     {
-        @apply h-full w-full absolute   break-words  overflow-y-auto  text-sm sm:text-base 2xl:text-lg
+        @apply h-full w-full absolute   break-words  overflow-y-auto  text-sm sm:text-base xl:text-lg
     }
 
     .machine-code > p 

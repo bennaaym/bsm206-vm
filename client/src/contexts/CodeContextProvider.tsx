@@ -62,11 +62,11 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
             if(API_ENDPOINT)
             {
                 const {data:{data:resData,error:resError}} = await axios.post(API_ENDPOINT,{assemblyCode:code});
+                setIsBuilding(false);
                 setError(resError);
                 if(!resData ) return;
                 setData(resData);
                 setTotalSteps(resData.steps.length);
-                setIsBuilding(false);
             }                    
         }
         catch(error)
