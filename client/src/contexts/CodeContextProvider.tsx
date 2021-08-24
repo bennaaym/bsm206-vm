@@ -1,5 +1,6 @@
 import { ReactNode, useState, createContext, useContext } from "react";
 import axios from "axios";
+import { useEffect } from "react";
 
 export interface ICode
 {
@@ -8,7 +9,7 @@ export interface ICode
     machineCode:string,
     memory:string;
     registers:{[reg:string]:string};
-    currentStep:number;
+    currentStepIndex:number,
     totalSteps:number;
     isBuilding:boolean;
 
@@ -18,9 +19,10 @@ export interface ICode
     prevStep:() => void;
 }
 
-interface ISteps
+interface ITypes
 {
-    steps:{regs:{[reg:string]:string},memory:string}[]|null;
+    data:{steps:{regs:{[reg:string]:string},memory:string}[],machineCode:string}
+    step:{index:number, data:{regs:{[reg:string]:string},memory:string}}
 }
 
 
@@ -42,12 +44,9 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
 {
 
     const [code,setCode] = useState('');
-    const [steps,setSteps] = useState<ISteps['steps']|null>(null);
+    const [data,setData] = useState<ITypes['data']|null>(null);
+    const [currentStep,setCurrentStep] = useState<ITypes['step']|null>(null);
     const [error,setError] = useState<ICode['error']>('');
-    const [machineCode,setMachineCode] = useState<ICode['machineCode']>('');
-    const [memory,setMemory] = useState<ICode['memory']>('');
-    const [registers,setRegisters] = useState<ICode['registers']>({});
-    const [currentStep,setCurrentStep] = useState<ICode['currentStep']>(1);
     const [totalSteps,setTotalSteps] = useState<ICode['totalSteps']>(0);
     const [isBuilding,setIsBuilding] = useState(false);
 
@@ -62,15 +61,12 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
         {
             if(API_ENDPOINT)
             {
-                const {data:{data,error}} = await axios.post(API_ENDPOINT,{assemblyCode:code});
-                setError(error);
+                const {data:{data:resData,error:resError}} = await axios.post(API_ENDPOINT,{assemblyCode:code});
+                setError(resError);
+                if(!resData ) return;
+                setData(resData);
+                setTotalSteps(resData.steps.length);
                 setIsBuilding(false);
-                if(!data ) return;
-                setMachineCode(data.machineCode);
-                setSteps(data.steps);
-                setTotalSteps(data.steps.length);
-                run(data.steps);
-                console.log('run');
             }                    
         }
         catch(error)
@@ -86,35 +82,49 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
         }
     }
 
-    const run = (steps:ISteps['steps']) =>
-    {
-        if(!steps) return;
-        setMemory(steps[currentStep - 1].memory);
-        setRegisters(steps[currentStep - 1].regs);
-    }
+    const run = (step:ITypes['step']) => setCurrentStep(step);
+
+
+    useEffect(() => {
+        if(data)
+        {
+            run({index:1, data:data.steps[0]});
+        }
+    }, [data]);
+
+
+
+ 
 
     const nextStep = () =>
     {
-        if(!totalSteps) return;
-        setCurrentStep(current => ((current% totalSteps) + 1));
-        run(steps);
+       if(!data || !currentStep) return;
+       const nextIndex = (currentStep.index % totalSteps) + 1;
+       run({
+           index:nextIndex,
+           data:data.steps[nextIndex - 1]
+       })
+       
     }
 
     const prevStep = () =>
     {
-        if(!totalSteps) return;
-        setCurrentStep(current => ((current > 1)? (current-1) : totalSteps));
-        run(steps);
+        if(!data || !currentStep) return;
+        const prevIndex = (currentStep.index > 1)? (currentStep.index - 1) : totalSteps;
+        run({
+            index:prevIndex,
+            data:data.steps[prevIndex - 1]
+        })
     }
 
     return(
         <CodeContext.Provider value={{
             code,
             error,
-            machineCode,
-            memory,
-            registers,
-            currentStep,
+            machineCode:data?.machineCode||'',
+            memory:currentStep?.data.memory||'',
+            registers:currentStep?.data.regs||{},
+            currentStepIndex:currentStep?.index||0,
             totalSteps,
             isBuilding,
             setCode,

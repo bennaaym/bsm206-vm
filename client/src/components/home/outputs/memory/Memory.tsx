@@ -13,8 +13,8 @@ const Memory = () =>
     const {error,memory} = useCode();
     const [snapShot,setSnapshot] = useState<string[]>([]);
     const [startingAddress,setStartingAddress] = useState(0);
-
-
+    
+    
     const createSnapShot = useCallback(()=>
     {
         let res:string[] = [];

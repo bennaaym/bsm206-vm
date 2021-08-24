@@ -6,7 +6,7 @@ import IconButton from "../buttons/IconButton"
 const Steps = () => {
 
     const {isLight} = useTheme();
-    const {prevStep,nextStep,currentStep,totalSteps} = useCode(); 
+    const {prevStep,nextStep} = useCode(); 
 
     return (
         <>
