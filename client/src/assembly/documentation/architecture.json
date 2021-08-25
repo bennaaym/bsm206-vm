@@ -36,6 +36,13 @@
                 "size":"16",
                 "function":"Holds the address of the location to be accessed from memory"
             },
+            "IX":
+            {
+                "name":"index register",
+                "size":"16",
+                "function":"Contains the base address that's used to calculate the effective address when using index addressing mode"
+            },
+            
             "AC":
             {
                 "name":"accumulator",

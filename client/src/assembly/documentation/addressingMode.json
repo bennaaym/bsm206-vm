@@ -12,7 +12,7 @@
         {
             "symbol":"#",
             "bytes":"3",
-            "description":"When the instruction is assembled, the operand comes immediately after the opcode"
+            "description":"In this mode, when the instruction is assembled, the operand comes immediately after the opcode"
         },
 
         "direct":

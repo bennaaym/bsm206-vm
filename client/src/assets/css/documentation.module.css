@@ -7,6 +7,40 @@
 
     .table tr,th,td
     {
-        @apply border p-1 text-center
+        @apply border  p-1 text-center
+    }
+
+    .table > tbody > tr > td:first-child
+    {
+        @apply font-semibold
+    }
+    .table > tbody > tr > td:last-child
+    {
+        @apply text-left
+    }
+
+    .section-wrapper
+    {
+        @apply space-y-4
+    }
+
+    .section-wrapper > h1
+    {
+        @apply text-2xl font-semibold uppercase
+    }
+
+    .section-wrapper > section > h4
+    {
+        @apply list-disc text-lg font-semibold uppercase
+    }
+
+    .section-wrapper > section > p 
+    {
+        @apply text-lg font-medium
+    }
+
+    .section-wrapper > section > div
+    {
+        @apply mt-4
     }
 }

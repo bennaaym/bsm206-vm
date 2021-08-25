@@ -236,7 +236,7 @@
         "INCX":
         {
            "function":"Increments the Index register by 1",
-           "mode":
+           "modes":
            {
                 "inherent"   :{"opcode":"0B","bytes":"1","cycles":"1"}
            }
