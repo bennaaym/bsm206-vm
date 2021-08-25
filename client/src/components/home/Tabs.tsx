@@ -6,7 +6,7 @@ import styles from "../../assets/css/home.module.css";
 import { useTheme } from "../../contexts/ThemeContextProvider";
 import LabelButton from "../buttons/LabelButton";
 import IconButton from "../buttons/IconButton";
-import { faSync } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import Editor from "./editor/Editor";
 import { useCode } from "../../contexts/CodeContextProvider";
 import Steps from "./outputs/Steps";
@@ -59,7 +59,7 @@ const Tabs:React.FC<IProps> = ({tabs}) =>
 
                 <div className="absolute z-30 right-5 bottom-8">
                     <div className="space-x-2 text-2xl">
-                        <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faSync} onClickAction={build}/>
+                        <IconButton styles={`label-btn ${styles['tab-btn-active']} rounded-full `} icon={faPlay} onClickAction={build}/>
                     </div>
                 </div>
             }

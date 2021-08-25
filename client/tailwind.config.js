@@ -21,7 +21,8 @@ module.exports = {
         keyword:'#0018FF',
         symbol:'#318495',
         number:'#C5060B',
-        comment:'#4C886B'
+        comment:'#4C886B',
+        line:'#D1D5DB'
       },
 
       dark:{
@@ -40,7 +41,8 @@ module.exports = {
         keyword:'#FFB86C',
         symbol:'#CCCCCC',
         number:'#F1FA8C',
-        comment:'#DDD'
+        comment:'#DDD',
+        line:'#111827'
 
       }
     },

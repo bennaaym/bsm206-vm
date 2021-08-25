@@ -1,4 +1,4 @@
-import {faSync } from "@fortawesome/free-solid-svg-icons";
+import {faPlay } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../components/buttons/IconButton";
 import Tabs from "../components/home/Tabs";
 import { useTheme } from "../contexts/ThemeContextProvider";
@@ -33,7 +33,7 @@ const Home = () =>
                             <div className="space-x-3">
                                 <IconButton 
                                     styles={`label-btn text-sm rounded-full hover:bg-opacity-75 ${styles['tab-btn-active']} ${!isLight?'text-dark-text-300':''}`}
-                                    icon={faSync} 
+                                    icon={faPlay} 
                                     onClickAction={build}
                                 /> 
                             </div>
