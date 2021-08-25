@@ -5,50 +5,42 @@
         {
             "symbol":"",
             "bytes":"1",
-            "description":" In this mode, the operands are not in the memory",
-            "exemple":"PSH"
+            "description":" In this mode, the operands are not in the memory"
         },
 
         "immediate":
         {
             "symbol":"#",
             "bytes":"3",
-            "description":"When the instruction is assembled, the operand comes immediately after the opcode",
-            "exemple":"LDA #1234"
+            "description":"When the instruction is assembled, the operand comes immediately after the opcode"
         },
 
         "direct":
         {
             "symbol":"",
             "bytes":"3",
-            "description":"In this mode, address field in the instruction contains the effective address of the operand and no intermediate memory access is required",
-            "exemple":"LDA 1234"
+            "description":"In this mode, address field in the instruction contains the effective address of the operand and no intermediate memory access is required"
         },
 
         "indirect":
         {
             "symbol":"()",
             "bytes":"3",
-            "description":"In this mode, address field in the instruction contains the memory location where effective address of operand is present.",
-            "exemple":"LDA (1234)"
+            "description":"In this mode, address field in the instruction contains the memory location where effective address of operand is present."
         },
 
         "index":
         {
             "symbol":"*",
             "bytes":"2",
-            "description":"In this mode, contents of Index register is added to address part of instruction to obtain effective address",
-            "exemple":"LDA *12"
+            "description":"In this mode, contents of Index register is added to address part of instruction to obtain effective address"
         },
 
         "relative":
         {
             "symbol":"~",
             "bytes":"2",
-            "description":"In this mode, contents of Index register is added to address part of instruction to obtain effective address",
-            "exemple":"BSR ~04"
-        }
-
- 
+            "description":"In this mode, contents of Index register is added to address part of instruction to obtain effective address"
+        } 
     }
 }

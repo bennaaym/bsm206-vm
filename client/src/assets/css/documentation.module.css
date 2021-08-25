@@ -1,0 +1,12 @@
+@layer components
+{
+    .table
+    {
+        @apply table-auto border-collapse border text-left text-xs sm:text-sm md:text-base lg:text-lg 
+    }
+
+    .table tr,th,td
+    {
+        @apply border p-1 text-center
+    }
+}
