@@ -70,9 +70,12 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                         {
                             output += MARKUPIFY.highLightHexValue(prev,isLight);
                         }
-
+                        else
+                            output +=prev;
                         output += MARKUPIFY.highLightAddressingChar(RPAREN,isLight);
                     }
+                    else 
+                        output +=next;
                 }
 
                 // hex value
@@ -128,6 +131,8 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                     {
                         output += MARKUPIFY.highLightHexValue(prev,isLight);
                     }
+                    else
+                        output +=prev;
 
                     output += MARKUPIFY.highLightAddressingChar(RPAREN,isLight);
                     output += MARKUPIFY.whiteSpace();
