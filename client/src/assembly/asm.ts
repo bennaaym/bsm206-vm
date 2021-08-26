@@ -49,7 +49,7 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                     output += MARKUPIFY.highLighKeyword(prev,isLight);
                 }
                 
-                
+                // addressing chars
                 else if (CONFIG.ADRMD_CHARS.includes(prev[0]))
                 {
                     const ADR_CHAR = prev[0];
@@ -62,6 +62,17 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                         output += MARKUPIFY.highLightHexValue(next,isLight);
                     }
 
+                    if(next[next.length - 1] === ')')
+                    {
+                        const prev = next.substring(0,next.length - 1)
+                        const RPAREN = next[next.length - 1];
+                        if(prev.match(CONFIG.HEX_NUMBER_REGEX))
+                        {
+                            output += MARKUPIFY.highLightHexValue(prev,isLight);
+                        }
+
+                        output += MARKUPIFY.highLightAddressingChar(RPAREN,isLight);
+                    }
                 }
 
                 // hex value
@@ -109,6 +120,20 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                     continue;
                 }
 
+                if(next[next.length - 1] === ')')
+                {
+                    const prev = next.substring(0,next.length - 1)
+                    const RPAREN = next[next.length - 1];
+                    if(prev.match(CONFIG.HEX_NUMBER_REGEX))
+                    {
+                        output += MARKUPIFY.highLightHexValue(prev,isLight);
+                    }
+
+                    output += MARKUPIFY.highLightAddressingChar(RPAREN,isLight);
+                    output += MARKUPIFY.whiteSpace();
+                    continue;
+                }
+
                 output += next;
                 output += MARKUPIFY.whiteSpace();
                 continue;
@@ -121,6 +146,8 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                 output += MARKUPIFY.whiteSpace();
                 continue;
             }
+
+            
 
             
             // else
