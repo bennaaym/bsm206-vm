@@ -34,7 +34,7 @@ module.exports = {
 
         },
         text:{
-          300:'#FFF'
+          300:'#E5E7EB'
         },
         accent:'#3B82F6',
         

@@ -2,12 +2,12 @@
 {
     .table
     {
-        @apply table-auto border-collapse border text-left text-xs sm:text-sm md:text-base lg:text-lg 
+        @apply table-auto border-collapse border text-center text-xs sm:text-sm md:text-base lg:text-lg 
     }
 
     .table tr,th,td
     {
-        @apply border  p-1 text-center
+        @apply border  p-1 
     }
 
     .table > tbody > tr > td:first-child
@@ -19,6 +19,11 @@
         @apply text-left
     }
 
+    .table > tbody > tr > td.before-last
+    {
+        @apply text-center
+    }
+    
     .section-wrapper
     {
         @apply space-y-4

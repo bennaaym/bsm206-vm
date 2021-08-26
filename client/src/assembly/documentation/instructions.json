@@ -183,7 +183,7 @@
         },
         "MUL":
         {
-            "function":"Multiplies the Low Byte of the Accumulator with The Low byte of the operand (8bits multiplication)",
+            "function":"Multiplies the Low bytes of the Accumulator with The Low bytes of the operand (8bits multiplication)",
             "modes":
             {           
                 "immediate" :{"opcode":"95","bytes":"3","cycles":"3"},
@@ -244,82 +244,82 @@
         
         "BRA":
         {
-            "function":"Unconditional branching  to address, uses the byte after the opcode to calculate the effective address",
+            "function":"Unconditional branching  to address, uses the bytes after the opcode to calculate the effective address",
             "modes":
             {
-                "relative" :{"opcode":"50","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"50","bytes":"2","cycles":"1"}
             }
         },
         "BCC":
         {
-            "function":"Conditional Branching  to address if C = 0, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if C = 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"51","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"51","bytes":"2","cycles":"1"}
             }
         },
         "BCS":
         {
-            "function":"Conditional Branching  to address if C == 1, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if C == 1, uses the bytes after the opcode to calculate the effective address",
             "modes":
             {
-                "relative" :{"opcode":"52","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"52","bytes":"2","cycles":"1"}
             }
         },
         "BZR":
         {
-            "function":"Conditional Branching  to address if Z == 1, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if Z == 1, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"53","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"53","bytes":"2","cycles":"1"}
             }
         },
         "BMI":
         {
-            "function":"Conditional Branching  to address if N == 1, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if N == 1, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5A","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"5A","bytes":"2","cycles":"1"}
             }
         },
         "BNE":
         {
-            "function":"Conditional Branching  to address if Z == 0, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if Z == 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5B","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"5B","bytes":"2","cycles":"1"}
             }
         },
         "BVC":
         {
-            "function":"Conditional Branching  to address if V == 0, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if V == 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5C","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"5C","bytes":"2","cycles":"1"}
             }
         },
         "BVS":
         {
-            "function":"Conditional Branching  to address if V == 1, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if V == 1, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5D","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"5D","bytes":"2","cycles":"1"}
             }
         },
         "BPL":
         {
-            "function":"Conditional Branching  to address if N == 0, uses the byte after the opcode to calculate the effective address",
+            "function":"Conditional Branching  to address if N == 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5E","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"5E","bytes":"2","cycles":"1"}
             }
         },
         "BSR":
         {
-            "function":"Unconditional branching to subroutine, uses the byte after the opcode to calculate the effective address",
+            "function":"Unconditional branching to subroutine, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5F","byte":"2","cycle":"1"}
+                "relative" :{"opcode":"5F","bytes":"2","cycles":"1"}
             }
         },
         "RTS":
@@ -327,23 +327,23 @@
             "function":"Returns from subroutine",
             "modes": 
             {
-                "inherent" :{"opcode":"8A","byte":"1","cycle":"4"}
+                "inherent" :{"opcode":"8A","bytes":"1","cycles":"4"}
             }
         },
         "JMP":
         {
-            "function":"Unconditional jump to address, uses the byte after the opcode to calculate the effective address",
+            "function":"Unconditional jump to address, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "index" :{"opcode":"4C","byte":"2","cycle":"1"}
+                "index" :{"opcode":"4C","bytes":"2","cycles":"1"}
             }
         },
         "JSR":
         {
-            "function":"Unconditional jump to subroutine, uses the byte after the opcode to calculate the effective address",
+            "function":"Unconditional jump to subroutine, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "index" :{"opcode":"4D","byte":"2","cycle":"6"}
+                "index" :{"opcode":"4D","bytes":"2","cycles":"6"}
             }
         },
         "NOP":
@@ -351,7 +351,7 @@
             "function":"No opeation",
             "modes":
             {
-                "inherent" :{"opcode":"89","byte":"1","cycle":"1"}
+                "inherent" :{"opcode":"89","bytes":"1","cycles":"1"}
             }
         },
         "HLT":
@@ -359,7 +359,7 @@
             "function":"Halt the microprocessor",
             "modes": 
             {
-                "inherent" :{"opcode":"0E","byte":"1","cycle":"1"}
+                "inherent" :{"opcode":"0E","bytes":"1","cycles":"1"}
             }
         },
         "CLC":
@@ -367,7 +367,7 @@
             "function":"Sets the carry flag to 0",
             "modes": 
             {
-                "inherent" :{"opcode":"83","byte":"1","cycle":"1"}
+                "inherent" :{"opcode":"83","bytes":"1","cycles":"1"}
             }
         },
         "CLI":
@@ -375,7 +375,7 @@
             "function":"Sets the interrupt flag to 0",
             "modes": 
             {
-                "inherent" :{"opcode":"84","byte":"1","cycle":"1"}
+                "inherent" :{"opcode":"84","bytes":"1","cycles":"1"}
             }
         },
         "CLV":
@@ -383,7 +383,7 @@
             "function":"Sets the overflow flag to 0",
             "modes": 
             {
-                "inherent" :{"opcode":"85","byte":"1","cycle":"1"}                
+                "inherent" :{"opcode":"85","bytes":"1","cycles":"1"}                
             }
         },
         "STC":
@@ -391,7 +391,7 @@
             "function":"Sets the carry flag to 1",
             "modes": 
             {
-                "inherent" :{"opcode":"86","byte":"1","cycle":"1"}
+                "inherent" :{"opcode":"86","bytes":"1","cycles":"1"}
             }
         },
         "STI":
@@ -399,7 +399,7 @@
             "function":"Sets the interrupt flag to 1",
             "modes": 
             {
-                "inherent" :{"opcode":"87","byte":"1","cycle":"1"}
+                "inherent" :{"opcode":"87","bytes":"1","cycles":"1"}
             }
         },
         "STV":
@@ -407,7 +407,7 @@
             "function":"Sets the overflow flag to 1",
             "modes": 
             {
-                "inherent" :{"opcode":"88","byte":"1","cycle":"1"}
+                "inherent" :{"opcode":"88","bytes":"1","cycles":"1"}
             }
         } 
     }
