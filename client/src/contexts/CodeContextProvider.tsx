@@ -51,6 +51,16 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
     const [isBuilding,setIsBuilding] = useState(false);
 
 
+    useEffect(()=>{
+        const localCode = localStorage.getItem('bsm206-vm-code') || '';
+        setCode(localCode);
+    },[])
+
+    useEffect(()=>{
+        localStorage.setItem('bsm206-vm-code',code);
+    },[code])
+
+
     const build = async () =>
     {
         if(!code) return ;
