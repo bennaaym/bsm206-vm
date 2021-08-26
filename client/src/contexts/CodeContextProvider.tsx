@@ -90,12 +90,6 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
         {
             run({index:1, data:data.steps[0]});
         }
-
-        if(!code)
-        {
-            setData(null);
-            setCurrentStep(null);
-        }
     }, [data,code]);
 
 

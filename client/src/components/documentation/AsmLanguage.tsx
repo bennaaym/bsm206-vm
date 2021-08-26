@@ -35,7 +35,7 @@ const AsmLanguage = () =>
                         </span>
                         <span className="text-dark-keyword">LDA</span>
                         <span className="text-dark-text-300">#A123</span>
-                        <span className ="text-dark-comment">; an error will be raised because A123 won't be concidered as a numerical value</span>
+                        <span className ="text-dark-comment">; an error will be raised because A123 won't be evaluated as a numerical value</span>
                     </div>
                     <div className={styles.snippet}>
                         <span className="text-light-comment text-xl">
