@@ -62,7 +62,7 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                         output += MARKUPIFY.highLightHexValue(next,isLight);
                     }
 
-                    if(next[next.length - 1] === ')')
+                    else if(next[next.length - 1] === ')')
                     {
                         const prev = next.substring(0,next.length - 1)
                         const RPAREN = next[next.length - 1];
@@ -76,6 +76,7 @@ export const highLightCode = (code:string,isLight:boolean,currentLine:number=-1)
                     }
                     else 
                         output +=next;
+
                 }
 
                 // hex value
