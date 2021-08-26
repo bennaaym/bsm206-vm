@@ -43,7 +43,7 @@ const API_ENDPOINT = process.env.REACT_APP_API_URL;
 const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
 {
 
-    const [code,setCode] = useState('');
+    const [code,setCode] = useState('LDA #1234;LOADS 1234 INTO THE ACCUMULATOR\nHLT');
     const [data,setData] = useState<ITypes['data']|null>(null);
     const [currentStep,setCurrentStep] = useState<ITypes['step']|null>(null);
     const [error,setError] = useState<ICode['error']>('');
@@ -52,8 +52,8 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
 
 
     useEffect(()=>{
-        const localCode = localStorage.getItem('bsm206-vm-code') || '';
-        setCode(localCode);
+        const localCode = localStorage.getItem('bsm206-vm-code');
+        if(localCode) setCode(localCode);
     },[])
 
     useEffect(()=>{
