@@ -2,8 +2,8 @@ import {Switch,Route} from "react-router-dom";
 import Nav from "./components/nav/Nav"
 import CodeContextProvider from "./contexts/CodeContextProvider";
 import ThemeContextProvider from "./contexts/ThemeContextProvider";
-import Home from "./pages/Home";
 import Documentation from "./pages/Documentation";
+import Home from "./pages/Home";
 
 const App = () => 
 {
@@ -14,8 +14,8 @@ const App = () =>
           <div className="App">
               <Nav/>
               <Switch>
-                  <Route exact path='/' component={Home} />
                   <Route path='/documentation' component={Documentation}/>
+                  <Route path='/' component={Home} />
               </Switch>
           </div>
         </CodeContextProvider>

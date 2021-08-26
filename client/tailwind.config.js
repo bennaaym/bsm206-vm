@@ -41,7 +41,7 @@ module.exports = {
         keyword:'#FFB86C',
         symbol:'#CCCCCC',
         number:'#F1FA8C',
-        comment:'#DDD',
+        comment:'#D1D5DB',
         line:'#111827'
 
       }

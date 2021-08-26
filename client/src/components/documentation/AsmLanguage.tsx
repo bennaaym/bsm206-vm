@@ -1,5 +1,4 @@
 import styles from "../../assets/css/documentation.module.css";
-import InstructionsTable from "./InstructionsTable";
 
 const AsmLanguage = () =>
 {
@@ -14,15 +13,7 @@ const AsmLanguage = () =>
                         <span className="text-dark-number">operand</span>
                         <span className ="text-dark-comment">; comment</span>
                     </div>
-                </section> 
-
-                <section>
-                    <h4>instruction set</h4>
-                    <div>
-                        <InstructionsTable/>
-                    </div>
-                </section>
-               
+                </section>   
             </section>
         </>
     )

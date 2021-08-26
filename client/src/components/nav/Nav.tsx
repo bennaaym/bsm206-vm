@@ -11,9 +11,11 @@ export interface IMenu
     items:{label:string,path:string}[]
 }
 
-const items:IMenu['items'] = [
-    {label:'home',path:'/'},
-    {label:'documentation',path:'/documentation'},
+const documentation:IMenu['items']=[
+    {label:'architecutre',path:'/documentation/architecture'},
+    {label:'addressing',path:'/documentation/addressing-modes'},
+    {label:'instructions',path:'/documentation/instruction-set'},
+    {label:'assembly',path:'/documentation/assembly-language'},
 ]
 
 const Nav = () =>
@@ -34,23 +36,35 @@ const Nav = () =>
 
 
                 <ul className={styles['desktop-menu']}>
-                    {
-                        items.map(item=>{
-                            return(
-                                <li key={item.label}>
-                                    <Link to={item.path}>
-                                        {item.label}
-                                    </Link>
-                                </li>
-                            )
-                        })
-                    }
-
+                    <li>
+                        <Link to='/'>home</Link>
+                    </li>
+                    <ul className={styles.dropdown}>
+                        <li>
+                            documentation
+                        </li>
+                        <div className={`${styles['dropdown-content']} ${isLight?'bg-light-background-100 text-light-text-300':'bg-dark-background-100 text-dark-text-300'}`}>
+                        {
+                            documentation.map(item=>{
+                                return(
+                                    <li key={item.label}>
+                                       <Link to={item.path}>
+                                           {item.label}
+                                       </Link>
+                                    </li>
+                                )
+                            })
+                        }
+                        </div>
+                    </ul>
                     <IconButton styles={'icon-btn'} icon={isLight?faAdjust:faSun} onClickAction={toggleTheme} />
                 </ul>
             </nav>
 
-            <SideBar items={items} active={sideBarState} toggle={toggleSideBarMenu}/>
+            <SideBar items={[{label:'home',path:''},...documentation]}
+                    active={sideBarState} 
+                    toggle={toggleSideBarMenu}
+            />
         </>
     )
 }

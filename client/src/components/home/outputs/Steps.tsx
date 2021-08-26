@@ -34,7 +34,7 @@ const Steps = () => {
 
                 />
                 <div className={`${toolTip? styles['steps-tooltip']: 'hidden'} `}>
-                    <span>cycles</span>
+                    <span>steps</span>
                     <span>{`${currentStepIndex}/${totalSteps}`}</span>
                 </div>
             </div>
