@@ -6,10 +6,10 @@
             "function":"Adds the value operand to the value of the Accumulator",
             "modes":
             {
-                "immediate" :{"opcode":"10","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"20","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"30","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"40","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"10","bytes":"3","cycles":"3","exemple":"ADD #1234"},
+                "direct"    :{"opcode":"20","bytes":"3","cycles":"6","exemple":"ADD 1234"},
+                "indirect"  :{"opcode":"30","bytes":"3","cycles":"9","exemple":"ADD (1234)"},
+                "index"     :{"opcode":"40","bytes":"2","cycles":"4","exemple":"ADD *12"}
             }
         },
         "ADDC":
@@ -17,10 +17,10 @@
             "function":"Adds the value operand to the value of the Accumulator,the carry flag will be added too",
             "modes":
             {
-                "immediate" :{"opcode":"11","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"21","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"31","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"41","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"11","bytes":"3","cycles":"3","exemple":"ADDC #1234"},
+                "direct"    :{"opcode":"21","bytes":"3","cycles":"6","exemple":"ADDC 1234"},
+                "indirect"  :{"opcode":"31","bytes":"3","cycles":"9","exemple":"ADDC (1234)"},
+                "index"     :{"opcode":"41","bytes":"2","cycles":"4","exemple":"ADDC *12"}
             }
         },
         "AND":
@@ -28,10 +28,10 @@
             "function":"Performs a logical AND operation between the Accumulator value and the operand",
             "modes":
             {
-                "immediate" :{"opcode":"12","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"22","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"32","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"42","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"12","bytes":"3","cycles":"3","exemple":"AND #1234"},
+                "direct"    :{"opcode":"22","bytes":"3","cycles":"6","exemple":"AND 1234"},
+                "indirect"  :{"opcode":"32","bytes":"3","cycles":"9","exemple":"AND (1234)"},
+                "index"     :{"opcode":"42","bytes":"2","cycles":"4","exemple":"AND *12"}
             }
         },
         "CLR":
@@ -39,7 +39,7 @@
             "function":"Sets the accumulator to zero",
             "modes":
             {
-                "inherent"   :{"opcode":"01","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"01","bytes":"1","cycles":"1","exemple":"CLR"}
             }
         },
         "DECR":
@@ -47,7 +47,7 @@
             "function":"Decrements the value of the accumulator by 1",
             "modes":
             {
-                "inherent"   :{"opcode":"02","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"02","bytes":"1","cycles":"1","exemple":"DECR"}
             }
         },
         "DIV":
@@ -55,10 +55,10 @@
             "function":"Divides the value of the Accumulator by the operand, the quotient will be stored in the Accumulator and the remainder will be stored in the Data register",
             "modes":
             {
-                "immediate" :{"opcode":"15","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"25","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"35","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"45","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"15","bytes":"3","cycles":"3","exemple":"DIV #1234"},
+                "direct"    :{"opcode":"25","bytes":"3","cycles":"6","exemple":"DIV 1234"},
+                "indirect"  :{"opcode":"35","bytes":"3","cycles":"9","exemple":"DIV (1234)"},
+                "index"     :{"opcode":"45","bytes":"2","cycles":"4","exemple":"DIV *12"}
             }
         },
         "XOR":
@@ -66,10 +66,10 @@
             "function":"Performs a logical XOR operation between the Accumulator value and the operand",
             "modes":
             {
-                "immediate" :{"opcode":"16","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"26","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"36","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"46","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"16","bytes":"3","cycles":"3","exemple":"XOR #1234"},
+                "direct"    :{"opcode":"26","bytes":"3","cycles":"6","exemple":"XOR 1234"},
+                "indirect"  :{"opcode":"36","bytes":"3","cycles":"9","exemple":"XOR (1234)"},
+                "index"     :{"opcode":"46","bytes":"2","cycles":"4","exemple":"XOR *12"}
             }
         },
         "INCR":
@@ -77,7 +77,7 @@
             "function":"Increments the value of the accumulator by 1",
             "modes":
             {
-                "inherent"   :{"opcode":"03","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"03","bytes":"1","cycles":"1","exemple":"INCR"}
             }
         },
         "COM":
@@ -85,7 +85,7 @@
            "function":"Sets the value of the Accumulator to its 1's complement",
            "modes":
            {
-                "inherent"   :{"opcode":"04","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"04","bytes":"1","cycles":"1","exemple":"COM"}
            }
         },
         "NEG":
@@ -93,7 +93,7 @@
            "function":"Sets the value of the Accumulator to its 2's complement",
            "modes":
            {
-                "inherent"   :{"opcode":"05","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"05","bytes":"1","cycles":"1","exemple":"NEG"}
            }
         },
         "LDA":
@@ -101,10 +101,10 @@
             "function":"Loads the operand to the Accumulator",
             "modes":
             {
-                "immediate" :{"opcode":"1A","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"2A","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"3A","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"4A","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"1A","bytes":"3","cycles":"3","exemple":"LDA #1234"},
+                "direct"    :{"opcode":"2A","bytes":"3","cycles":"6","exemple":"LDA 1234"},
+                "indirect"  :{"opcode":"3A","bytes":"3","cycles":"9","exemple":"LDA (1234)"},
+                "index"     :{"opcode":"4A","bytes":"2","cycles":"4","exemple":"LDA *12"}
             }
         },
         "OR":
@@ -112,10 +112,10 @@
             "function":"Performs a logical OR operation between the Accumulator value and the operand",
             "modes":
             {
-                "immediate" :{"opcode":"1B","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"2B","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"3B","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"4B","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"1B","bytes":"3","cycles":"3","exemple":"OR #1234"},
+                "direct"    :{"opcode":"2B","bytes":"3","cycles":"6","exemple":"OR 1234"},
+                "indirect"  :{"opcode":"3B","bytes":"3","cycles":"9","exemple":"OR (1234)"},
+                "index"     :{"opcode":"4B","bytes":"2","cycles":"4","exemple":"OR *12"}
             }
         },
         "PSH":
@@ -123,7 +123,7 @@
            "function":"Stores the value of the Accumulator into the memory address pointed by the Stack Pointer",
            "modes":
            {
-                "inherent"   :{"opcode":"06","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"06","bytes":"1","cycles":"1","exemple":"PSH"}
            } 
         },
         "PUL":
@@ -131,7 +131,7 @@
            "function":"Pulls data from  the memory location pointed by the Stack Pointer and loads it into the Accumulator",
            "modes":
            {
-                "inherent"   :{"opcode":"07","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"07","bytes":"1","cycles":"1","exemple":"PUL"}
            }    
         },
         "SAR":
@@ -139,7 +139,7 @@
            "function":"Zero fill right shift",
            "modes":
            {
-                "inherent"   :{"opcode":"08","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"08","bytes":"1","cycles":"1","exemple":"SAR"}
            }
         },
         "SAL":
@@ -147,7 +147,7 @@
            "function":"Zero fill left shift",
            "modes":
            {
-                "inherent"   :{"opcode":"09","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"09","bytes":"1","cycles":"1","exemple":"SAL"}
            }
         },
         "SUB":
@@ -155,10 +155,10 @@
             "function":"Substructures the value of the accumulator from operand ",
             "modes":
             {
-                "immediate" :{"opcode":"1E","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"2E","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"3E","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"4E","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"1E","bytes":"3","cycles":"3","exemple":"SUB #1234"},
+                "direct"    :{"opcode":"2E","bytes":"3","cycles":"6","exemple":"SUB 1234"},
+                "indirect"  :{"opcode":"3E","bytes":"3","cycles":"9","exemple":"SUB (1234)"},
+                "index"     :{"opcode":"4E","bytes":"2","cycles":"4","exemple":"SUB *12"}
             }
         },
         "SUBC":
@@ -166,19 +166,19 @@
             "function":"Substructures the value of the accumulator from operand, the carry flag will be subtracted too",
             "modes":
             {
-                "immediate" :{"opcode":"1F","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"2F","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"3F","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"4F","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"1F","bytes":"3","cycles":"3","exemple":"SUBC #1234"},
+                "direct"    :{"opcode":"2F","bytes":"3","cycles":"6","exemple":"SUBC 1234"},
+                "indirect"  :{"opcode":"3F","bytes":"3","cycles":"9","exemple":"SUBC (1234)"},
+                "index"     :{"opcode":"4F","bytes":"2","cycles":"4","exemple":"SUBC *12"}
             }
         },
         "STA":
         {   "function":"Stores the accumulator value into memory",
             "modes":
             {
-                "direct"    :{"opcode":"A0","bytes":"3","cycles":"5"},
-                "indirect"  :{"opcode":"B0","bytes":"3","cycles":"8"},
-                "index"     :{"opcode":"C0","bytes":"2","cycles":"3"}
+                "direct"    :{"opcode":"A0","bytes":"3","cycles":"5","exemple":"STA 1234"},
+                "indirect"  :{"opcode":"B0","bytes":"3","cycles":"8","exemple":"STA (1234)"},
+                "index"     :{"opcode":"C0","bytes":"2","cycles":"3","exemple":"STA *12"}
             }
         },
         "MUL":
@@ -186,10 +186,10 @@
             "function":"Multiplies the Low bytes of the Accumulator with The Low bytes of the operand (8bits multiplication)",
             "modes":
             {           
-                "immediate" :{"opcode":"95","bytes":"3","cycles":"3"},
-                "direct"    :{"opcode":"A5","bytes":"3","cycles":"6"},
-                "indirect"  :{"opcode":"B5","bytes":"3","cycles":"9"},
-                "index"     :{"opcode":"C5","bytes":"2","cycles":"4"}
+                "immediate" :{"opcode":"95","bytes":"3","cycles":"3","exemple":"MUL #0012"},
+                "direct"    :{"opcode":"A5","bytes":"3","cycles":"6","exemple":"MUL 1234"},
+                "indirect"  :{"opcode":"B5","bytes":"3","cycles":"9","exemple":"MUL (1234)"},
+                "index"     :{"opcode":"C5","bytes":"2","cycles":"4","exemple":"MUL *12"}
             }
         },
         "LDAX":
@@ -197,10 +197,10 @@
             "function":"Loads the operand value into the Index register",
             "modes":
             {
-                "immediate" :{"opcode":"91","bytes":"3","cycles":"2"},
-                "direct"    :{"opcode":"A1","bytes":"3","cycles":"5"},
-                "indirect"  :{"opcode":"B1","bytes":"3","cycles":"8"},
-                "index"     :{"opcode":"C1","bytes":"2","cycles":"3"}
+                "immediate" :{"opcode":"91","bytes":"3","cycles":"2","exemple":"LDAX #1234"},
+                "direct"    :{"opcode":"A1","bytes":"3","cycles":"5","exemple":"LDAX 1234"},
+                "indirect"  :{"opcode":"B1","bytes":"3","cycles":"8","exemple":"LDAX (1234)"},
+                "index"     :{"opcode":"C1","bytes":"2","cycles":"3","exemple":"LDAX *12"}
             }
         },
         "LDAS":
@@ -208,10 +208,10 @@
             "function":"Loads the operand value into the Stack Pointer",
             "modes": 
             {
-                "immediate" :{"opcode":"92","bytes":"3","cycles":"2"},
-                "direct"    :{"opcode":"A2","bytes":"3","cycles":"5"},
-                "indirect"  :{"opcode":"B2","bytes":"3","cycles":"8"},
-                "index"     :{"opcode":"C2","bytes":"2","cycles":"3"}
+                "immediate" :{"opcode":"92","bytes":"3","cycles":"2","exemple":"LDAS #1234"},
+                "direct"    :{"opcode":"A2","bytes":"3","cycles":"5","exemple":"LDAS 1234"},
+                "indirect"  :{"opcode":"B2","bytes":"3","cycles":"8","exemple":"LDAS (1234)"},
+                "index"     :{"opcode":"C2","bytes":"2","cycles":"3","exemple":"LDAS *12"}
             }
         },
         
@@ -220,8 +220,8 @@
             "function":"Stores the value of the Index register into memory",
             "modes": 
             {
-                "direct"    :{"opcode":"A3","bytes":"3","cycles":"5"},
-                "indirect"  :{"opcode":"B3","bytes":"3","cycles":"8"}
+                "direct"    :{"opcode":"A3","bytes":"3","cycles":"5","exemple":"STAX 1234"},
+                "indirect"  :{"opcode":"B3","bytes":"3","cycles":"8","exemple":"STAX (1234)"}
             }
         },
 
@@ -230,7 +230,7 @@
             "function":"Decrements the Index register by 1",
             "modes": 
             {
-                "inherent"   :{"opcode":"0A","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"0A","bytes":"1","cycles":"1","exemple":"DECX"}
             }
         },
         "INCX":
@@ -238,7 +238,7 @@
            "function":"Increments the Index register by 1",
            "modes":
            {
-                "inherent"   :{"opcode":"0B","bytes":"1","cycles":"1"}
+                "inherent"   :{"opcode":"0B","bytes":"1","cycles":"1","exemple":"INCX"}
            }
         },
         
@@ -247,7 +247,7 @@
             "function":"Unconditional branching  to address, uses the bytes after the opcode to calculate the effective address",
             "modes":
             {
-                "relative" :{"opcode":"50","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"50","bytes":"2","cycles":"1","exemple":"BRA ~06"}
             }
         },
         "BCC":
@@ -255,7 +255,7 @@
             "function":"Conditional Branching  to address if C = 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"51","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"51","bytes":"2","cycles":"1","exemple":"BCC ~06"}
             }
         },
         "BCS":
@@ -263,7 +263,7 @@
             "function":"Conditional Branching  to address if C == 1, uses the bytes after the opcode to calculate the effective address",
             "modes":
             {
-                "relative" :{"opcode":"52","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"52","bytes":"2","cycles":"1","exemple":"BCS ~06"}
             }
         },
         "BZR":
@@ -271,7 +271,7 @@
             "function":"Conditional Branching  to address if Z == 1, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"53","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"53","bytes":"2","cycles":"1","exemple":"BZR ~06"}
             }
         },
         "BMI":
@@ -279,7 +279,7 @@
             "function":"Conditional Branching  to address if N == 1, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5A","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"5A","bytes":"2","cycles":"1","exemple":"BMI ~06"}
             }
         },
         "BNE":
@@ -287,7 +287,7 @@
             "function":"Conditional Branching  to address if Z == 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5B","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"5B","bytes":"2","cycles":"1","exemple":"BNE ~06"}
             }
         },
         "BVC":
@@ -295,7 +295,7 @@
             "function":"Conditional Branching  to address if V == 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5C","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"5C","bytes":"2","cycles":"1","exemple":"BVC ~06"}
             }
         },
         "BVS":
@@ -303,7 +303,7 @@
             "function":"Conditional Branching  to address if V == 1, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5D","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"5D","bytes":"2","cycles":"1","exemple":"BVS ~06"}
             }
         },
         "BPL":
@@ -311,7 +311,7 @@
             "function":"Conditional Branching  to address if N == 0, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5E","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"5E","bytes":"2","cycles":"1","exemple":"BPL ~06"}
             }
         },
         "BSR":
@@ -319,7 +319,7 @@
             "function":"Unconditional branching to subroutine, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "relative" :{"opcode":"5F","bytes":"2","cycles":"1"}
+                "relative" :{"opcode":"5F","bytes":"2","cycles":"1","exemple":"BSR ~06"}
             }
         },
         "RTS":
@@ -327,7 +327,7 @@
             "function":"Returns from subroutine",
             "modes": 
             {
-                "inherent" :{"opcode":"8A","bytes":"1","cycles":"4"}
+                "inherent" :{"opcode":"8A","bytes":"1","cycles":"4","exemple":"RTS"}
             }
         },
         "JMP":
@@ -335,7 +335,7 @@
             "function":"Unconditional jump to address, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "index" :{"opcode":"4C","bytes":"2","cycles":"1"}
+                "index" :{"opcode":"4C","bytes":"2","cycles":"1","exemple":"JMP *06"}
             }
         },
         "JSR":
@@ -343,7 +343,7 @@
             "function":"Unconditional jump to subroutine, uses the bytes after the opcode to calculate the effective address",
             "modes": 
             {
-                "index" :{"opcode":"4D","bytes":"2","cycles":"6"}
+                "index" :{"opcode":"4D","bytes":"2","cycles":"6","exemple":"JSR *06"}
             }
         },
         "NOP":
@@ -351,7 +351,7 @@
             "function":"No opeation",
             "modes":
             {
-                "inherent" :{"opcode":"89","bytes":"1","cycles":"1"}
+                "inherent" :{"opcode":"89","bytes":"1","cycles":"1","exemple":"NOP"}
             }
         },
         "HLT":
@@ -359,7 +359,7 @@
             "function":"Halt the microprocessor",
             "modes": 
             {
-                "inherent" :{"opcode":"0E","bytes":"1","cycles":"1"}
+                "inherent" :{"opcode":"0E","bytes":"1","cycles":"1","exemple":"HLT"}
             }
         },
         "CLC":
@@ -367,7 +367,7 @@
             "function":"Sets the carry flag to 0",
             "modes": 
             {
-                "inherent" :{"opcode":"83","bytes":"1","cycles":"1"}
+                "inherent" :{"opcode":"83","bytes":"1","cycles":"1","exemple":"CLC"}
             }
         },
         "CLI":
@@ -375,7 +375,7 @@
             "function":"Sets the interrupt flag to 0",
             "modes": 
             {
-                "inherent" :{"opcode":"84","bytes":"1","cycles":"1"}
+                "inherent" :{"opcode":"84","bytes":"1","cycles":"1","exemple":"CLI"}
             }
         },
         "CLV":
@@ -383,7 +383,7 @@
             "function":"Sets the overflow flag to 0",
             "modes": 
             {
-                "inherent" :{"opcode":"85","bytes":"1","cycles":"1"}                
+                "inherent" :{"opcode":"85","bytes":"1","cycles":"1","exemple":"CLV"}                
             }
         },
         "STC":
@@ -391,7 +391,7 @@
             "function":"Sets the carry flag to 1",
             "modes": 
             {
-                "inherent" :{"opcode":"86","bytes":"1","cycles":"1"}
+                "inherent" :{"opcode":"86","bytes":"1","cycles":"1","exemple":"STC"}
             }
         },
         "STI":
@@ -399,7 +399,7 @@
             "function":"Sets the interrupt flag to 1",
             "modes": 
             {
-                "inherent" :{"opcode":"87","bytes":"1","cycles":"1"}
+                "inherent" :{"opcode":"87","bytes":"1","cycles":"1","exemple":"STI"}
             }
         },
         "STV":
@@ -407,7 +407,7 @@
             "function":"Sets the overflow flag to 1",
             "modes": 
             {
-                "inherent" :{"opcode":"88","bytes":"1","cycles":"1"}
+                "inherent" :{"opcode":"88","bytes":"1","cycles":"1","exemple":"STV"}
             }
         } 
     }

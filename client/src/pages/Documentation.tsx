@@ -11,7 +11,7 @@ const Documentation = () =>
     return(
         <>
             <div className={`flex flex-grow w-full  justify-center py-12 ${isLight?'text-light-text-300 ':'text-dark-text-300 bg-dark-background-300'} `}>
-                <div className="w-8/12 space-y-16">
+                <div className="w-11/12 sm:w-10/12 md:w-8/12 space-y-16">
                   <Switch>
                     <Route path='/documentation/architecture' component={Architecture}/>
                     <Route path='/documentation/addressing-modes' component={AdrModes}/>

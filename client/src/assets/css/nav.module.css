@@ -40,6 +40,7 @@
         @apply hidden flex absolute shadow-md p-2 z-50 text-base w-32 space-y-2
     }
 
+
     .dropdown:hover .dropdown-content
     {
         @apply block

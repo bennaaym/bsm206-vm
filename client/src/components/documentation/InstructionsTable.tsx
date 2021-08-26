@@ -7,7 +7,7 @@ const arr :{
     }
 } = instructions;
 
-const headers = ['mnemonis','mode','opcode','bytes','cycles','function'];
+const headers = ['mnemonis','mode','opcode','bytes','cycles','function','exemple'];
 
 const InstructionsTable = () =>
 {
@@ -38,10 +38,13 @@ const InstructionsTable = () =>
                                         </td>
                                         {
                                             (index === 0)&&
-                                            <td rowSpan={modes.length}>
+                                            <td rowSpan={modes.length} className="text-left">
                                                 {arr[instruction].function}
                                             </td>
                                         }
+                                        <td className="w-28 text-base">
+                                            {arr[instruction].modes[mode].exemple}
+                                        </td>
                                     </tr>
                                 )
                             }))
