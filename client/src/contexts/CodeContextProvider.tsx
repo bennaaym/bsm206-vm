@@ -43,7 +43,7 @@ const API_ENDPOINT = process.env.REACT_APP_API_URL;
 const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
 {
 
-    const [code,setCode] = useState('LDA #1234;LOADS 1234 INTO THE ACCUMULATOR\nHLT');
+    const [code,setCode] = useState('LDA #1234;LOADS 1234 INTO THE AC\nHLT');
     const [data,setData] = useState<ITypes['data']|null>(null);
     const [currentStep,setCurrentStep] = useState<ITypes['step']|null>(null);
     const [error,setError] = useState<ICode['error']>('');
@@ -77,7 +77,9 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
                 if(!resData ) return;
                 setData(resData);
                 setTotalSteps(resData.steps.length);
-            }                    
+            }
+            else
+                throw  new Error('Could not find a server to connect to');            
         }
         catch(error)
         {
@@ -86,7 +88,7 @@ const CodeContextProvider:React.FC<ReactNode> = ({children}) =>
             const err = error.toString().toLowerCase();
             let message = err;
             if(err.includes('network error'))
-                message = 'Could not connect to server. Please check your internet connexion and try again'
+                message = 'Could not connect to server. Please try again later'
             
             alert(message);
         }
