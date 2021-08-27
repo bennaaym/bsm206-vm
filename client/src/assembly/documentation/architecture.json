@@ -3,7 +3,7 @@
     {
         "memory":
         {
-            "wordSize":"8",
+            "wordSize":"1 byte",
             "totalSize":"64KB"
         },
 

@@ -7,7 +7,7 @@ const arr :{
     }
 } = instructions;
 
-const headers = ['mnemonis','mode','opcode','bytes','cycles','function','exemple'];
+const headers = ['mnemonis','mode','opcode','bytes','cycles','function','example'];
 
 const InstructionsTable = () =>
 {

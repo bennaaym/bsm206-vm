@@ -26,7 +26,7 @@ const Architecture = () =>
                         total size : {architecture.memory.totalSize}
                     </p>
                     <p>
-                        word size :{architecture.memory.wordSize} bits
+                        word size  : {architecture.memory.wordSize}
                     </p>
                  </section>
                 <section>

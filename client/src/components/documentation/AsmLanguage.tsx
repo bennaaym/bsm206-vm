@@ -17,9 +17,9 @@ const AsmLanguage = () =>
                     </div>
                 </section>   
                 <section className="space-y-2">
-                    <h4>numbers</h4>
+                    <h4>operand</h4>
                     <p>
-                        all numbers are considered as a hexadecimal value
+                        the value of the operand is considered as a hexadecimal value                 
                     </p>
                     <p>
                         if the hexadecimal value starts with a letter [A-F] an insignificant zero should be added at the beginning otherwise an error will be raised
