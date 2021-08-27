@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon api/app.ts"
+    "start":"ts-node src/api/app.ts",
+    "dev": "nodemon src/api/app.ts"
   },
   "keywords": [],
   "author": "",
