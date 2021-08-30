@@ -310,7 +310,7 @@ Below are some pseudo-codes and their translation to the VM assembly language, y
 <!-- LICENSE -->
 ## License
 [![MIT License][license-shield]][license-url]<br>
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 
 
 
@@ -329,6 +329,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/badge/LICENSE-APACHE%202.0-GREEN
 [license-url]: https://github.com/bennaaym/mini-vm/blob/main/LICENSE
 [product-screenshot]: https://i.ibb.co/h78NT0P/UI-2.png
